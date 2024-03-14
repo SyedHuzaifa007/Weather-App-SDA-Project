@@ -60,10 +60,10 @@ class APIhandler1 {
 
             // Print current weather conditions
             System.out.println("Current weather conditions for " + cityName + ", " + countryName + ":");
-            System.out.println("Temperature: " + weatherData.getTemperature() + " K");
-            System.out.println("Feels Like: " + weatherData.getFeelsLike() + " K");
-            System.out.println("Min Temperature: " + weatherData.getMinTemperature() + " K");
-            System.out.println("Max Temperature: " + weatherData.getMaxTemperature() + " K");
+            System.out.println("Temperature: " + (weatherData.getTemperature()-273.15) + " C");
+            System.out.println("Feels Like: " + (weatherData.getFeelsLike()) + " K");
+            System.out.println("Min Temperature: " + (weatherData.getMinTemperature()-273.15) + " C");
+            System.out.println("Max Temperature: " + (weatherData.getMaxTemperature()-273.15) + " C");
 
             conn.disconnect();
         } catch (IOException e) {
