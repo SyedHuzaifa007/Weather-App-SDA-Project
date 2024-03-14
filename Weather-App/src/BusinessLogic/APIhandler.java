@@ -15,7 +15,13 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 import java.net.*;
 import java.io.*;
-
+import java.io.BufferedReader;
+import java.io.InputStreamReader;
+import java.net.HttpURLConnection;
+import java.net.URL;
+import java.time.LocalDate;
+import java.time.LocalTime;
+import java.time.format.DateTimeFormatter;
 class APIhandler {
     private String apikey;
 
@@ -80,7 +86,42 @@ class APIhandler {
 
         return weatherData;
     }
-}
+    public void getSunsetSunrise(location location){
+        LocalDate today = LocalDate.now();
+
+        try {
+            URL url = new URL("https://api.sunrise-sunset.org/json?lat=" + location.getLatitude() + "&lng=" + location.getLongitude() + "&date=" + today);
+            HttpURLConnection connection = (HttpURLConnection) url.openConnection();
+            connection.setRequestMethod("GET");
+            BufferedReader in = new BufferedReader(new InputStreamReader(connection.getInputStream()));
+            String inputLine;
+            StringBuilder response = new StringBuilder();
+
+            while ((inputLine = in.readLine()) != null) {
+                response.append(inputLine);
+            }
+            in.close();
+
+            // Parse JSON response
+            String json = response.toString();
+            String sunriseTime = json.split("\"sunrise\":\"")[1].split("\"")[0];
+            String sunsetTime = json.split("\"sunset\":\"")[1].split("\"")[0];
+
+            // Convert sunrise and sunset times to LocalTime
+            DateTimeFormatter formatter = DateTimeFormatter.ofPattern("h:mm:ss a");
+            LocalTime sunrise = LocalTime.parse(sunriseTime, formatter);
+            LocalTime sunset = LocalTime.parse(sunsetTime, formatter);
+
+            // Output the results
+            System.out.println("Sunrise time: " + sunrise);
+            System.out.println("Sunset time: " + sunset);
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+    }
+
 
 
 

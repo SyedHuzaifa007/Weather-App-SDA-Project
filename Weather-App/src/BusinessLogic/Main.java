@@ -9,5 +9,6 @@ public class Main {
 
         // Call getCurrentData method to fetch weather data
         WeatherData weatherData = apiHandler.getCurrentData();
+        apiHandler.getSunsetSunrise(location);
     }
 }
