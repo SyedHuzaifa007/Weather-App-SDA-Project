@@ -1,18 +1,20 @@
+package BusinessLogic;
+
 import java.time.LocalDateTime;
 
 public class WeatherData {
     private double temperature;
-    private String feelsLike;
+    private double feelsLike;
     private double minTemperature;
     private double maxTemperature;
     private LocalDateTime sunriseTime;
     private LocalDateTime sunsetTime;
     private LocalDateTime timestamp;
-    private APIhandler1 api;
+    private APIhandler api;
 
     public WeatherData() {
         this.temperature = 0.0;
-        this.feelsLike = "";
+        this.feelsLike = 0.0;
         this.minTemperature = 0.0;
         this.maxTemperature = 0.0;
         this.sunriseTime = null;
@@ -20,7 +22,7 @@ public class WeatherData {
         this.timestamp = null;
     }
 
-    public WeatherData(double temperature, String feelsLike, double minTemperature, double maxTemperature,
+    public WeatherData(double temperature, double feelsLike, double minTemperature, double maxTemperature,
                        LocalDateTime sunriseTime, LocalDateTime sunsetTime, LocalDateTime timestamp) {
         this.temperature = temperature;
         this.feelsLike = feelsLike;
@@ -36,7 +38,7 @@ public class WeatherData {
         this.temperature = temperature;
     }
 
-    public void setFeelsLike(String feelsLike) {
+    public void setFeelsLike(double feelsLike) {
         this.feelsLike = feelsLike;
     }
 
@@ -65,7 +67,7 @@ public class WeatherData {
         return temperature;
     }
 
-    public String getFeelsLike() {
+    public double getFeelsLike() {
         return feelsLike;
     }
 
@@ -89,8 +91,6 @@ public class WeatherData {
         return timestamp;
     }
 
-    //public void getCurrentData(){
-    //api.getCurrentData();
-    //}
+
 
 }
