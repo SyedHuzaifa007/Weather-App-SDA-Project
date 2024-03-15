@@ -59,7 +59,6 @@ public class UITerminalBased {
 
     private void showHourlyForecast(String location) {
         System.out.println("Showing hourly forecast for " + location);
-        // Your code to fetch and display hourly forecast goes here
     }
 
     private void showFiveDayForecast(String location) {
