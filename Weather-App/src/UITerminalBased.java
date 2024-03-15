@@ -55,7 +55,6 @@ public class UITerminalBased {
 
     private void showWeatherForecast(String location) {
         System.out.println("Showing weather forecast for " + location);
-        System.out.println("Temperature: " + (WeatherData.getTemperature()-273.15) + " C");
     }
 
     private void showHourlyForecast(String location) {
