@@ -1,3 +1,4 @@
+import BusinessLogic.WeatherData;
 import java.util.Scanner;
 
 public class UITerminalBased {
@@ -11,7 +12,6 @@ public class UITerminalBased {
         while (true) {
             System.out.println("Please enter a city/country:");
             String location = scanner.nextLine();
-
             System.out.println("Choose an option:");
             System.out.println("1. Show Weather Details");
             System.out.println("2. Show Weather Forecast");
@@ -48,14 +48,20 @@ public class UITerminalBased {
         }
     }
 
+    private void DisplayNotification(String location) {
+        NotificationManager Notifications=new NotificationManager();
+        Notifications.GenerateWeatherNotificattions(location);
+    }
     private void showWeatherDetails(String location) {
         System.out.println("Showing weather details for " + location);
+        DisplayNotification(location);
         // Your code to fetch and display weather details goes here
     }
 
     private void showWeatherForecast(String location) {
         System.out.println("Showing weather forecast for " + location);
-        System.out.println("Temperature: " + (WeatherData.getTemperature()-273.15) + " C");
+        WeatherData weatherData= new WeatherData();
+        System.out.println("Temperature: " + (weatherData.getTemperature()-273.15) + " C");
     }
 
     private void showHourlyForecast(String location) {
@@ -74,7 +80,10 @@ public class UITerminalBased {
     }
 
     public static void main(String[] args) {
+
+
         UITerminalBased ui = new UITerminalBased();
+
         ui.run();
     }
 }
