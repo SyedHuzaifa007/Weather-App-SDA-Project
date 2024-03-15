@@ -1,6 +1,7 @@
+import BusinessLogic.NotificationManager;
 import BusinessLogic.WeatherData;
 import java.util.Scanner;
-
+import BusinessLogic.NotificationManager;
 public class UITerminalBased {
     private Scanner scanner;
 

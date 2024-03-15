@@ -21,6 +21,7 @@ public class WeatherData {
         this.sunriseTime = null;
         this.sunsetTime = null;
         this.timestamp = null;
+
     }
 
     public WeatherData(double temperature, double feelsLike, double minTemperature, double maxTemperature,

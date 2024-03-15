@@ -56,12 +56,12 @@ class APIhandler {
 
             // Extract weather information from the response
             String response = sb.toString();
+
             // Assuming the response contains temperature, feels like, min temperature, and max temperature values as strings
             String temperatureStr = response.split("\"temp\":")[1].split(",")[0];
             String feelsLikeStr = response.split("\"feels_like\":")[1].split(",")[0];
             String minTemperatureStr = response.split("\"temp_min\":")[1].split(",")[0];
             String maxTemperatureStr = response.split("\"temp_max\":")[1].split(",")[0];
-
             // Convert string values to doubles
             weatherData.setTemperature(Double.parseDouble(temperatureStr)- 273.15);
             weatherData.setFeelsLike(Double.parseDouble(feelsLikeStr)- 273.15);
@@ -116,6 +116,69 @@ class APIhandler {
             e.printStackTrace();
             return "Error fetching sunrise and sunset times: " + e.getMessage();
         }
+    }
+    public double getTemperatures(location location) {
+        WeatherData weatherData = new WeatherData();
+        String cityName;
+        String countryName;
+        double temp;
+        // If location is not provided, use current location
+        if (location == null ) {
+            location loc = new location();
+            try {
+                loc.getCurrentLocation();
+                cityName = loc.getCity();
+                countryName = loc.getCountry();
+
+            } catch (Exception e) {
+                e.printStackTrace();
+                return 0; // Handle error gracefully
+            }
+        } else {
+            // Parse the location string (assuming it's in the format "city,country")
+            cityName = location.getCity();
+            countryName = location.getCountry();        }
+
+        try {
+            // Construct the URL for the API call
+            String apiUrl = "http://api.openweathermap.org/data/2.5/weather?q=" + cityName + "," + countryName + "&appid=" + apikey;
+
+            URL url = new URL(apiUrl);
+            HttpURLConnection conn = (HttpURLConnection) url.openConnection();
+            conn.setRequestMethod("GET");
+            conn.connect();
+
+            // Read the response
+            BufferedReader br = new BufferedReader(new InputStreamReader(conn.getInputStream()));
+            StringBuilder sb = new StringBuilder();
+            String line;
+            while ((line = br.readLine()) != null) {
+                sb.append(line);
+            }
+            br.close();
+
+            // Extract weather information from the response
+            String response = sb.toString();
+            // Assuming the response contains temperature, feels like, min temperature, and max temperature values as strings
+            String minTemperatureStr = response.split("\"temp_min\":")[1].split(",")[0];
+            String maxTemperatureStr = response.split("\"temp_max\":")[1].split(",")[0];
+
+            // Convert string values to doubles
+            weatherData.setMinTemperature(Double.parseDouble(minTemperatureStr)- 273.15);
+            weatherData.setMaxTemperature(Double.parseDouble(maxTemperatureStr)- 273.15);
+             temp=weatherData.getMaxTemperature();
+            double temp2=weatherData.getMinTemperature();
+            if(weatherData.getMinTemperature()<-10)
+            {
+                temp=temp2;
+            }
+            conn.disconnect();
+        } catch (IOException e) {
+            e.printStackTrace();
+            return 0; // Handle error gracefully
+        }
+
+        return temp;
     }
 }
 
