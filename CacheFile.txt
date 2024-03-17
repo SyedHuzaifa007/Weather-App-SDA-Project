@@ -1,7 +1,1 @@
-Lahore
-30C
-25C
-10C
-100C
-10:11:20
-12:11:20
+This txt file is necessary to insert with atleast one character string or more for code to work
