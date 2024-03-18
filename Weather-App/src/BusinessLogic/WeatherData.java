@@ -1,17 +1,20 @@
 package BusinessLogic;
-
+import java.time.LocalTime;
 import java.time.LocalDateTime;
-import java.time.ZoneId;
-
-public class WeatherData {
+import java.time.format.DateTimeFormatter;
+import java.net.URL;
+import java.net.HttpURLConnection;
+import java.io.BufferedReader;
+import java.io.InputStreamReader;
+public class WeatherData implements BusinessLogic {
     private double temperature;
     private double feelsLike;
     private double minTemperature;
     private double maxTemperature;
-    private LocalDateTime sunriseTime;
-    private LocalDateTime sunsetTime;
-    private LocalDateTime timestamp;
-    private APIhandler api;
+    private LocalTime sunriseTime;
+    private LocalTime sunsetTime;
+    private LocalTime timestamp;
+
 
     public WeatherData() {
         this.temperature = 0.0;
@@ -24,7 +27,7 @@ public class WeatherData {
     }
 
     public WeatherData(double temperature, double feelsLike, double minTemperature, double maxTemperature,
-                       LocalDateTime sunriseTime, LocalDateTime sunsetTime, LocalDateTime timestamp) {
+                       LocalTime sunriseTime, LocalTime sunsetTime, LocalTime timestamp) {
         this.temperature = temperature;
         this.feelsLike = feelsLike;
         this.minTemperature = minTemperature;
@@ -34,64 +37,74 @@ public class WeatherData {
         this.timestamp = timestamp;
     }
 
-    // Setter methods
-    public void setTemperature(double temperature) {
-        this.temperature = temperature;
-    }
-
-    public void setFeelsLike(double feelsLike) {
-        this.feelsLike = feelsLike;
-    }
-
-    public void setMinTemperature(double minTemperature) {
-        this.minTemperature = minTemperature;
-    }
-
-    public void setMaxTemperature(double maxTemperature) {
-        this.maxTemperature = maxTemperature;
-    }
-
-    public void setSunriseTime(LocalDateTime sunriseTime) {
-        this.sunriseTime = sunriseTime;
-    }
-
-    public void setSunsetTime(LocalDateTime sunsetTime) {
-        this.sunsetTime = sunsetTime;
-    }
-
-    public void setTimestamp(LocalDateTime timestamp) {
-        this.timestamp = timestamp;
-    }
 
     // Getter methods
-    public double getTemperature() {
+    public double getTemperature(location location) {
+        APIhandler apIhandler=new APIhandler();
+        temperature= apIhandler.gettemperature(location);
         return temperature;
     }
 
-    public double getFeelsLike() {
-        return feelsLike;
+    public double getFeelsLike(location location) {
+        APIhandler apIhandler=new APIhandler();
+        feelsLike=  apIhandler.feelsliketemperature(location);
+return feelsLike;
     }
 
-    public double getMinTemperature() {
-        return minTemperature;
+    public double getMinTemperature(location location) {
+        APIhandler apIhandler=new APIhandler();
+        minTemperature= apIhandler.getmintemperature(location);
+return minTemperature;
     }
 
-    public double getMaxTemperature() {
-        return maxTemperature;
+    public double getMaxTemperature(location location) {
+        APIhandler apIhandler=new APIhandler();
+         maxTemperature= apIhandler.getmaxtemperature(location);
+return maxTemperature;
     }
 
-    public LocalDateTime getSunriseTime() {
-        return sunriseTime;
+    public LocalTime getSunriseTime(location location) {
+        APIhandler apIhandler=new APIhandler();
+       sunriseTime=apIhandler.getSunrise(location);
+return sunriseTime;
     }
 
-    public LocalDateTime getSunsetTime() {
-        return sunsetTime;
+    public LocalTime getSunsetTime(location location) {
+        APIhandler apIhandler=new APIhandler();
+        sunsetTime= apIhandler.getSunset(location);
+return sunsetTime;
     }
+    public LocalTime getTimestamp(location location) {
+        try {
+            // Fetch current timestamp from an external service
+            URL url = new URL("https://worldtimeapi.org/api/ip");
+            HttpURLConnection connection = (HttpURLConnection) url.openConnection();
+            connection.setRequestMethod("GET");
+            BufferedReader in = new BufferedReader(new InputStreamReader(connection.getInputStream()));
+            String inputLine;
+            StringBuilder response = new StringBuilder();
 
-    public LocalDateTime getTimestamp() {
-        return timestamp;
+            while ((inputLine = in.readLine()) != null) {
+                response.append(inputLine);
+            }
+            in.close();
+
+            // Parse JSON response to get the current timestamp
+            String json = response.toString();
+            String timestampStr = json.split("\"datetime\":\"")[1].split("\"")[0];
+
+            // Convert timestamp string to LocalDateTime
+            DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd'T'HH:mm:ss.SSSSSSXXX");
+            LocalTime timeStamp = LocalTime.parse(timestampStr, formatter);
+            timestamp=timeStamp;
+            return timestamp;
+
+        } catch (Exception e) {
+            e.printStackTrace();
+            // Returning null may not be ideal, consider handling errors more gracefully
+            return null;
+        }
     }
-
 
 
 }

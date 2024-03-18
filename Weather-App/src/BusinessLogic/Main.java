@@ -6,19 +6,11 @@ public class Main {
 
         // Create a Location object with desired city and country
         location location = new location(); // Replace with actual city name and country code
-        location.setCountry("Pakistan");
-        location.setCity("Lahore");
-        // Call getCurrentData method to fetch weather data
-        WeatherData weatherData = apiHandler.getCurrentData(null);
-
-        System.out.println(apiHandler.getSunsetSunrise(location));
-
-
-        location Location = new location();
-        AirPollutionData airPollutionData = new AirPollutionData(location);
-
-        // Print air pollution data
-        airPollutionData.printAirPollutionData();
-
+location.setCountry("Pakistan");
+   location.setCity("Lahore");
+//        // Call getCurrentData method to fetch weather data
+//System.out.println(apiHandler.getmaxtemperature(location));
+        BusinessLogic businessLogic=new WeatherData();
+System.out.println( businessLogic.getSunsetTime(location));
     }
 }
