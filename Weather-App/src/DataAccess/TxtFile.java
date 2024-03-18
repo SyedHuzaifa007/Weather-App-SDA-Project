@@ -1,4 +1,4 @@
-package BusinessLogic;
+package DataAccess;
 
 import java.io.BufferedReader;
 import java.io.BufferedWriter;

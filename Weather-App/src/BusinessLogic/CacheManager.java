@@ -1,10 +1,8 @@
 package BusinessLogic;
 
-import java.io.*;
-import java.nio.file.Path;
-import java.time.LocalTime;
+import DataAccess.TxtFile;
 
-import static java.nio.file.Files.delete;
+import java.io.*;
 
 public class CacheManager
 {
