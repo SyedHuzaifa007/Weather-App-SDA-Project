@@ -59,7 +59,12 @@ public class AirPollutionData {
         this.particulatePM25 = getValueFromJSON(jsonData, "pm2_5");
         this.particulatePM10 = getValueFromJSON(jsonData, "pm10");
     }
-
+public double[] PollutionValues()
+{
+    double values[]={airQualityIndex,carbonMonoxide,nitrogenMonoxide,nitrogenDioxide
+    ,ozone,sulphurDioxide,ammonia,particulatePM25,particulatePM10};
+    return values;
+}
     private double getValueFromJSON(String jsonData, String key) {
         int index = jsonData.indexOf("\"" + key + "\":");
         if (index != -1) {
