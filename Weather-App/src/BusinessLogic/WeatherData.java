@@ -26,6 +26,10 @@ public class WeatherData implements BusinessLogic {
         this.timestamp = null;
     }
 
+    public WeatherData(double temp)
+    {
+        temperature=temp;
+    }
     public WeatherData(double temperature, double feelsLike, double minTemperature, double maxTemperature,
                        LocalTime sunriseTime, LocalTime sunsetTime, LocalTime timestamp) {
         this.temperature = temperature;

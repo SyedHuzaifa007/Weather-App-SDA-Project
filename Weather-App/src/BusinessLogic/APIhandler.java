@@ -7,6 +7,10 @@ import java.net.URL;
 import java.time.LocalDate;
 import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
+import java.util.ArrayList;
+import java.util.List;
+import org.json.JSONArray;
+import org.json.JSONObject;
 class APIhandler {
     private String apikey;
     public APIhandler() {
@@ -220,6 +224,72 @@ class APIhandler {
             return null;
         }
     }
+
+
+    public List<WeatherData> getFiveDayForecast(location location) {
+        List<WeatherData> forecast = new ArrayList<>();
+        try {
+            // Construct the URL for the forecast API call
+            String apiUrl = "http://api.openweathermap.org/data/2.5/forecast?q=" + location.getCity() + "," + location.getCountry() + "&appid=" + apikey;
+
+            URL url = new URL(apiUrl);
+            HttpURLConnection conn = (HttpURLConnection) url.openConnection();
+            conn.setRequestMethod("GET");
+
+            // Check if the response code indicates success
+            int responseCode = conn.getResponseCode();
+            if (responseCode == HttpURLConnection.HTTP_OK) {
+                // Read the response
+                BufferedReader br = new BufferedReader(new InputStreamReader(conn.getInputStream()));
+                StringBuilder sb = new StringBuilder();
+                String line;
+                while ((line = br.readLine()) != null) {
+                    sb.append(line);
+                }
+                br.close();
+
+                // Extract forecast data from the response
+                String response = sb.toString();
+                conn.disconnect();
+
+                // Parse response to extract forecast data
+                String[] forecastEntries = response.split("\"dt_txt\"");
+                for (int i = 1; i < forecastEntries.length; i++) {
+                    String entry = forecastEntries[i];
+                    // Extract date
+                    int dateStartIndex = entry.indexOf(":") + 3;
+                    int dateEndIndex = entry.indexOf(",");
+                    String date = entry.substring(dateStartIndex, dateEndIndex);
+
+                    // Extract temperature
+                    int tempStartIndex = entry.indexOf("temp") + 6;
+                    int tempEndIndex = entry.indexOf(",", tempStartIndex);
+                    double temperature = Double.parseDouble(entry.substring(tempStartIndex, tempEndIndex));
+
+                    // Extract weather condition
+                    int weatherStartIndex = entry.indexOf("description") + 14;
+                    int weatherEndIndex = entry.indexOf("\"", weatherStartIndex);
+                    String weatherCondition = entry.substring(weatherStartIndex, weatherEndIndex);
+
+                    // Create WeatherData object and add to forecast list
+                    forecast.add(new WeatherData(temperature));
+                }
+            } else {
+                // Handle non-success response
+                System.out.println("Failed to fetch forecast data. Response code: " + responseCode);
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+            // Handle error gracefully
+            System.out.println("Error occurred while fetching forecast data: " + e.getMessage());
+            return new ArrayList<>(); // Return an empty list in case of error
+        }
+
+        return forecast;
+    }
+
+
+
 
 }
 
