@@ -313,4 +313,34 @@ public class GUI {
          no2.setForeground(new Color(255,255,255)); // set font color
          no2.setFont(new Font("Roboto",Font.BOLD,50)); // set font style
          no2.setBounds(740, 580, 200, 100);
+
+    //backbox1
+    JLabel backbox1 = new JLabel();
+         backbox1.setOpaque(true);
+         backbox1.setBackground(new Color(13,31,51));
+         backbox1.setBounds(170, 300, 700, 450);
+
+    //backbox2
+    JLabel backbox2 = new JLabel();
+         backbox2.setOpaque(true);
+         backbox2.setBackground(new Color(13,31,51));
+         backbox2.setBounds(30, 50, 75, 650);
+
+    //backbox3
+    JLabel backbox3 = new JLabel();
+         backbox3.setOpaque(true);
+         backbox3.setBackground(new Color(13,31,51));
+         backbox3.setBounds(160, 30, 700, 50);
+
+    //backbox4
+    JLabel backbox4 = new JLabel();
+          backbox4.setOpaque(true);
+          backbox4.setBackground(new Color(13,31,51));
+          backbox4.setBounds(885, 270, 170, 480);
+
+    //backbox5
+    JLabel backbox5 = new JLabel();
+        backbox5.setOpaque(true);
+        backbox5.setBackground(new Color(13,31,51));
+        backbox5.setBounds(885, 70, 170, 175);
 }
