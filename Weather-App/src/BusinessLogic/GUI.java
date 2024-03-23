@@ -422,4 +422,195 @@ public class GUI {
          line13.setBackground(new Color(4,98,239));
          line13.setBounds(700, 530, 2, 200);
 
+
+    // Label Search
+    JLabel searchLabel = new JLabel();
+    ImageIcon searchimg = new ImageIcon("Search.png");
+        searchLabel.setIcon(searchimg);
+
+    int searchWidth = 30;
+    int searchHeight = 30;
+    ImageIcon scaledsearch = new ImageIcon(searchimg.getImage().getScaledInstance(searchWidth, searchHeight, java.awt.Image.SCALE_SMOOTH));
+        searchLabel.setIcon(scaledsearch);
+        searchLabel.setBounds(180, 40, searchWidth, searchHeight);
+
+    // Label_Sun
+    JLabel label2 = new JLabel();
+    ImageIcon Sun = new ImageIcon("Sun.png");
+        label2.setIcon(Sun);
+    // Adjust the size of the sun icon based on label size
+    int labelWidth = 150; // Example width
+    int labelHeight = 150; // Example height
+    ImageIcon scaledSun = new ImageIcon(Sun.getImage().getScaledInstance(labelWidth, labelHeight, java.awt.Image.SCALE_SMOOTH));
+        label2.setIcon(scaledSun);
+        label2.setBounds(200, 100, labelWidth, labelHeight); // Set bounds for label2
+
+
+    // Label_FeLike
+    JLabel feeLabel = new JLabel();
+    ImageIcon feelimg = new ImageIcon("Temperature.png");
+        feeLabel.setIcon(feelimg);
+    // Adjust the size of the sun icon based on label size
+    int feelWidth = 30;
+    int feelHeight = 50;
+    ImageIcon scaledfeel = new ImageIcon(feelimg.getImage().getScaledInstance(feelWidth, feelHeight, java.awt.Image.SCALE_SMOOTH));
+        feeLabel.setIcon(scaledfeel);
+        feeLabel.setBounds(205, 375, feelWidth, feelHeight);
+
+    // Label_Sunrise
+    JLabel rise = new JLabel();
+    ImageIcon riseimg = new ImageIcon("SunRise.png");
+        rise.setIcon(riseimg);
+    // Adjust the size of the sun icon based on label size
+    int riseWidth = 50;
+    int riseHeight = 50;
+    ImageIcon scaledrise = new ImageIcon(riseimg.getImage().getScaledInstance(riseWidth, riseHeight, java.awt.Image.SCALE_SMOOTH));
+        rise.setIcon(scaledrise);
+        rise.setBounds(195, 525, riseWidth, riseHeight);
+
+    // LabelMaxTemp
+    JLabel max = new JLabel();
+    ImageIcon maximg = new ImageIcon("Warm.png");
+        max.setIcon(maximg);
+    // Adjust the size of the sun icon based on label size
+    int maxWidth = 40;
+    int maxHeight = 40;
+    ImageIcon scaledmax = new ImageIcon(maximg.getImage().getScaledInstance(maxWidth, maxHeight, java.awt.Image.SCALE_SMOOTH));
+        max.setIcon(scaledmax);
+        max.setBounds(195, 670, maxWidth, maxHeight);
+
+    // Label_Sunset
+    JLabel set = new JLabel();
+    ImageIcon setimg = new ImageIcon("SunSet.png");
+        set.setIcon(setimg);
+    // Adjust the size of the sun icon based on label size
+    int setWidth = 50;
+    int setHeight = 50;
+    ImageIcon scaledset = new ImageIcon(setimg.getImage().getScaledInstance(setWidth, setHeight, java.awt.Image.SCALE_SMOOTH));
+        set.setIcon(scaledset);
+        set.setBounds(595, 525, setWidth, setHeight);
+
+    // LabelminTemp
+    JLabel min = new JLabel();
+    ImageIcon minimg = new ImageIcon("Cold.png");
+        min.setIcon(minimg);
+    // Adjust the size of the sun icon based on label size
+    int minWidth = 40;
+    int minHeight = 40;
+    ImageIcon scaledmin = new ImageIcon(minimg.getImage().getScaledInstance(minWidth, minHeight, java.awt.Image.SCALE_SMOOTH));
+        min.setIcon(scaledmin);
+        min.setBounds(595, 670, minWidth, minHeight);
+
+    // LabelNotification
+    JLabel notify = new JLabel();
+    ImageIcon notifyimg = new ImageIcon("Notification Bell.png");
+        notify.setIcon(notifyimg);
+    // Adjust the size of the sun icon based on label size
+    int notifyWidth = 20;
+    int notifyHeight = 25;
+    ImageIcon scalednotify = new ImageIcon(notifyimg.getImage().getScaledInstance(notifyWidth, notifyHeight, java.awt.Image.SCALE_SMOOTH));
+        notify.setIcon(scalednotify);
+        notify.setBounds(1025, 80, notifyWidth, notifyHeight);
+
+
+
+
+    // Degree-1
+    JLabel d1 = new JLabel();
+    ImageIcon d1img = new ImageIcon("Degree.png");
+         d1.setIcon(d1img);
+    // Adjust the size of the sun icon based on label size
+    int d1Width = 15;
+    int d1Height = 15;
+    ImageIcon scaledd1 = new ImageIcon(d1img.getImage().getScaledInstance(d1Width, d1Height, java.awt.Image.SCALE_SMOOTH));
+         d1.setIcon(scaledd1);
+         d1.setBounds(420, 175, d1Width, d1Height);
+
+    // Degree-2
+    JLabel d2 = new JLabel();
+    ImageIcon d2img = new ImageIcon("Degree.png");
+          d2.setIcon(d1img);
+    // Adjust the size of the sun icon based on label size
+    int d2Width = 15;
+    int d2Height = 15;
+    ImageIcon scaledd2 = new ImageIcon(d2img.getImage().getScaledInstance(d2Width, d2Height, java.awt.Image.SCALE_SMOOTH));
+          d2.setIcon(scaledd2);
+          d2.setBounds(330, 375, d2Width, d2Height);
+
+    // Degree-3
+    JLabel d3 = new JLabel();
+    ImageIcon d3img = new ImageIcon("Degree.png");
+        d3.setIcon(d3img);
+    // Adjust the size of the sun icon based on label size
+    int d3Width = 15;
+    int d3Height = 15;
+    ImageIcon scaledd3 = new ImageIcon(d3img.getImage().getScaledInstance(d3Width, d3Height, java.awt.Image.SCALE_SMOOTH));
+        d3.setIcon(scaledd3);
+        d3.setBounds(325, 660, d3Width, d3Height);
+
+    // Degree-4
+    JLabel d4 = new JLabel();
+    ImageIcon d4img = new ImageIcon("Degree.png");
+        d4.setIcon(d4img);
+    // Adjust the size of the sun icon based on label size
+    int d4Width = 15;
+    int d4Height = 15;
+    ImageIcon scaledd4 = new ImageIcon(d4img.getImage().getScaledInstance(d4Width, d4Height, java.awt.Image.SCALE_SMOOTH));
+        d4.setIcon(scaledd4);
+        d4.setBounds(725, 660, d4Width, d4Height);
+
+    // Degree-5
+    JLabel d5 = new JLabel();
+    ImageIcon d5img = new ImageIcon("Degree.png");
+        d5.setIcon(d5img);
+    // Adjust the size of the sun icon based on label size
+    int d5Width = 15;
+    int d5Height = 15;
+    ImageIcon scaledd5 = new ImageIcon(d5img.getImage().getScaledInstance(d5Width, d5Height, java.awt.Image.SCALE_SMOOTH));
+        d5.setIcon(scaledd5);
+        d5.setBounds(1010, 315, d5Width, d5Height);
+
+    // Degree-6
+    JLabel d6 = new JLabel();
+    ImageIcon d6img = new ImageIcon("Degree.png");
+        d6.setIcon(d6img);
+    // Adjust the size of the sun icon based on label size
+    int d6Width = 15;
+    int d6Height = 15;
+    ImageIcon scaledd6 = new ImageIcon(d6img.getImage().getScaledInstance(d6Width, d6Height, java.awt.Image.SCALE_SMOOTH));
+        d6.setIcon(scaledd6);
+        d6.setBounds(1010, 405, d6Width, d6Height);
+
+    // Degree-7
+    JLabel d7 = new JLabel();
+    ImageIcon d7img = new ImageIcon("Degree.png");
+        d7.setIcon(d7img);
+    // Adjust the size of the sun icon based on label size
+    int d7Width = 15;
+    int d7Height = 15;
+    ImageIcon scaledd7 = new ImageIcon(d7img.getImage().getScaledInstance(d7Width, d7Height, java.awt.Image.SCALE_SMOOTH));
+        d7.setIcon(scaledd7);
+        d7.setBounds(1010, 495, d7Width, d7Height);
+
+    // Degree-8
+    JLabel d8 = new JLabel();
+    ImageIcon d8img = new ImageIcon("Degree.png");
+        d8.setIcon(d8img);
+    // Adjust the size of the sun icon based on label size
+    int d8Width = 15;
+    int d8Height = 15;
+    ImageIcon scaledd8 = new ImageIcon(d8img.getImage().getScaledInstance(d8Width, d8Height, java.awt.Image.SCALE_SMOOTH));
+        d8.setIcon(scaledd8);
+        d8.setBounds(1010, 585, d8Width, d8Height);
+
+    // Degree-9
+    JLabel d9 = new JLabel();
+    ImageIcon d9img = new ImageIcon("Degree.png");
+        d9.setIcon(d9img);
+    // Adjust the size of the sun icon based on label size
+    int d9Width = 15;
+    int d9Height = 15;
+    ImageIcon scaledd9 = new ImageIcon(d9img.getImage().getScaledInstance(d9Width, d9Height, java.awt.Image.SCALE_SMOOTH));
+        d9.setIcon(scaledd9);
+        d9.setBounds(1010, 670, d9Width, d9Height);
 }
