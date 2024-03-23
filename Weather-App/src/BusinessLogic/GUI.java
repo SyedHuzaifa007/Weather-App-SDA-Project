@@ -277,4 +277,40 @@ public class GUI {
          t_five.setForeground(new Color(255,255,255)); // set font color
          t_five.setFont(new Font("Roboto",Font.BOLD,40)); // set font style
          t_five.setBounds(960, 650, 200, 100);
+
+
+    //Variable aqi
+    JLabel aq = new JLabel();
+         aq.setText("3");
+         aq.setForeground(new Color(255,255,255)); // set font color
+         aq.setFont(new Font("Roboto",Font.BOLD,50)); // set font style
+         aq.setBounds(500, 360, 200, 100);
+
+    //Variable O3(ug/m3)
+    JLabel vo3 = new JLabel();
+         vo3.setText("52");
+         vo3.setForeground(new Color(255,255,255)); // set font color
+         vo3.setFont(new Font("Roboto",Font.BOLD,50)); // set font style
+         vo3.setBounds(230, 580, 200, 100);
+
+    //Variable PM(ug/m3)
+    JLabel pm = new JLabel();
+         pm.setText("25");
+         pm.setForeground(new Color(255,255,255)); // set font color
+         pm.setFont(new Font("Roboto",Font.BOLD,50)); // set font style
+         pm.setBounds(400, 580, 200, 100);
+
+    //Variable NO(ug/m3)
+    JLabel vno = new JLabel();
+         vno.setText("22");
+         vno.setForeground(new Color(255,255,255)); // set font color
+         vno.setFont(new Font("Roboto",Font.BOLD,50)); // set font style
+         vno.setBounds(570, 580, 200, 100);
+
+    //Variable NO(ug/m3)
+    JLabel no2 = new JLabel();
+         no2.setText("12");
+         no2.setForeground(new Color(255,255,255)); // set font color
+         no2.setFont(new Font("Roboto",Font.BOLD,50)); // set font style
+         no2.setBounds(740, 580, 200, 100);
 }
