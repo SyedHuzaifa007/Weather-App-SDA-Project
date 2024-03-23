@@ -613,4 +613,209 @@ public class GUI {
     ImageIcon scaledd9 = new ImageIcon(d9img.getImage().getScaledInstance(d9Width, d9Height, java.awt.Image.SCALE_SMOOTH));
         d9.setIcon(scaledd9);
         d9.setBounds(1010, 670, d9Width, d9Height);
+
+
+    // Button-Exit
+    JButton exit = new JButton();
+    ImageIcon exitimg = new ImageIcon("Vector.png");
+        exit.setIcon(exitimg);
+
+    // Adjust the size of the sun icon based on label size
+    int exitWidth = 50; // Example width
+    int exitHeight = 50; // Example height
+    ImageIcon scaledexit = new ImageIcon(exitimg.getImage().getScaledInstance(exitWidth, exitHeight, java.awt.Image.SCALE_SMOOTH));
+         exit.setIcon(scaledexit);
+
+        exit.setBounds(43, 625, exitWidth, exitHeight);
+        exit.setBorderPainted(false);
+        exit.setBackground(new Color(13,31,51));
+        exit.addActionListener(e -> frame1.dispose()); // closes the frame
+
+    //View more Button
+    JButton more = new JButton();
+        more.setText("View More");
+        more.setBounds(650,360,100,50);;
+        more.setBackground(new Color(7,159,244));
+        more.setBorderPainted(false);
+        more.setFocusable(false);
+
+    //when more buttton presses
+        more.addActionListener(e->{
+        JFrame frame2 = new JFrame();
+        frame2.setSize(1080, 800); // set frame size
+        frame2.setTitle("Weather-App"); // set frame title
+        frame2.getContentPane().setBackground(new Color(2, 0, 22)); // set frame color
+        frame2.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE); // on cross close
+        frame2.setResizable(false); // disable frame resizing
+
+        JLayeredPane Panel2 = new JLayeredPane();
+        Panel2.setBounds(0, 0, 1080, 800);
+
+        //Back Button
+        JButton back = new JButton();
+        back.setText("Back");
+        back.setBounds(200,320,100,50);;
+        back.setBackground(new Color(7,159,244));
+        back.setBorderPainted(false);
+        back.setFocusable(false);
+
+        Panel2.add(field);
+        Panel2.add(searchLabel);
+
+        Panel2.add(exit);
+        Panel2.add(back);
+
+        Panel2.add(label2);
+        Panel2.add(location);
+        Panel2.add(temp);
+        Panel2.add(lati);
+        Panel2.add(longi);
+
+        Panel2.add(aqi);
+        Panel2.add(o3);
+        Panel2.add(PM10);
+        Panel2.add(NO);
+        Panel2.add(NO2);
+
+        Panel2.add(d1);
+        Panel2.add(d5);
+        Panel2.add(d6);
+        Panel2.add(d7);
+        Panel2.add(d8);
+        Panel2.add(d9);
+
+        Panel2.add(line1);
+        Panel2.add(line5);
+        Panel2.add(line6);
+        Panel2.add(line7);
+        Panel2.add(line8);
+        Panel2.add(line9);
+        Panel2.add(line10);
+        Panel2.add(line11);
+        Panel2.add(line12);
+        Panel2.add(line13);
+
+
+        Panel2.add(notify);
+
+        Panel2.add(five);
+        Panel2.add(d_one);
+        Panel2.add(d_two);
+        Panel2.add(d_three);
+        Panel2.add(d_four);
+        Panel2.add(d_five);
+
+        Panel2.add(notification);
+        Panel2.add(weather);
+        Panel2.add(quality);
+
+        Panel2.add(t_one);
+        Panel2.add(t_two);
+        Panel2.add(t_three);
+        Panel2.add(t_four);
+        Panel2.add(t_five);
+
+        Panel2.add(aq);
+        Panel2.add(vo3);
+        Panel2.add(pm);
+        Panel2.add(vno);
+        Panel2.add(no2);
+
+        Panel2.add(backbox1);
+        Panel2.add(backbox2);
+        Panel2.add(backbox3);
+        Panel2.add(backbox4);
+        Panel2.add(backbox5);
+
+        frame2.add(Panel2);
+        frame2.setLayout(null);
+        frame2.setVisible(true); // see frame
+
+        exit.addActionListener(g->frame2.dispose());
+
+        back.addActionListener(f->{
+            frame2.dispose();
+        });
+    });
+
+    JLayeredPane Panel = new JLayeredPane();
+        Panel.setBounds(0, 0, 1080, 800);
+
+        Panel.add(field);
+        Panel.add(searchLabel);
+
+        Panel.add(exit);
+        Panel.add(more);
+
+        Panel.add(label2);
+        Panel.add(location);
+        Panel.add(temp);
+        Panel.add(lati);
+        Panel.add(longi);
+
+        Panel.add(d1);
+        Panel.add(d2);
+        Panel.add(d3);
+        Panel.add(d4);
+        Panel.add(d5);
+        Panel.add(d6);
+        Panel.add(d7);
+        Panel.add(d8);
+        Panel.add(d9);
+
+        Panel.add(line1);
+        Panel.add(line2);
+        Panel.add(line3);
+        Panel.add(line4);
+        Panel.add(line5);
+        Panel.add(line6);
+        Panel.add(line7);
+        Panel.add(line8);
+        Panel.add(line9);
+
+        Panel.add(highlights);
+        Panel.add(feel);
+        Panel.add(feeLabel);
+        Panel.add(sunrise);
+        Panel.add(rise);
+        Panel.add(maxtemp);
+        Panel.add(max);
+        Panel.add(sunset);
+        Panel.add(set);
+        Panel.add(mintemp);
+        Panel.add(min);
+        Panel.add(notify);
+
+        Panel.add(five);
+        Panel.add(d_one);
+        Panel.add(d_two);
+        Panel.add(d_three);
+        Panel.add(d_four);
+        Panel.add(d_five);
+
+        Panel.add(notification);
+        Panel.add(weather);
+        Panel.add(quality);
+
+        Panel.add(fe);
+        Panel.add(sr);
+        Panel.add(mt);
+        Panel.add(ss);
+        Panel.add(mint);
+
+        Panel.add(t_one);
+        Panel.add(t_two);
+        Panel.add(t_three);
+        Panel.add(t_four);
+        Panel.add(t_five);
+
+        Panel.add(backbox1);
+        Panel.add(backbox2);
+        Panel.add(backbox3);
+        Panel.add(backbox4);
+        Panel.add(backbox5);
+
+        frame1.add(Panel);
+        frame1.setLayout(null);
+        frame1.setVisible(true); // see frame
 }
