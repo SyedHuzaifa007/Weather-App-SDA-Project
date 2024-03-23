@@ -11,7 +11,7 @@ public class Main {
         // Create a Location object with desired city and country
         location location = new location(); // Replace with actual city name and country code
         location.setCountry("Pakistan");
-        location.setCity("Lahore");
+        location.setCity("Faisalabad");
         WeatherForecast forecast=new WeatherForecast();
         forecast.forecastData(location);
         System.exit(0);

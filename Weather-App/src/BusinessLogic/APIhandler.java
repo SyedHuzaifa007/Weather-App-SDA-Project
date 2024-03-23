@@ -225,70 +225,67 @@ class APIhandler {
         }
     }
 
-
-    public List<WeatherData> getFiveDayForecast(location location) {
-        List<WeatherData> forecast = new ArrayList<>();
+    private String getResponse(location location) {
         try {
-            // Construct the URL for the forecast API call
             String apiUrl = "http://api.openweathermap.org/data/2.5/forecast?q=" + location.getCity() + "," + location.getCountry() + "&appid=" + apikey;
 
             URL url = new URL(apiUrl);
             HttpURLConnection conn = (HttpURLConnection) url.openConnection();
             conn.setRequestMethod("GET");
+            conn.connect();
 
-            // Check if the response code indicates success
-            int responseCode = conn.getResponseCode();
-            if (responseCode == HttpURLConnection.HTTP_OK) {
-                // Read the response
-                BufferedReader br = new BufferedReader(new InputStreamReader(conn.getInputStream()));
-                StringBuilder sb = new StringBuilder();
-                String line;
-                while ((line = br.readLine()) != null) {
-                    sb.append(line);
-                }
-                br.close();
-
-                // Extract forecast data from the response
-                String response = sb.toString();
-                conn.disconnect();
-
-                // Parse response to extract forecast data
-                String[] forecastEntries = response.split("\"dt_txt\"");
-                for (int i = 1; i < forecastEntries.length; i++) {
-                    String entry = forecastEntries[i];
-                    // Extract date
-                    int dateStartIndex = entry.indexOf(":") + 3;
-                    int dateEndIndex = entry.indexOf(",");
-                    String date = entry.substring(dateStartIndex, dateEndIndex);
-
-                    // Extract temperature
-                    int tempStartIndex = entry.indexOf("temp") + 6;
-                    int tempEndIndex = entry.indexOf(",", tempStartIndex);
-                    double temperature = Double.parseDouble(entry.substring(tempStartIndex, tempEndIndex));
-
-                    // Extract weather condition
-                    int weatherStartIndex = entry.indexOf("description") + 14;
-                    int weatherEndIndex = entry.indexOf("\"", weatherStartIndex);
-                    String weatherCondition = entry.substring(weatherStartIndex, weatherEndIndex);
-
-                    // Create WeatherData object and add to forecast list
-                    forecast.add(new WeatherData(temperature));
-                }
-            } else {
-                // Handle non-success response
-                System.out.println("Failed to fetch forecast data. Response code: " + responseCode);
+            BufferedReader br = new BufferedReader(new InputStreamReader(conn.getInputStream()));
+            StringBuilder sb = new StringBuilder();
+            String line;
+            while ((line = br.readLine()) != null) {
+                sb.append(line);
             }
+            br.close();
+
+            String response = sb.toString();
+            conn.disconnect();
+            return response;
         } catch (IOException e) {
             e.printStackTrace();
-            // Handle error gracefully
-            System.out.println("Error occurred while fetching forecast data: " + e.getMessage());
-            return new ArrayList<>(); // Return an empty list in case of error
+            return null;
         }
-
-        return forecast;
     }
 
+    public List<WeatherData> getFiveDayForecast(location location) {
+        List<WeatherData> forecast = new ArrayList<>();
+        try {
+            String response = getResponse(location);
+            if (response != null) {
+                JSONObject jsonResponse = new JSONObject(response);
+                JSONArray forecastList = jsonResponse.getJSONArray("list");
+                // Get the current timestamp
+                long currentTime = System.currentTimeMillis() / 1000; // Convert milliseconds to seconds
 
+                // Iterate through the forecast list
+                for (int i = 0; i < forecastList.length(); i++) {
+                    JSONObject forecastData = forecastList.getJSONObject(i);
+                    // Get the timestamp of the forecast data
+                    long forecastTime = forecastData.getLong("dt");
+
+                    // Check if the forecast is within the next five days
+                    if (forecastTime > currentTime && forecast.size() < 5) {
+                        // Extract temperature data from "main" object
+                        JSONObject mainData = forecastData.getJSONObject("main");
+                        double temperature = mainData.getDouble("temp");
+
+                        // Create WeatherData object and add to forecast list
+                        forecast.add(new WeatherData(temperature));
+                    }
+                }
+            } else {
+                System.out.println("Failed to fetch forecast data.");
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+            System.out.println("Error occurred while fetching forecast data: " + e.getMessage());
+        }
+        return forecast;
+    }
 
 
 }
