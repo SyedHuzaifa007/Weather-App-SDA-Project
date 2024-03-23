@@ -170,4 +170,40 @@ public class GUI {
          quality.setForeground(new Color(255,255,255)); // set font color
          quality.setFont(new Font("Roboto",Font.BOLD,15)); // set font style
          quality.setBounds(895, 150, 300, 100);
+
+
+    //Text AQI
+    JLabel aqi = new JLabel();
+         aqi.setText("AQI: ");
+         aqi.setForeground(new Color(170,170,170)); // set font color
+         aqi.setFont(new Font("Roboto",Font.BOLD,30)); // set font style
+         aqi.setBounds(400, 360, 300, 100);
+
+    //Text O3(ug/m3)
+    JLabel o3 = new JLabel();
+         o3.setText("O3 (ug/m3)");
+         o3.setForeground(new Color(170,170,170)); // set font color
+         o3.setFont(new Font("Roboto",Font.BOLD,20)); // set font style
+         o3.setBounds(220, 530, 300, 100);
+
+    //Text PM10(ug/m3)
+    JLabel PM10 = new JLabel();
+         PM10.setText("PM10 (ug/m3)");
+         PM10.setForeground(new Color(170,170,170)); // set font color
+         PM10.setFont(new Font("Roboto",Font.BOLD,20)); // set font style
+         PM10.setBounds(375, 530, 300, 100);
+
+    //Text NO(ug/m3)
+    JLabel NO = new JLabel();
+         NO.setText("NO (ug/m3)");
+         NO.setForeground(new Color(170,170,170)); // set font color
+         NO.setFont(new Font("Roboto",Font.BOLD,20)); // set font style
+         NO.setBounds(560, 530, 300, 100);
+
+    //Text NO2(ug/m3)
+    JLabel NO2 = new JLabel();
+         NO2.setText("NO2 (ug/m3)");
+         NO2.setForeground(new Color(170,170,170)); // set font color
+         NO2.setFont(new Font("Roboto",Font.BOLD,20)); // set font style
+         NO2.setBounds(725, 530, 300, 100);
 }
