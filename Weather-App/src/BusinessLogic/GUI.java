@@ -343,4 +343,83 @@ public class GUI {
         backbox5.setOpaque(true);
         backbox5.setBackground(new Color(13,31,51));
         backbox5.setBounds(885, 70, 170, 175);
+
+    //Line 1
+    JLabel line1 = new JLabel();
+         line1.setOpaque(true);
+         line1.setBackground(new Color(4,98,239));
+         line1.setBounds(170, 280, 700, 1);
+
+    //Line 2
+    JLabel line2 = new JLabel();
+         line2.setOpaque(true);
+         line2.setBackground(new Color(4,98,239));
+         line2.setBounds(510, 340, 2, 390);
+
+    //Line 3
+    JLabel line3 = new JLabel();
+          line3.setOpaque(true);
+          line3.setBackground(new Color(4,98,239));
+          line3.setBounds(200, 460, 640, 1);
+
+    //Line 4
+    JLabel line4 = new JLabel();
+          line4.setOpaque(true);
+          line4.setBackground(new Color(4,98,239));
+          line4.setBounds(200, 610, 640, 1);
+
+    //Line 5
+    JLabel line5 = new JLabel();
+           line5.setOpaque(true);
+           line5.setBackground(new Color(4,98,239));
+           line5.setBounds(895, 383, 150, 2);
+
+    //Line 6
+    JLabel line6 = new JLabel();
+           line6.setOpaque(true);
+           line6.setBackground(new Color(4,98,239));
+           line6.setBounds(895, 470, 150, 2);
+
+    //Line 7
+    JLabel line7 = new JLabel();
+        line7.setOpaque(true);
+        line7.setBackground(new Color(4,98,239));
+        line7.setBounds(895, 560, 150, 2);
+
+    //Line 8
+    JLabel line8 = new JLabel();
+        line8.setOpaque(true);
+        line8.setBackground(new Color(4,98,239));
+        line8.setBounds(895, 650, 150, 2);
+
+    //Line 9
+    JLabel line9 = new JLabel();
+        line9.setOpaque(true);
+        line9.setBackground(new Color(4,98,239));
+        line9.setBounds(895, 170, 150, 2);
+
+    //Line 10
+    JLabel line10 = new JLabel();
+        line10.setOpaque(true);
+        line10.setBackground(new Color(4,98,239));
+        line10.setBounds(200, 500, 640, 1);
+
+    //Line 11
+    JLabel line11 = new JLabel();
+        line11.setOpaque(true);
+        line11.setBackground(new Color(4,98,239));
+        line11.setBounds(355, 530, 2, 200);
+
+    //Line 12
+    JLabel line12 = new JLabel();
+        line12.setOpaque(true);
+        line12.setBackground(new Color(4,98,239));
+        line12.setBounds(535, 530, 2, 200);
+
+    //Line 13
+    JLabel line13 = new JLabel();
+         line13.setOpaque(true);
+         line13.setBackground(new Color(4,98,239));
+         line13.setBounds(700, 530, 2, 200);
+
 }
