@@ -206,4 +206,75 @@ public class GUI {
          NO2.setForeground(new Color(170,170,170)); // set font color
          NO2.setFont(new Font("Roboto",Font.BOLD,20)); // set font style
          NO2.setBounds(725, 530, 300, 100);
+
+
+    //Variable FeelsLike
+    JLabel fe = new JLabel();
+         fe.setText("33");
+         fe.setForeground(new Color(255,255,255)); // set font color
+         fe.setFont(new Font("Roboto",Font.BOLD,50)); // set font style
+         fe.setBounds(265, 350, 200, 100);
+
+    //Variable SunRise
+    JLabel sr = new JLabel();
+         sr.setText("06:35");
+         sr.setForeground(new Color(255,255,255)); // set font color
+         sr.setFont(new Font("Roboto",Font.BOLD,50)); // set font style
+         sr.setBounds(265, 505, 200, 100);
+
+    //Variable MaxTemp
+    JLabel mt = new JLabel();
+         mt.setText("31");
+         mt.setForeground(new Color(255,255,255)); // set font color
+         mt.setFont(new Font("Roboto",Font.BOLD,50)); // set font style
+         mt.setBounds(265, 640, 200, 100);
+
+    //Variable SunSet
+    JLabel ss = new JLabel();
+         ss.setText("20:58");
+         ss.setForeground(new Color(255,255,255)); // set font color
+         ss.setFont(new Font("Roboto",Font.BOLD,50)); // set font style
+         ss.setBounds(665, 505, 200, 100);
+
+    //Variable MinTemp
+    JLabel mint = new JLabel();
+         mint.setText("23");
+         mint.setForeground(new Color(255,255,255)); // set font color
+         mint.setFont(new Font("Roboto",Font.BOLD,50)); // set font style
+         mint.setBounds(665, 640, 200, 100);
+
+    //Variable Day-1
+    JLabel t_one = new JLabel();
+         t_one.setText("36");
+         t_one.setForeground(new Color(255,255,255)); // set font color
+         t_one.setFont(new Font("Roboto",Font.BOLD,40)); // set font style
+         t_one.setBounds(960, 290, 200, 100);
+
+    //Variable Day-2
+    JLabel t_two = new JLabel();
+         t_two.setText("27");
+         t_two.setForeground(new Color(255,255,255)); // set font color
+         t_two.setFont(new Font("Roboto",Font.BOLD,40)); // set font style
+         t_two.setBounds(960, 380, 200, 100);
+
+    //Variable Day-3
+    JLabel t_three = new JLabel();
+         t_three.setText("25");
+         t_three.setForeground(new Color(255,255,255)); // set font color
+         t_three.setFont(new Font("Roboto",Font.BOLD,40)); // set font style
+         t_three.setBounds(960, 470, 200, 100);
+
+    //Variable Day-4
+    JLabel t_four = new JLabel();
+         t_four.setText("28");
+         t_four.setForeground(new Color(255,255,255)); // set font color
+         t_four.setFont(new Font("Roboto",Font.BOLD,40)); // set font style
+         t_four.setBounds(960, 560, 200, 100);
+
+    //Variable Day-5
+    JLabel t_five = new JLabel();
+         t_five.setText("23");
+         t_five.setForeground(new Color(255,255,255)); // set font color
+         t_five.setFont(new Font("Roboto",Font.BOLD,40)); // set font style
+         t_five.setBounds(960, 650, 200, 100);
 }
