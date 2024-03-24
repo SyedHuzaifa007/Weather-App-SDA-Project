@@ -47,6 +47,7 @@ public class Main {
             manager.storeData(Location,temp,feel,min,max,sunrise,sunset,stamp);
         }
 
+        GUI G = new GUI();
         ////////////////////////////////////////////////////////////////////////
     }
 }
