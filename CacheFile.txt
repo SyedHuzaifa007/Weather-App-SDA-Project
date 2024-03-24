@@ -1,8 +1,1 @@
-Lahore
-20.99000000000001
-21.180000000000007
-18.060000000000002
-20.99000000000001
-06:02
-18:10:49
-01:14:07.157748
+This txt file is necessary to insert with atleast one character string or more for code to work
