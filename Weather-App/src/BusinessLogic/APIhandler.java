@@ -251,30 +251,29 @@ class APIhandler {
         }
     }
 
-    public List<WeatherData> getFiveDayForecast(location location) {
-        List<WeatherData> forecast = new ArrayList<>();
+    public List<Double> getFiveDayForecast(location location) {
+        List<Double> temperatureForecast = new ArrayList<>();
         try {
             String response = getResponse(location);
             if (response != null) {
                 JSONObject jsonResponse = new JSONObject(response);
                 JSONArray forecastList = jsonResponse.getJSONArray("list");
-                // Get the current timestamp
                 long currentTime = System.currentTimeMillis() / 1000; // Convert milliseconds to seconds
 
-                // Iterate through the forecast list
                 for (int i = 0; i < forecastList.length(); i++) {
                     JSONObject forecastData = forecastList.getJSONObject(i);
-                    // Get the timestamp of the forecast data
                     long forecastTime = forecastData.getLong("dt");
 
                     // Check if the forecast is within the next five days
-                    if (forecastTime > currentTime && forecast.size() < 5) {
-                        // Extract temperature data from "main" object
+                    if (forecastTime > currentTime && temperatureForecast.size() < 5) {
                         JSONObject mainData = forecastData.getJSONObject("main");
                         double temperature = mainData.getDouble("temp");
 
-                        // Create WeatherData object and add to forecast list
-                        forecast.add(new WeatherData(temperature));
+                        // Convert temperature from Kelvin to Celsius
+                        temperature = temperature - 273.15;
+
+                        // Add temperature to the forecast list
+                        temperatureForecast.add(temperature);
                     }
                 }
             } else {
@@ -284,9 +283,8 @@ class APIhandler {
             e.printStackTrace();
             System.out.println("Error occurred while fetching forecast data: " + e.getMessage());
         }
-        return forecast;
+        return temperatureForecast;
     }
-
 
 }
 
