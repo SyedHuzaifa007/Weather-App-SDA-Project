@@ -7,6 +7,10 @@ import java.net.URL;
 import java.time.LocalDate;
 import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
+import java.util.ArrayList;
+import java.util.List;
+import org.json.JSONArray;
+import org.json.JSONObject;
 class APIhandler {
     private String apikey;
     public APIhandler() {
@@ -219,6 +223,67 @@ class APIhandler {
             e.printStackTrace();
             return null;
         }
+    }
+
+    private String getResponse(location location) {
+        try {
+            String apiUrl = "http://api.openweathermap.org/data/2.5/forecast?q=" + location.getCity() + "," + location.getCountry() + "&appid=" + apikey;
+
+            URL url = new URL(apiUrl);
+            HttpURLConnection conn = (HttpURLConnection) url.openConnection();
+            conn.setRequestMethod("GET");
+            conn.connect();
+
+            BufferedReader br = new BufferedReader(new InputStreamReader(conn.getInputStream()));
+            StringBuilder sb = new StringBuilder();
+            String line;
+            while ((line = br.readLine()) != null) {
+                sb.append(line);
+            }
+            br.close();
+
+            String response = sb.toString();
+            conn.disconnect();
+            return response;
+        } catch (IOException e) {
+            e.printStackTrace();
+            return null;
+        }
+    }
+
+    public List<Double> getFiveDayForecast(location location) {
+        List<Double> temperatureForecast = new ArrayList<>();
+        try {
+            String response = getResponse(location);
+            if (response != null) {
+                JSONObject jsonResponse = new JSONObject(response);
+                JSONArray forecastList = jsonResponse.getJSONArray("list");
+                long currentTime = System.currentTimeMillis() / 1000; // Convert milliseconds to seconds
+
+                for (int i = 0; i < forecastList.length(); i++) {
+                    JSONObject forecastData = forecastList.getJSONObject(i);
+                    long forecastTime = forecastData.getLong("dt");
+
+                    // Check if the forecast is within the next five days
+                    if (forecastTime > currentTime && temperatureForecast.size() < 5) {
+                        JSONObject mainData = forecastData.getJSONObject("main");
+                        double temperature = mainData.getDouble("temp");
+
+                        // Convert temperature from Kelvin to Celsius
+                        temperature = temperature - 273.15;
+
+                        // Add temperature to the forecast list
+                        temperatureForecast.add(temperature);
+                    }
+                }
+            } else {
+                System.out.println("Failed to fetch forecast data.");
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+            System.out.println("Error occurred while fetching forecast data: " + e.getMessage());
+        }
+        return temperatureForecast;
     }
 
 }
