@@ -1,5 +1,7 @@
 package BusinessLogic;
 
+import org.json.JSONArray;
+import org.json.JSONObject;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
@@ -58,7 +60,85 @@ public class location {
     public void setCountry(String country) {
         this.country = country;
     }
+    private String getValueFromReverseGeocodeResponse(String urlStr, String key) throws IOException {
+        URL url = new URL(urlStr);
+        HttpURLConnection conn = (HttpURLConnection) url.openConnection();
+        conn.setRequestMethod("GET");
 
+        BufferedReader reader = new BufferedReader(new InputStreamReader(conn.getInputStream()));
+        StringBuilder response = new StringBuilder();
+        String line;
+        while ((line = reader.readLine()) != null) {
+            response.append(line);
+        }
+        reader.close();
+
+        JSONObject jsonObject = new JSONObject(response.toString());
+        JSONObject address = jsonObject.getJSONObject("address");
+        return address.optString(key, null);
+    }
+    public boolean addManualLocationCountryCity(double longitude, double latitude) {
+        try {
+            String urlStr = "https://nominatim.openstreetmap.org/reverse?format=json&lat=" + latitude + "&lon=" + longitude;
+            this.setCountry(getValueFromReverseGeocodeResponse(urlStr, "country"));
+            this.setCity(getValueFromReverseGeocodeResponse(urlStr, "city"));
+            if (country != null && city != null) {
+           this.setLongitude(longitude);
+           this.setLatitude(latitude);
+                return true; // Successfully added coordinates with country and city
+
+            } else {
+                return false; // Failed to add coordinates
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+            return false; // Failed to add coordinates
+        }
+    }
+    public boolean addManualLocationCoord(String country, String city) {
+        try {
+            String[] coordinates = getCoordinates(city, country);
+            if (coordinates != null) {
+                double latitude = Double.parseDouble(coordinates[0]);
+                double longitude = Double.parseDouble(coordinates[1]);
+                this.setCity(city);
+                this.setCountry(country);
+                this.setLongitude(longitude);
+                this.setLatitude(latitude);
+                return true; // Indicate success
+            } else {
+                return false; // Indicate failure
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+            return false; // Indicate failure
+        }
+    }
+
+    private String[] getCoordinates(String city, String country) throws IOException {
+        String urlStr = "https://nominatim.openstreetmap.org/search?format=json&q=" + city + "," + country;
+        URL url = new URL(urlStr);
+        HttpURLConnection conn = (HttpURLConnection) url.openConnection();
+        conn.setRequestMethod("GET");
+
+        BufferedReader reader = new BufferedReader(new InputStreamReader(conn.getInputStream()));
+        StringBuilder response = new StringBuilder();
+        String line;
+        while ((line = reader.readLine()) != null) {
+            response.append(line);
+        }
+        reader.close();
+
+        JSONArray jsonArray = new JSONArray(response.toString());
+        if (jsonArray.length() > 0) {
+            JSONObject jsonObject = jsonArray.getJSONObject(0);
+            String lat = jsonObject.getString("lat");
+            String lon = jsonObject.getString("lon");
+            return new String[]{lat, lon};
+        } else {
+            return null;
+        }
+    }
     public location getCurrentLocation() {
         try {
             // Get the current IP address
@@ -99,11 +179,12 @@ public class location {
                 }
             }
 
-            // Return formatted string containing city, country, latitude, and longitude
-            return this;
+               return this;
         } catch (Exception e) {
             e.printStackTrace();
             return null;
         }
     }
+    
 }
+
