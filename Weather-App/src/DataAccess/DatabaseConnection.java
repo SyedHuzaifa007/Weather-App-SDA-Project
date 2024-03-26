@@ -4,11 +4,11 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
 
-public class Main {
+public class DatabaseConnection {
     public static void main(String args[]) {
         try {
-            Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/mysql","sa", "Password123");
-            // Perform operations with the connection if needed
+
+            Connection con = DriverManager.getConnection("jdbc:sqlserver://192.168.18.147:1433;databaseName=Weather;integratedSecurity=true;encrypt=true;trustServerCertificate=true;");
             System.out.println("Connection established successfully!");
             // Close the connection when done
             con.close();
