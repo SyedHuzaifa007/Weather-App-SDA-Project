@@ -2,18 +2,27 @@ package BusinessLogic;
 
 import UI.GUI;
 
+import java.io.BufferedReader;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
+import java.io.IOException;
+
 public class Main {
-    public static void main(String[] args) {
+    public static void main(String[] args) throws IOException {
         APIhandler apiHandler = new APIhandler(); // Replace "API_KEY_HERE" with your actual API key
 
 
         // Create a Location object with desired city and country
-        location location = new location(); // Replace with actual city name and country code
+        location location = new location();
+
         location.getCurrentLocation();
+
         // air pollution class methods
         AirPollutionData air = new AirPollutionData(location);
+
         // weather Forecast class methods
         WeatherForecast forecast = new WeatherForecast();
+
         //Business Logic method
         BusinessLogic businessLogic = new WeatherData();
 
@@ -45,7 +54,38 @@ public class Main {
                                 String.valueOf(values[6]), String.valueOf(values[7]), String.valueOf(values[8]));
         }
 
-        
+        //file reading
+
+        FileReader filereader = new FileReader("CacheFile.txt");
+        BufferedReader reader = new BufferedReader(filereader);
+
+        String loc = reader.readLine();
+        String longi = reader.readLine();
+        String lati = reader.readLine();
+
+        String temp = reader.readLine();
+        String feel = reader.readLine();
+        String min = reader.readLine();
+        String max = reader.readLine();
+        String rise = reader.readLine();
+        String set = reader.readLine();
+        String stamp = reader.readLine();
+
+        String day1 = reader.readLine();
+        String day2 = reader.readLine();
+        String day3 = reader.readLine();
+        String day4 = reader.readLine();
+        String day5 = reader.readLine();
+
+        String aqi = reader.readLine();
+        String CO = reader.readLine();
+        String NO = reader.readLine();
+        String NO2 = reader.readLine();
+        String O3 = reader.readLine();
+        String SO2 = reader.readLine();
+        String NH3 = reader.readLine();
+        String PM25 = reader.readLine();
+        String PM10 = reader.readLine();
 
         ////////////////////////////////////////////////////////////////////////
 
