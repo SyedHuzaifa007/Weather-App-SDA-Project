@@ -72,6 +72,7 @@ public class UITerminalBased {
         System.out.println("Notification: ");
         NotificationManager Object_Notify=new NotificationManager();
         Object_Notify.GenerateWeatherNotificattions(location);
+        Object_Notify.generateAirQualityNotification(Object_Location);
         // Your code to fetch and display weather details goes here
     }
 
