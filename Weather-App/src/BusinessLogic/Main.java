@@ -17,6 +17,7 @@ public class Main {
         //Business Logic method
         BusinessLogic businessLogic = new WeatherData();
 
+
                          //( Data_Access_Layer Logic)
         ///////////////////////////////////////////////////////////////////////
 
@@ -29,6 +30,9 @@ public class Main {
                         // if cant find data store it first
         if(!status)
         {
+            // getting airPollution values in values
+            double[] values = air.PollutionValues();
+
                         // (store new data in file and update cache)
             manager.storeData(location.getCity(),String.valueOf(location.getLongitude()),String.valueOf(location.getLatitude()),String.valueOf(businessLogic.getTemperature(location)),
                                 String.valueOf(businessLogic.getFeelsLike(location)),String.valueOf(businessLogic.getMinTemperature(location)),String.valueOf(businessLogic.getMaxTemperature(location)) ,
@@ -37,8 +41,11 @@ public class Main {
                                 String.valueOf(forecast.getDay1Forecast(location)), String.valueOf(forecast.getDay2Forecast(location)), String.valueOf(forecast.getDay3Forecast(location)),
                                 String.valueOf(forecast.getDay4Forecast(location)), String.valueOf(forecast.getDay5Forecast(location)),
 
-                                );
+                                String.valueOf(values[0]),String.valueOf(values[1]),String.valueOf(values[2]),String.valueOf(values[3]), String.valueOf(values[4]), String.valueOf(values[5]),
+                                String.valueOf(values[6]), String.valueOf(values[7]), String.valueOf(values[8]));
         }
+
+        
 
         ////////////////////////////////////////////////////////////////////////
 

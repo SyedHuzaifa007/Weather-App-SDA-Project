@@ -67,7 +67,7 @@ public class CacheManager
         }
     }
 
-    public void storeData(String Location,String longi, String lati, String temp, String feel, String min, String max, String sunrise, String sunset, String stamp, String day1, String day2, String day3, String day4, String day5)
+    public void storeData(String Location,String longi, String lati, String temp, String feel, String min, String max, String sunrise, String sunset, String stamp, String day1, String day2, String day3, String day4, String day5, String aqi, String CO, String NO, String NO2, String O3, String SO2, String NH3, String PM25, String PM10)
     {
         // to store we first update cache file
         String filepath = "CacheFile.txt";
@@ -90,6 +90,16 @@ public class CacheManager
             writer.write(day3+"\n");
             writer.write(day4+"\n");
             writer.write(day5+"\n");
+
+            writer.write(aqi+"\n");
+            writer.write(CO+"\n");
+            writer.write(NO+"\n");
+            writer.write(NO2+"\n");
+            writer.write(O3+"\n");
+            writer.write(SO2+"\n");
+            writer.write(NH3+"\n");
+            writer.write(PM25+"\n");
+            writer.write(PM10);
         }
         catch (IOException e)
         {
