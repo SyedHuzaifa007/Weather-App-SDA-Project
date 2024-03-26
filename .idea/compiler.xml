@@ -9,8 +9,5 @@
         <module name="Weather-App-SDA-Project" />
       </profile>
     </annotationProcessing>
-    <bytecodeTargetLevel>
-      <module name="Weather-App-SDA-Project" target="11" />
-    </bytecodeTargetLevel>
   </component>
 </project>

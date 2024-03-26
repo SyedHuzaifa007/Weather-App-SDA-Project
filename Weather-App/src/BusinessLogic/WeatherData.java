@@ -26,6 +26,10 @@ public class WeatherData implements BusinessLogic {
         this.timestamp = null;
     }
 
+    public WeatherData(double temp)
+    {
+        temperature=temp;
+    }
     public WeatherData(double temperature, double feelsLike, double minTemperature, double maxTemperature,
                        LocalTime sunriseTime, LocalTime sunsetTime, LocalTime timestamp) {
         this.temperature = temperature;
@@ -48,32 +52,33 @@ public class WeatherData implements BusinessLogic {
     public double getFeelsLike(location location) {
         APIhandler apIhandler=new APIhandler();
         feelsLike=  apIhandler.feelsliketemperature(location);
-return feelsLike;
+        return feelsLike;
     }
 
     public double getMinTemperature(location location) {
         APIhandler apIhandler=new APIhandler();
         minTemperature= apIhandler.getmintemperature(location);
-return minTemperature;
+        return minTemperature;
     }
 
     public double getMaxTemperature(location location) {
         APIhandler apIhandler=new APIhandler();
          maxTemperature= apIhandler.getmaxtemperature(location);
-return maxTemperature;
+         return maxTemperature;
     }
 
     public LocalTime getSunriseTime(location location) {
         APIhandler apIhandler=new APIhandler();
        sunriseTime=apIhandler.getSunrise(location);
-return sunriseTime;
+       return sunriseTime;
     }
 
     public LocalTime getSunsetTime(location location) {
         APIhandler apIhandler=new APIhandler();
         sunsetTime= apIhandler.getSunset(location);
-return sunsetTime;
+        return sunsetTime;
     }
+
     public LocalTime getTimestamp(location location) {
         try {
             // Fetch current timestamp from an external service
