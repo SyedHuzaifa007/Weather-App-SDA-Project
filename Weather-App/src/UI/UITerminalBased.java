@@ -83,7 +83,7 @@ public class UITerminalBased {
         WeatherForecast Object_Forecast=new WeatherForecast();
 
         System.out.println("Showing weather forecast for " + location);
-        Object_Forecast.forecastData(Object_Location);
+        Object_Forecast.getDay5Forecast(Object_Location);
     }
     private void showAirPollutionData(String location) {
         location Object_Location=new location();
