@@ -2,20 +2,26 @@ package BusinessLogic;
 import BusinessLogic.WeatherData;
 import BusinessLogic.location;
 public class NotificationManager {
-    public void GenerateWeatherNotificattions(String location1) {
+    public String GenerateWeatherNotificattions(String location1) {
         APIhandler apiHandler1 = new APIhandler();
         location loc1 = new location();
         loc1.setCity(location1);
+        String text="Normal Temperatures";
         double temp = apiHandler1.gettemperature(loc1);
         if (temp >= 45) {
-            System.out.println("The temperature Conditions are very Hot");
+            text="Hot Temperatures";
+            System.out.println("Hot Temperatures!");
+            return text;
 
         } else if (temp <= -10) {
-            System.out.println("The temperature Conditions are very Cold");
+            text="Cold temperatures";
+            System.out.println("Cold temperatures");
+            return text;
         }
+        return text;
     }
 
-    void generateAirQualityNotification(location location1) {
+    public String generateAirQualityNotification(location location1) {
         location loc1 = new location();
         loc1 = location1;
         AirPollutionData a = new AirPollutionData(loc1);
@@ -52,6 +58,15 @@ public class NotificationManager {
                 maxAQI = (int) Math.round(AQI);
             }
         }
-        System.out.println("Overall Air Quality Index (AQI): " + maxAQI);
+        String text;
+        if(maxAQI>100) {
+            text="Hazardous Air Quality ";
+            System.out.println("Hazardous Air Quality ");
+            return text;
+        }
+        else
+            text="Safe Air Quality ";
+            System.out.println("Safe Air Quality ");
+            return text;
     }
 }
