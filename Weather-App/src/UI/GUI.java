@@ -14,7 +14,7 @@ import javax.swing.JTextField;
 public class GUI {
 
     JFrame frame1 = new JFrame();
-    public GUI()
+    public GUI(String Location_got,String longi_got, String lati_got, String temp_got, String feel_got, String min_got, String max_got, String sunrise_got, String sunset_got, String stamp_got, String day1_got, String day2_got, String day3_got, String day4_got, String day5_got, String aqi_got, String CO_got, String NO_got, String NO2_got, String O3_got, String SO2_got, String NH3_got, String PM25_got, String PM10_got)
     {
         frame1.setSize(1080, 800); // set frame size
         frame1.setTitle("Weather-App"); // set frame title
@@ -42,28 +42,28 @@ public class GUI {
 
         // Text_Location
         JLabel location= new JLabel();
-        location.setText("Lahore");
+        location.setText(Location_got);
         location.setForeground(new Color(255,255,255)); // set font color
         location.setFont(new Font("Roboto",Font.BOLD,40)); // set font style
         location.setBounds(375, 100, 200, 100);
 
         // Text_Temp
         JLabel temp = new JLabel();
-        temp.setText("31");
+        temp.setText(temp_got);
         temp.setForeground(new Color(255,255,255)); // set font color
         temp.setFont(new Font("Roboto",Font.BOLD,40)); // set font style
         temp.setBounds(375, 150, 200, 100);
 
         // Text_Longitude
         JLabel longi = new JLabel();
-        longi.setText("Longitude: " + "31.5204° N");
+        longi.setText("Longitude: " + longi_got + "°");
         longi.setForeground(new Color(255,255,255)); // set font color
         longi.setFont(new Font("Roboto",Font.BOLD,20)); // set font style
         longi.setBounds(600, 130, 300, 100);
 
         // Text_Latitude
         JLabel lati = new JLabel();
-        lati.setText("Latitude: " + "   74.3587° E");
+        lati.setText("Latitude: " + lati_got + "°");
         lati.setForeground(new Color(255,255,255)); // set font color
         lati.setFont(new Font("Roboto",Font.BOLD,20)); // set font style
         lati.setBounds(600, 160, 300, 100);
@@ -120,35 +120,35 @@ public class GUI {
 
         //Text Day-1
         JLabel d_one = new JLabel();
-        d_one.setText("Today");
+        d_one.setText("DAY 1");
         d_one.setForeground(new Color(170,170,170)); // set font color
         d_one.setFont(new Font("Roboto",Font.BOLD,15)); // set font style
         d_one.setBounds(892, 290, 300, 100);
 
         //Text Day-2
         JLabel d_two = new JLabel();
-        d_two.setText("Tue");
+        d_two.setText("DAY 2");
         d_two.setForeground(new Color(170,170,170)); // set font color
         d_two.setFont(new Font("Roboto",Font.BOLD,15)); // set font style
         d_two.setBounds(892, 380, 300, 100);
 
         //Text Day-3
         JLabel d_three = new JLabel();
-        d_three.setText("Wed");
+        d_three.setText("DAY 3");
         d_three.setForeground(new Color(170,170,170)); // set font color
         d_three.setFont(new Font("Roboto",Font.BOLD,15)); // set font style
         d_three.setBounds(892, 470, 300, 100);
 
         //Text Day-4
         JLabel d_four = new JLabel();
-        d_four.setText("Thu");
+        d_four.setText("DAY 4");
         d_four.setForeground(new Color(170,170,170)); // set font color
         d_four.setFont(new Font("Roboto",Font.BOLD,15)); // set font style
         d_four.setBounds(892, 560, 300, 100);
 
         //Text Day-5
         JLabel d_five = new JLabel();
-        d_five.setText("Fri");
+        d_five.setText("DAY 5");
         d_five.setForeground(new Color(170,170,170)); // set font color
         d_five.setFont(new Font("Roboto",Font.BOLD,15)); // set font style
         d_five.setBounds(892, 650, 300, 100);
@@ -213,70 +213,70 @@ public class GUI {
 
         //Variable FeelsLike
         JLabel fe = new JLabel();
-        fe.setText("33");
+        fe.setText(feel_got);
         fe.setForeground(new Color(255,255,255)); // set font color
         fe.setFont(new Font("Roboto",Font.BOLD,50)); // set font style
         fe.setBounds(265, 350, 200, 100);
 
         //Variable SunRise
         JLabel sr = new JLabel();
-        sr.setText("06:35");
+        sr.setText(sunrise_got);
         sr.setForeground(new Color(255,255,255)); // set font color
         sr.setFont(new Font("Roboto",Font.BOLD,50)); // set font style
         sr.setBounds(265, 505, 200, 100);
 
         //Variable MaxTemp
         JLabel mt = new JLabel();
-        mt.setText("31");
+        mt.setText(max_got);
         mt.setForeground(new Color(255,255,255)); // set font color
         mt.setFont(new Font("Roboto",Font.BOLD,50)); // set font style
         mt.setBounds(265, 640, 200, 100);
 
         //Variable SunSet
         JLabel ss = new JLabel();
-        ss.setText("20:58");
+        ss.setText(sunset_got);
         ss.setForeground(new Color(255,255,255)); // set font color
         ss.setFont(new Font("Roboto",Font.BOLD,50)); // set font style
         ss.setBounds(665, 505, 200, 100);
 
         //Variable MinTemp
         JLabel mint = new JLabel();
-        mint.setText("23");
+        mint.setText(min_got);
         mint.setForeground(new Color(255,255,255)); // set font color
         mint.setFont(new Font("Roboto",Font.BOLD,50)); // set font style
         mint.setBounds(665, 640, 200, 100);
 
         //Variable Day-1
         JLabel t_one = new JLabel();
-        t_one.setText("36");
+        t_one.setText(day1_got);
         t_one.setForeground(new Color(255,255,255)); // set font color
         t_one.setFont(new Font("Roboto",Font.BOLD,40)); // set font style
         t_one.setBounds(960, 290, 200, 100);
 
         //Variable Day-2
         JLabel t_two = new JLabel();
-        t_two.setText("27");
+        t_two.setText(day2_got);
         t_two.setForeground(new Color(255,255,255)); // set font color
         t_two.setFont(new Font("Roboto",Font.BOLD,40)); // set font style
         t_two.setBounds(960, 380, 200, 100);
 
         //Variable Day-3
         JLabel t_three = new JLabel();
-        t_three.setText("25");
+        t_three.setText(day3_got);
         t_three.setForeground(new Color(255,255,255)); // set font color
         t_three.setFont(new Font("Roboto",Font.BOLD,40)); // set font style
         t_three.setBounds(960, 470, 200, 100);
 
         //Variable Day-4
         JLabel t_four = new JLabel();
-        t_four.setText("28");
+        t_four.setText(day4_got);
         t_four.setForeground(new Color(255,255,255)); // set font color
         t_four.setFont(new Font("Roboto",Font.BOLD,40)); // set font style
         t_four.setBounds(960, 560, 200, 100);
 
         //Variable Day-5
         JLabel t_five = new JLabel();
-        t_five.setText("23");
+        t_five.setText(day5_got);
         t_five.setForeground(new Color(255,255,255)); // set font color
         t_five.setFont(new Font("Roboto",Font.BOLD,40)); // set font style
         t_five.setBounds(960, 650, 200, 100);
@@ -284,14 +284,14 @@ public class GUI {
 
         //Variable aqi
         JLabel aq = new JLabel();
-        aq.setText("3");
+        aq.setText(aqi_got);
         aq.setForeground(new Color(255,255,255)); // set font color
         aq.setFont(new Font("Roboto",Font.BOLD,50)); // set font style
         aq.setBounds(500, 360, 200, 100);
 
         //Variable O3(ug/m3)
         JLabel vo3 = new JLabel();
-        vo3.setText("52");
+        vo3.setText(O3_got);
         vo3.setForeground(new Color(255,255,255)); // set font color
         vo3.setFont(new Font("Roboto",Font.BOLD,50)); // set font style
         vo3.setBounds(230, 580, 200, 100);
@@ -305,14 +305,14 @@ public class GUI {
 
         //Variable NO(ug/m3)
         JLabel vno = new JLabel();
-        vno.setText("22");
+        vno.setText(NO_got);
         vno.setForeground(new Color(255,255,255)); // set font color
         vno.setFont(new Font("Roboto",Font.BOLD,50)); // set font style
         vno.setBounds(570, 580, 200, 100);
 
         //Variable NO(ug/m3)
         JLabel no2 = new JLabel();
-        no2.setText("12");
+        no2.setText(NO2_got);
         no2.setForeground(new Color(255,255,255)); // set font color
         no2.setFont(new Font("Roboto",Font.BOLD,50)); // set font style
         no2.setBounds(740, 580, 200, 100);
@@ -428,7 +428,7 @@ public class GUI {
 
         // Label Search
         JLabel searchLabel = new JLabel();
-        ImageIcon searchimg = new ImageIcon("Search.png");
+        ImageIcon searchimg = new ImageIcon("Media\\Search.png");
         searchLabel.setIcon(searchimg);
 
         int searchWidth = 30;
@@ -439,7 +439,7 @@ public class GUI {
 
         // Label_Sun
         JLabel label2 = new JLabel();
-        ImageIcon Sun = new ImageIcon("Sun.png");
+        ImageIcon Sun = new ImageIcon("Media\\Sun.png");
         label2.setIcon(Sun);
         // Adjust the size of the sun icon based on label size
         int labelWidth = 150; // Example width
@@ -451,7 +451,7 @@ public class GUI {
 
         // Label_FeLike
         JLabel feeLabel = new JLabel();
-        ImageIcon feelimg = new ImageIcon("Temperature.png");
+        ImageIcon feelimg = new ImageIcon("Media\\Temperature.png");
         feeLabel.setIcon(feelimg);
         // Adjust the size of the sun icon based on label size
         int feelWidth = 30;
@@ -462,7 +462,7 @@ public class GUI {
 
         // Label_Sunrise
         JLabel rise = new JLabel();
-        ImageIcon riseimg = new ImageIcon("SunRise.png");
+        ImageIcon riseimg = new ImageIcon("Media\\SunRise.png");
         rise.setIcon(riseimg);
         // Adjust the size of the sun icon based on label size
         int riseWidth = 50;
@@ -473,7 +473,7 @@ public class GUI {
 
         // LabelMaxTemp
         JLabel max = new JLabel();
-        ImageIcon maximg = new ImageIcon("Warm.png");
+        ImageIcon maximg = new ImageIcon("Media\\Warm.png");
         max.setIcon(maximg);
         // Adjust the size of the sun icon based on label size
         int maxWidth = 40;
@@ -484,7 +484,7 @@ public class GUI {
 
         // Label_Sunset
         JLabel set = new JLabel();
-        ImageIcon setimg = new ImageIcon("SunSet.png");
+        ImageIcon setimg = new ImageIcon("Media\\SunSet.png");
         set.setIcon(setimg);
         // Adjust the size of the sun icon based on label size
         int setWidth = 50;
@@ -495,7 +495,7 @@ public class GUI {
 
         // LabelminTemp
         JLabel min = new JLabel();
-        ImageIcon minimg = new ImageIcon("Cold.png");
+        ImageIcon minimg = new ImageIcon("Media\\Cold.png");
         min.setIcon(minimg);
         // Adjust the size of the sun icon based on label size
         int minWidth = 40;
@@ -506,7 +506,7 @@ public class GUI {
 
         // LabelNotification
         JLabel notify = new JLabel();
-        ImageIcon notifyimg = new ImageIcon("Notification Bell.png");
+        ImageIcon notifyimg = new ImageIcon("Media\\Notification Bell.png");
         notify.setIcon(notifyimg);
         // Adjust the size of the sun icon based on label size
         int notifyWidth = 20;
@@ -520,7 +520,7 @@ public class GUI {
 
         // Degree-1
         JLabel d1 = new JLabel();
-        ImageIcon d1img = new ImageIcon("Degree.png");
+        ImageIcon d1img = new ImageIcon("Media\\Degree.png");
         d1.setIcon(d1img);
         // Adjust the size of the sun icon based on label size
         int d1Width = 15;
@@ -531,7 +531,7 @@ public class GUI {
 
         // Degree-2
         JLabel d2 = new JLabel();
-        ImageIcon d2img = new ImageIcon("Degree.png");
+        ImageIcon d2img = new ImageIcon("Media\\Degree.png");
         d2.setIcon(d1img);
         // Adjust the size of the sun icon based on label size
         int d2Width = 15;
@@ -542,7 +542,7 @@ public class GUI {
 
         // Degree-3
         JLabel d3 = new JLabel();
-        ImageIcon d3img = new ImageIcon("Degree.png");
+        ImageIcon d3img = new ImageIcon("Media\\Degree.png");
         d3.setIcon(d3img);
         // Adjust the size of the sun icon based on label size
         int d3Width = 15;
@@ -553,7 +553,7 @@ public class GUI {
 
         // Degree-4
         JLabel d4 = new JLabel();
-        ImageIcon d4img = new ImageIcon("Degree.png");
+        ImageIcon d4img = new ImageIcon("Media\\Degree.png");
         d4.setIcon(d4img);
         // Adjust the size of the sun icon based on label size
         int d4Width = 15;
@@ -564,7 +564,7 @@ public class GUI {
 
         // Degree-5
         JLabel d5 = new JLabel();
-        ImageIcon d5img = new ImageIcon("Degree.png");
+        ImageIcon d5img = new ImageIcon("Media\\Degree.png");
         d5.setIcon(d5img);
         // Adjust the size of the sun icon based on label size
         int d5Width = 15;
@@ -575,7 +575,7 @@ public class GUI {
 
         // Degree-6
         JLabel d6 = new JLabel();
-        ImageIcon d6img = new ImageIcon("Degree.png");
+        ImageIcon d6img = new ImageIcon("Media\\Degree.png");
         d6.setIcon(d6img);
         // Adjust the size of the sun icon based on label size
         int d6Width = 15;
@@ -586,7 +586,7 @@ public class GUI {
 
         // Degree-7
         JLabel d7 = new JLabel();
-        ImageIcon d7img = new ImageIcon("Degree.png");
+        ImageIcon d7img = new ImageIcon("Media\\Degree.png");
         d7.setIcon(d7img);
         // Adjust the size of the sun icon based on label size
         int d7Width = 15;
@@ -597,7 +597,7 @@ public class GUI {
 
         // Degree-8
         JLabel d8 = new JLabel();
-        ImageIcon d8img = new ImageIcon("Degree.png");
+        ImageIcon d8img = new ImageIcon("Media\\Degree.png");
         d8.setIcon(d8img);
         // Adjust the size of the sun icon based on label size
         int d8Width = 15;
@@ -608,7 +608,7 @@ public class GUI {
 
         // Degree-9
         JLabel d9 = new JLabel();
-        ImageIcon d9img = new ImageIcon("Degree.png");
+        ImageIcon d9img = new ImageIcon("Media\\Degree.png");
         d9.setIcon(d9img);
         // Adjust the size of the sun icon based on label size
         int d9Width = 15;
@@ -620,7 +620,7 @@ public class GUI {
 
         // Button-Exit
         JButton exit = new JButton();
-        ImageIcon exitimg = new ImageIcon("Vector.png");
+        ImageIcon exitimg = new ImageIcon("Media\\Vector.png");
         exit.setIcon(exitimg);
 
         // Adjust the size of the sun icon based on label size
