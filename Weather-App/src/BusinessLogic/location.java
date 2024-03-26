@@ -1,6 +1,7 @@
 package BusinessLogic;
 
 import org.json.JSONArray;
+import org.json.JSONException;
 import org.json.JSONObject;
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -60,7 +61,7 @@ public class location {
     public void setCountry(String country) {
         this.country = country;
     }
-    private String getValueFromReverseGeocodeResponse(String urlStr, String key) throws IOException {
+    private String getValueFromReverseGeocodeResponse(String urlStr, String key) throws IOException, JSONException {
         URL url = new URL(urlStr);
         HttpURLConnection conn = (HttpURLConnection) url.openConnection();
         conn.setRequestMethod("GET");
@@ -93,6 +94,8 @@ public class location {
         } catch (IOException e) {
             e.printStackTrace();
             return false; // Failed to add coordinates
+        } catch (JSONException e) {
+            throw new RuntimeException(e);
         }
     }
     public boolean addManualLocationCoord(String country, String city) {
@@ -109,13 +112,13 @@ public class location {
             } else {
                 return false; // Indicate failure
             }
-        } catch (IOException e) {
+        } catch (IOException | JSONException e) {
             e.printStackTrace();
             return false; // Indicate failure
         }
     }
 
-    private String[] getCoordinates(String city, String country) throws IOException {
+    private String[] getCoordinates(String city, String country) throws IOException, JSONException {
         String urlStr = "https://nominatim.openstreetmap.org/search?format=json&q=" + city + "," + country;
         URL url = new URL(urlStr);
         HttpURLConnection conn = (HttpURLConnection) url.openConnection();
