@@ -1,8 +1,5 @@
 package UI;
-import BusinessLogic.AirPollutionData;
-import BusinessLogic.WeatherData;
-import BusinessLogic.WeatherForecast;
-import BusinessLogic.location;
+import BusinessLogic.*;
 
 import java.util.Scanner;
 
@@ -19,25 +16,29 @@ public class UITerminalBased {
             String location = scanner.nextLine();
 
             System.out.println("Choose an option:");
-            System.out.println("1. Show Weather Details");
-            System.out.println("2. Show 5 Day Forecast");
-            System.out.println("3 Show Air Pollution Data");
-            System.out.println("4. Exit");
+            System.out.println("1. Show Basic Weather Data");
+            System.out.println("2. Show Weather Details");
+            System.out.println("3. Show 5 Day Forecast");
+            System.out.println("4  Show Air Pollution Data");
+            System.out.println("5. Exit");
 
             int choice = scanner.nextInt();
             scanner.nextLine(); // Consume newline character
 
             switch (choice) {
                 case 1:
-                    showWeatherDetails(location);
+                    ShowBasicWeatherData(location);
                     break;
                 case 2:
-                    showWeatherForecast(location);
+                    showWeatherDetails(location);
                     break;
                 case 3:
-                    showAirPollutionData(location);
+                    showWeatherForecast(location);
                     break;
                 case 4:
+                    showAirPollutionData(location);
+                    break;
+                case 5:
                     System.out.println("Exiting...");
                     return;
                 default:
@@ -45,7 +46,18 @@ public class UITerminalBased {
             }
         }
     }
+    private void ShowBasicWeatherData(String location)
+    {
+        WeatherData Object_WeatherData= new WeatherData();
+        location Object_Location=new location();
+        Object_Location.setCity(location);
 
+        System.out.println("Showing weather details for: " + location);
+        System.out.println("Minimum Temperature: "+ Object_WeatherData.getMinTemperature(Object_Location));
+        System.out.println("Maximum Temperature: "+ Object_WeatherData.getMaxTemperature(Object_Location));
+        System.out.println("Average Temperature: "+ Object_WeatherData.getTemperature(Object_Location));
+
+    }
     private void showWeatherDetails(String location) {
         WeatherData Object_WeatherData= new WeatherData();
         location Object_Location=new location();
@@ -57,6 +69,9 @@ public class UITerminalBased {
         System.out.println("FeelsLike Temperature: "+ Object_WeatherData.getFeelsLike(Object_Location));
         System.out.println("Sunrise Time: "+ Object_WeatherData.getSunriseTime(Object_Location));
         System.out.println("Sunset Time: "+ Object_WeatherData.getSunsetTime(Object_Location));
+        System.out.println("Notification: ");
+        NotificationManager Object_Notify=new NotificationManager();
+        Object_Notify.GenerateWeatherNotificattions(location);
         // Your code to fetch and display weather details goes here
     }
 
