@@ -1,7 +1,6 @@
 package BusinessLogic;
 
-import javax.xml.stream.Location;
-import java.io.FileNotFoundException;
+import UI.GUI;
 
 public class Main {
     public static void main(String[] args) {

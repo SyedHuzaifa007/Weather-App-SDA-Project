@@ -6,7 +6,7 @@ import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.URL;
 
-public class AirPollutionData {
+public class AirPollutionData extends APIhandler{
     private double airQualityIndex;
     private double carbonMonoxide;
     private double nitrogenMonoxide;
