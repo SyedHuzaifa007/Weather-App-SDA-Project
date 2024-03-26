@@ -1,4 +1,8 @@
 package UI;
+import BusinessLogic.WeatherData;
+import BusinessLogic.WeatherForecast;
+import BusinessLogic.location;
+
 import java.util.Scanner;
 
 public class UITerminalBased {
@@ -50,12 +54,27 @@ public class UITerminalBased {
     }
 
     private void showWeatherDetails(String location) {
-        System.out.println("Showing weather details for " + location);
+        WeatherData Object_WeatherData= new WeatherData();
+        location Object_Location=new location();
+        Object_Location.setCity(location);
+        System.out.println("Showing weather details for Time: "+Object_WeatherData.getTimestamp(Object_Location)+" " + location);
+        System.out.println("Minimum Temperature: "+ Object_WeatherData.getMinTemperature(Object_Location));
+        System.out.println("Maximum Temperature: "+ Object_WeatherData.getMaxTemperature(Object_Location));
+        System.out.println("Average Temperature: "+ Object_WeatherData.getTemperature(Object_Location));
+        System.out.println("FeelsLike Temperature: "+ Object_WeatherData.getFeelsLike(Object_Location));
+        System.out.println("Sunrise Time: "+ Object_WeatherData.getSunriseTime(Object_Location));
+        System.out.println("Sunset Time: "+ Object_WeatherData.getSunsetTime(Object_Location));
         // Your code to fetch and display weather details goes here
     }
 
     private void showWeatherForecast(String location) {
+        WeatherData Object_WeatherData= new WeatherData();
+        location Object_Location=new location();
+        Object_Location.setCity(location);
+        WeatherForecast Object_Forecast=new WeatherForecast();
+
         System.out.println("Showing weather forecast for " + location);
+        System.out.println("Forecast Data: " + Object_Forecast.forecastData(Object_Location));
     }
 
     private void showHourlyForecast(String location) {
