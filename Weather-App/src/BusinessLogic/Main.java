@@ -87,6 +87,8 @@ public class Main {
         String PM25 = reader.readLine();
         String PM10 = reader.readLine();
 
+        reader.close();
+
         ////////////////////////////////////////////////////////////////////////
 
         GUI G = new GUI();
