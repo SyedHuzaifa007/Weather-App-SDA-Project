@@ -2,62 +2,97 @@ package BusinessLogic;
 
 import UI.GUI;
 
+import java.io.BufferedReader;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
+import java.io.IOException;
+
+import static java.lang.Math.round;
+
 public class Main {
-    public static void main(String[] args) {
+    public static void main(String[] args) throws IOException {
         APIhandler apiHandler = new APIhandler(); // Replace "API_KEY_HERE" with your actual API key
 
 
         // Create a Location object with desired city and country
-        location location = new location(); // Replace with actual city name and country code
-        location.setCountry("Pakistan");
-        location.setCity("Lahore");
-        WeatherForecast forecast=new WeatherForecast();
-        double day1=forecast.getDay1Forecast(location);
-        double day2=forecast.getDay2Forecast(location);
-        double day3=forecast.getDay3Forecast(location);
-        double day4=forecast.getDay4Forecast(location);
-        double day5=forecast.getDay5Forecast(location);
-        System.out.println("Day 1 temperature: "+day1);
-        System.out.println("Day 2 temperature: "+day2);
-        System.out.println("Day 3 temperature: "+day3);
-        System.out.println("Day 4 temperature: "+day4);
-        System.out.println("Day 5 temperature: "+day5);
-        //System.exit(0);
-         //Call getCurrentData method to fetch weather data
-        System.out.println(apiHandler.getmaxtemperature(location));
-        BusinessLogic businessLogic=new WeatherData();
-        System.out.println( businessLogic.getSunsetTime(location));
+        location location = new location();
 
-                        // ( Data_Access_Layer Logic)
-        /////////////////////////////////////////////////////////////////////////
+        location.getCurrentLocation();
 
-                        // (Get the location)
-//        String Location = location.getCity();
-//
-//                        // (Initialized Manager)
-//        CacheManager manager = new CacheManager(Location);
-//
-//                        // (get Data from Cache)
-//        boolean status = false;
-//        status = manager.getData(Location);
-//
-//                        // (if cache does have required data stored and Location File is also
-//                        //  not present, we create new file of location and update cache)
-//        if(!status)
-//        {
-//                        // (API Calls and store data from API to variables)
-//            String temp = String.valueOf(businessLogic.getTemperature(location));
-//            String feel = String.valueOf(businessLogic.getFeelsLike(location));
-//            String min = String.valueOf(businessLogic.getMinTemperature(location));
-//            String max = String.valueOf(businessLogic.getMaxTemperature(location));
-//            String sunrise = String.valueOf(businessLogic.getSunriseTime(location));
-//            String sunset = String.valueOf(businessLogic.getSunsetTime(location));
-//            String stamp = String.valueOf(businessLogic.getTimestamp(location));
-//
-//                        // (store new data in file and update cache)
-//            manager.storeData(Location,temp,feel,min,max,sunrise,sunset,stamp);
-//        }
+        // air pollution class methods
+        AirPollutionData air = new AirPollutionData(location);
 
-        GUI G = new GUI();        ////////////////////////////////////////////////////////////////////////
+        // weather Forecast class methods
+        WeatherForecast forecast = new WeatherForecast();
+
+        //Business Logic method
+        BusinessLogic businessLogic = new WeatherData();
+
+
+                         //( Data_Access_Layer Logic)
+        ///////////////////////////////////////////////////////////////////////
+
+                        // (Initialized Manager)
+        CacheManager manager = new CacheManager(location.getCity());
+
+                        // (get Data from Cache)
+        boolean status = false;
+        status = manager.getData(location.getCity());
+                        // if cant find data store it first
+        if(!status)
+        {
+            // getting airPollution values in values
+            double[] values = air.PollutionValues();
+
+                        // (store new data in file and update cache)
+            manager.storeData(location.getCity(),String.valueOf(location.getLongitude()),String.valueOf(location.getLatitude()),String.valueOf(round(businessLogic.getTemperature(location))),
+                                String.valueOf(round(businessLogic.getFeelsLike(location))),String.valueOf(round(businessLogic.getMinTemperature(location))),String.valueOf(round(businessLogic.getMaxTemperature(location))) ,
+                                String.valueOf(businessLogic.getSunriseTime(location)),String.valueOf(businessLogic.getSunsetTime(location)), String.valueOf(businessLogic.getTimestamp(location)),
+
+                                String.valueOf(round(forecast.getDay1Forecast(location))), String.valueOf(round(forecast.getDay2Forecast(location))), String.valueOf(round(forecast.getDay3Forecast(location))),
+                                String.valueOf(round(forecast.getDay4Forecast(location))), String.valueOf(round(forecast.getDay5Forecast(location))),
+
+                                String.valueOf(values[0]),String.valueOf(values[1]),String.valueOf(values[2]),String.valueOf(values[3]), String.valueOf(values[4]), String.valueOf(values[5]),
+                                String.valueOf(values[6]), String.valueOf(values[7]), String.valueOf(values[8]));
+        }
+
+        //file reading
+
+        FileReader filereader = new FileReader("CacheFile.txt");
+        BufferedReader reader = new BufferedReader(filereader);
+
+        String loc = reader.readLine();
+        String longi = reader.readLine();
+        String lati = reader.readLine();
+
+        String temp = reader.readLine();
+        String feel = reader.readLine();
+        String min = reader.readLine();
+        String max = reader.readLine();
+        String rise = reader.readLine();
+        String set = reader.readLine();
+        String stamp = reader.readLine();
+
+        String day1 = reader.readLine();
+        String day2 = reader.readLine();
+        String day3 = reader.readLine();
+        String day4 = reader.readLine();
+        String day5 = reader.readLine();
+
+        String aqi = reader.readLine();
+        String CO = reader.readLine();
+        String NO = reader.readLine();
+        String NO2 = reader.readLine();
+        String O3 = reader.readLine();
+        String SO2 = reader.readLine();
+        String NH3 = reader.readLine();
+        String PM25 = reader.readLine();
+        String PM10 = reader.readLine();
+
+        reader.close();
+
+        ////////////////////////////////////////////////////////////////////////
+
+       GUI G = new GUI();
     }
 }
