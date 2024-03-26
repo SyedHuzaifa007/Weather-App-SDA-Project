@@ -90,6 +90,8 @@ public class UITerminalBased {
         Object_Location.setCity(location);
         AirPollutionData Object_AirPollution=new AirPollutionData(Object_Location);
         System.out.println("Showing air pollution data for " + location);
+        NotificationManager Object_Notify=new NotificationManager();
+        Object_Notify.generateAirQualityNotification(Object_Location);
         double Values_PollutionData[]=Object_AirPollution.PollutionValues();
         System.out.println("CarbonMonoxide: "+ Values_PollutionData[0]);
         System.out.println("NitrogenMonoxide: "+ Values_PollutionData[1]);
