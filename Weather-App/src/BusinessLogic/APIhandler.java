@@ -11,6 +11,8 @@ import java.util.ArrayList;
 import java.util.List;
 import org.json.JSONArray;
 import org.json.JSONObject;
+import java.time.ZoneOffset;
+
 class APIhandler {
     private String apikey;
     public APIhandler() {
@@ -44,7 +46,7 @@ class APIhandler {
             return null; // Handle error gracefully
         }
 
-        }
+    }
     public double getmaxtemperature(location location) {
         try {
             String response;
@@ -251,8 +253,15 @@ class APIhandler {
         }
     }
 
-    public List<Double> getFiveDayForecast(location location) {
-        List<Double> temperatureForecast = new ArrayList<>();
+    private boolean isForecastForDay(long currentTime, long forecastTime, int day) {
+        // Calculate the timestamp for the start of the day
+        LocalDate currentDate = LocalDate.now();
+        long startOfDay = currentDate.atStartOfDay(ZoneOffset.UTC).toEpochSecond() + (day - 1) * 24 * 60 * 60;
+
+        // Check if the forecast time falls within the desired day
+        return forecastTime >= startOfDay && forecastTime < startOfDay + 24 * 60 * 60;
+    }
+    public double getForecastForDay(location location, int day) {
         try {
             String response = getResponse(location);
             if (response != null) {
@@ -260,20 +269,21 @@ class APIhandler {
                 JSONArray forecastList = jsonResponse.getJSONArray("list");
                 long currentTime = System.currentTimeMillis() / 1000; // Convert milliseconds to seconds
 
+                List<Double> temperatureForecast = new ArrayList<>();
+
                 for (int i = 0; i < forecastList.length(); i++) {
                     JSONObject forecastData = forecastList.getJSONObject(i);
                     long forecastTime = forecastData.getLong("dt");
 
-                    // Check if the forecast is within the next five days
-                    if (forecastTime > currentTime && temperatureForecast.size() < 5) {
+                    // Check if the forecast is for the desired day
+                    if (isForecastForDay(currentTime, forecastTime, day) && temperatureForecast.size() < 5) {
                         JSONObject mainData = forecastData.getJSONObject("main");
                         double temperature = mainData.getDouble("temp");
 
                         // Convert temperature from Kelvin to Celsius
                         temperature = temperature - 273.15;
 
-                        // Add temperature to the forecast list
-                        temperatureForecast.add(temperature);
+                        return temperature;
                     }
                 }
             } else {
@@ -283,11 +293,7 @@ class APIhandler {
             e.printStackTrace();
             System.out.println("Error occurred while fetching forecast data: " + e.getMessage());
         }
-        return temperatureForecast;
+        return Double.NaN;
     }
 
 }
-
-
-
-
