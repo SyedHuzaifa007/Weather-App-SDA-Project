@@ -1,7 +1,7 @@
 package BusinessLogic;
 import java.util.List;
 
-public class WeatherForecast {
+public class WeatherForecast extends APIhandler{
 
     public double getDay1Forecast(location location) {
         APIhandler api = new APIhandler();
