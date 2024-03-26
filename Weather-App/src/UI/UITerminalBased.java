@@ -75,16 +75,14 @@ public class UITerminalBased {
         AirPollutionData Object_AirPollution=new AirPollutionData(Object_Location);
         System.out.println("Showing air pollution data for " + location);
         double Values_PollutionData[]=Object_AirPollution.PollutionValues();
-     double carbonMonoxide;
-     double nitrogenMonoxide;
-       double nitrogenDioxide;
-       double ozone;
-        double sulphurDioxide;
-       double ammonia;
-        double particulatePM25;
-         double particulatePM10;
-
-
+        System.out.println("CarbonMonoxide: "+ Values_PollutionData[0]);
+        System.out.println("NitrogenMonoxide: "+ Values_PollutionData[1]);
+        System.out.println("NitrogenDioxide: "+ Values_PollutionData[2]);
+        System.out.println("Ozone: "+ Values_PollutionData[3]);
+        System.out.println("SulphurDioxide: "+ Values_PollutionData[4]);
+        System.out.println("Ammonia: "+ Values_PollutionData[5]);
+        System.out.println("ParticulatePM25: "+ Values_PollutionData[6]);
+        System.out.println("ParticulatePM10: "+ Values_PollutionData[7]);
         // Your code to fetch and display air pollution data goes here
     }
 
