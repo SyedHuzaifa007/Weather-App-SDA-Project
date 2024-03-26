@@ -70,8 +70,21 @@ public class UITerminalBased {
         Object_Forecast.forecastData(Object_Location);
     }
     private void showAirPollutionData(String location) {
-
+        location Object_Location=new location();
+        Object_Location.setCity(location);
+        AirPollutionData Object_AirPollution=new AirPollutionData(Object_Location);
         System.out.println("Showing air pollution data for " + location);
+        double Values_PollutionData[]=Object_AirPollution.PollutionValues();
+     double carbonMonoxide;
+     double nitrogenMonoxide;
+       double nitrogenDioxide;
+       double ozone;
+        double sulphurDioxide;
+       double ammonia;
+        double particulatePM25;
+         double particulatePM10;
+
+
         // Your code to fetch and display air pollution data goes here
     }
 
