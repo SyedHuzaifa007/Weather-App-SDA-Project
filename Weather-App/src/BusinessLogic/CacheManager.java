@@ -31,33 +31,6 @@ public class CacheManager
 
            if (data.equals(loc))
            {
-               // storing data from file to variables
-               String Loct = loc;
-               String temperature = reader.readLine();
-               String feelsLike = reader.readLine();
-               String minTemperature = reader.readLine();
-               String maxTemperature = reader.readLine();
-               String sunriseTime = reader.readLine();
-               String sunsetTime = reader.readLine();
-               String TimeStamp = reader.readLine();
-
-               // printing those variables individually
-               System.out.println("Location: " + Loct);
-               System.out.println("Temperature: " + temperature);
-               System.out.println("Feels Like: " + feelsLike);
-               System.out.println("Min Temperature: " + minTemperature);
-               System.out.println("Max Temperature: " + maxTemperature);
-               System.out.println("Sunrise Time: " + sunriseTime);
-               System.out.println("Sunset Time: " + sunsetTime);
-               System.out.println("TimeStamp: " + TimeStamp);
-               try
-               {
-                   reader.close(); // Close the reader when done
-               }
-               catch (IOException ex)
-               {
-                   throw new RuntimeException(ex);
-               }
                return true;
            }
            // if cache does not have the required location data
@@ -77,34 +50,8 @@ public class CacheManager
                }
                reader = new BufferedReader(fileReader);
 
-               // if the file was found we print the data from updated cache File
                if(status)
                {
-                   String Loct = loc;
-                   String temperature = reader.readLine();
-                   String feelsLike = reader.readLine();
-                   String minTemperature = reader.readLine();
-                   String maxTemperature = reader.readLine();
-                   String sunriseTime = reader.readLine();
-                   String sunsetTime = reader.readLine();
-                   String TimeStamp = reader.readLine();
-
-                   System.out.println("Location: " + Loct);
-                   System.out.println("Temperature: " + temperature);
-                   System.out.println("Feels Like: " + feelsLike);
-                   System.out.println("Min Temperature: " + minTemperature);
-                   System.out.println("Max Temperature: " + maxTemperature);
-                   System.out.println("Sunrise Time: " + sunriseTime);
-                   System.out.println("Sunset Time: " + sunsetTime);
-                   System.out.println("TimeStamp: " + TimeStamp);
-                   try
-                   {
-                       reader.close(); // Close the reader when done
-                   }
-                   catch (IOException ex)
-                   {
-                       throw new RuntimeException(ex);
-                   }
                    return true;
                }
                // if the file was not found we return false
@@ -120,21 +67,29 @@ public class CacheManager
         }
     }
 
-    public void storeData(String Location, String temp, String feel, String min, String max, String sunrise, String sunset, String stamp)
+    public void storeData(String Location,String longi, String lati, String temp, String feel, String min, String max, String sunrise, String sunset, String stamp, String day1, String day2, String day3, String day4, String day5)
     {
-        // to store we first update cahe file
+        // to store we first update cache file
         String filepath = "CacheFile.txt";
 
         try (BufferedWriter writer = new BufferedWriter(new FileWriter(filepath))) {
             // Write data line by line
             writer.write(Location+"\n");
+            writer.write(longi+"\n");
+            writer.write(lati+"\n");
             writer.write(temp+"\n");
             writer.write(feel+"\n");
             writer.write(min+"\n");
             writer.write(max+"\n");
             writer.write(sunrise+"\n");
             writer.write(sunset+"\n");
-            writer.write(stamp);
+            writer.write(stamp+"\n");
+
+            writer.write(day1+"\n");
+            writer.write(day2+"\n");
+            writer.write(day3+"\n");
+            writer.write(day4+"\n");
+            writer.write(day5+"\n");
         }
         catch (IOException e)
         {
@@ -150,37 +105,6 @@ public class CacheManager
         }
         BufferedReader reader = new BufferedReader(fileReader);
 
-        // print that updated cache file
-        try {
-            String data = reader.readLine();
-            String Loct = Location;
-            String temperature = reader.readLine();
-            String feelsLike = reader.readLine();
-            String minTemperature = reader.readLine();
-            String maxTemperature = reader.readLine();
-            String sunriseTime = reader.readLine();
-            String sunsetTime = reader.readLine();
-            String TimeStamp = reader.readLine();
-
-            System.out.println("Location: " + Loct);
-            System.out.println("Temperature: " + temperature);
-            System.out.println("Feels Like: " + feelsLike);
-            System.out.println("Min Temperature: " + minTemperature);
-            System.out.println("Max Temperature: " + maxTemperature);
-            System.out.println("Sunrise Time: " + sunriseTime);
-            System.out.println("Sunset Time: " + sunsetTime);
-            System.out.println("TimeStamp: " + TimeStamp);
-        } catch (IOException e) {
-            throw new RuntimeException(e);
-        }
-        try
-        {
-            reader.close(); // Close the reader when done
-        }
-        catch (IOException ex)
-        {
-            throw new RuntimeException(ex);
-        }
 
         // lastly we also create the new location file using TxtFile class
         String newFile = Location + ".txt";
