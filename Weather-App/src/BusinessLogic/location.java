@@ -61,7 +61,7 @@ public class location {
     public void setCountry(String country) {
         this.country = country;
     }
-    private String getValueFromReverseGeocodeResponse(String urlStr, String key) throws IOException, JSONException {
+    private String getValueFromReverseGeocodeResponse(String urlStr, String key) throws IOException {
         URL url = new URL(urlStr);
         HttpURLConnection conn = (HttpURLConnection) url.openConnection();
         conn.setRequestMethod("GET");
@@ -118,7 +118,7 @@ public class location {
         }
     }
 
-    private String[] getCoordinates(String city, String country) throws IOException, JSONException {
+    private String[] getCoordinates(String city, String country) throws IOException{
         String urlStr = "https://nominatim.openstreetmap.org/search?format=json&q=" + city + "," + country;
         URL url = new URL(urlStr);
         HttpURLConnection conn = (HttpURLConnection) url.openConnection();

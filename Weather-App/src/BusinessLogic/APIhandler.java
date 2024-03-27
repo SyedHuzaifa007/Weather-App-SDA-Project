@@ -194,7 +194,6 @@ import java.time.ZoneOffset;
             return null;
         }
     }
-
     public LocalTime getSunset(location location) {
         LocalDate today = LocalDate.now();
 
@@ -226,7 +225,6 @@ import java.time.ZoneOffset;
             return null;
         }
     }
-
     private String getResponse(location location) {
         try {
             String apiUrl = "http://api.openweathermap.org/data/2.5/forecast?q=" + location.getCity() + "," + location.getCountry() + "&appid=" + apikey;
@@ -252,7 +250,6 @@ import java.time.ZoneOffset;
             return null;
         }
     }
-
     private boolean isForecastForDay(long currentTime, long forecastTime, int day) {
         // Calculate the timestamp for the start of the day
         LocalDate currentDate = LocalDate.now();
