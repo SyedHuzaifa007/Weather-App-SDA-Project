@@ -92,7 +92,6 @@ public class Main {
         reader.close();
 
         ////////////////////////////////////////////////////////////////////////
-
        GUI G = new GUI(loc,longi,latitude,temp,feel,min,max,rise,set,stamp,day1,day2,day3,day4,day5,aqi,CO,NO,NO2,O3,SO2,NH3,PM25,PM10);
     }
 }

@@ -14,6 +14,7 @@ import javax.swing.JTextField;
 public class GUI {
 
     JFrame frame1 = new JFrame();
+    String typed = " ";
     public GUI(String Location_got,String longi_got, String lati_got, String temp_got, String feel_got, String min_got, String max_got, String sunrise_got, String sunset_got, String stamp_got, String day1_got, String day2_got, String day3_got, String day4_got, String day5_got, String aqi_got, String CO_got, String NO_got, String NO2_got, String O3_got, String SO2_got, String NH3_got, String PM25_got, String PM10_got)
     {
         frame1.setSize(1080, 800); // set frame size
@@ -35,9 +36,9 @@ public class GUI {
         // storing typed data into data
         field.addActionListener (e->
         {
-            String data = field.getText();
+            typed = field.getText();
 
-            System.out.println("Input: " + data);
+            System.out.println("Input: " + typed);
         });
 
         // Text_Location
