@@ -187,56 +187,56 @@ public class GUI {
         CO.setText("CO (ug/m3)");
         CO.setForeground(new Color(170,170,170)); // set font color
         CO.setFont(new Font("Roboto",Font.BOLD,20)); // set font style
-        CO.setBounds(220, 530, 300, 100);
+        CO.setBounds(220, 500, 300, 100);
 
         //Text NO(ug/m3)
         JLabel NO = new JLabel();
         NO.setText("NO (ug/m3)");
         NO.setForeground(new Color(170,170,170)); // set font color
         NO.setFont(new Font("Roboto",Font.BOLD,20)); // set font style
-        NO.setBounds(560, 530, 300, 100);
+        NO.setBounds(390, 500, 300, 100);
 
         //Text NO2(ug/m3)
         JLabel NO2 = new JLabel();
         NO2.setText("NO2 (ug/m3)");
         NO2.setForeground(new Color(170,170,170)); // set font color
         NO2.setFont(new Font("Roboto",Font.BOLD,20)); // set font style
-        NO2.setBounds(725, 530, 300, 100);
+        NO2.setBounds(560, 500, 300, 100);
 
         //Text O3(ug/m3)
         JLabel o3 = new JLabel();
         o3.setText("O3 (ug/m3)");
         o3.setForeground(new Color(170,170,170)); // set font color
         o3.setFont(new Font("Roboto",Font.BOLD,20)); // set font style
-        o3.setBounds(220, 530, 300, 100);
+        o3.setBounds(730, 500, 300, 100);
 
         //Text SO2(ug/m3)
         JLabel SO2 = new JLabel();
         SO2.setText("SO2 (ug/m3)");
         SO2.setForeground(new Color(170,170,170)); // set font color
         SO2.setFont(new Font("Roboto",Font.BOLD,20)); // set font style
-        SO2.setBounds(220, 530, 300, 100);
+        SO2.setBounds(220, 600, 300, 100);
 
         //Text NH3(ug/m3)
         JLabel NH3 = new JLabel();
         NH3.setText("NH3 (ug/m3)");
         NH3.setForeground(new Color(170,170,170)); // set font color
         NH3.setFont(new Font("Roboto",Font.BOLD,20)); // set font style
-        NH3.setBounds(220, 530, 300, 100);
+        NH3.setBounds(390, 600, 300, 100);
 
         //Text PM25(ug/m3)
         JLabel PM25 = new JLabel();
         PM25.setText("PM25 (ug/m3)");
         PM25.setForeground(new Color(170,170,170)); // set font color
         PM25.setFont(new Font("Roboto",Font.BOLD,20)); // set font style
-        PM25.setBounds(375, 530, 300, 100);
+        PM25.setBounds(550, 600, 300, 100);
 
         //Text PM10(ug/m3)
         JLabel PM10 = new JLabel();
         PM10.setText("PM10 (ug/m3)");
         PM10.setForeground(new Color(170,170,170)); // set font color
         PM10.setFont(new Font("Roboto",Font.BOLD,20)); // set font style
-        PM10.setBounds(375, 530, 300, 100);
+        PM10.setBounds(720, 600, 300, 100);
 
 
         //Variable FeelsLike
@@ -250,8 +250,8 @@ public class GUI {
         JLabel sr = new JLabel();
         sr.setText(sunrise_got);
         sr.setForeground(new Color(255,255,255)); // set font color
-        sr.setFont(new Font("Roboto",Font.BOLD,50)); // set font style
-        sr.setBounds(265, 505, 200, 100);
+        sr.setFont(new Font("Roboto",Font.BOLD,40)); // set font style
+        sr.setBounds(255, 505, 200, 100);
 
         //Variable MaxTemp
         JLabel mt = new JLabel();
@@ -264,8 +264,8 @@ public class GUI {
         JLabel ss = new JLabel();
         ss.setText(sunset_got);
         ss.setForeground(new Color(255,255,255)); // set font color
-        ss.setFont(new Font("Roboto",Font.BOLD,50)); // set font style
-        ss.setBounds(665, 505, 200, 100);
+        ss.setFont(new Font("Roboto",Font.BOLD,40)); // set font style
+        ss.setBounds(655, 505, 200, 100);
 
         //Variable MinTemp
         JLabel mint = new JLabel();
@@ -321,57 +321,57 @@ public class GUI {
         JLabel vCO = new JLabel();
         vCO.setText(CO_got);
         vCO.setForeground(new Color(255,255,255)); // set font color
-        vCO.setFont(new Font("Roboto",Font.BOLD,50)); // set font style
-        vCO.setBounds(230, 580, 200, 100);
+        vCO.setFont(new Font("Roboto",Font.BOLD,30)); // set font style
+        vCO.setBounds(220, 545, 200, 100);
 
         //Variable NO(ug/m3)
         JLabel vno = new JLabel();
         vno.setText(NO_got);
         vno.setForeground(new Color(255,255,255)); // set font color
-        vno.setFont(new Font("Roboto",Font.BOLD,50)); // set font style
-        vno.setBounds(570, 580, 200, 100);
+        vno.setFont(new Font("Roboto",Font.BOLD,30)); // set font style
+        vno.setBounds(390, 545, 200, 100);
 
         //Variable NO2(ug/m3)
         JLabel no2 = new JLabel();
         no2.setText(NO2_got);
         no2.setForeground(new Color(255,255,255)); // set font color
-        no2.setFont(new Font("Roboto",Font.BOLD,50)); // set font style
-        no2.setBounds(740, 580, 200, 100);
+        no2.setFont(new Font("Roboto",Font.BOLD,30)); // set font style
+        no2.setBounds(560, 545, 200, 100);
 
         //Variable O3(ug/m3)
         JLabel vo3 = new JLabel();
         vo3.setText(O3_got);
         vo3.setForeground(new Color(255,255,255)); // set font color
-        vo3.setFont(new Font("Roboto",Font.BOLD,50)); // set font style
-        vo3.setBounds(230, 580, 200, 100);
+        vo3.setFont(new Font("Roboto",Font.BOLD,30)); // set font style
+        vo3.setBounds(730, 545, 200, 100);
 
         //Variable SO2(ug/m3)
         JLabel vSO2 = new JLabel();
         vSO2.setText(SO2_got);
         vSO2.setForeground(new Color(255,255,255)); // set font color
-        vSO2.setFont(new Font("Roboto",Font.BOLD,50)); // set font style
-        vSO2.setBounds(230, 580, 200, 100);
+        vSO2.setFont(new Font("Roboto",Font.BOLD,30)); // set font style
+        vSO2.setBounds(220, 645, 200, 100);
 
         //Variable SO2(ug/m3)
         JLabel vNH3 = new JLabel();
         vNH3.setText(NH3_got);
         vNH3.setForeground(new Color(255,255,255)); // set font color
-        vNH3.setFont(new Font("Roboto",Font.BOLD,50)); // set font style
-        vNH3.setBounds(230, 580, 200, 100);
+        vNH3.setFont(new Font("Roboto",Font.BOLD,30)); // set font style
+        vNH3.setBounds(390, 645, 200, 100);
 
         //Variable PM25(ug/m3)
         JLabel pm25 = new JLabel();
         pm25.setText(PM25_got);
         pm25.setForeground(new Color(255,255,255)); // set font color
-        pm25.setFont(new Font("Roboto",Font.BOLD,50)); // set font style
-        pm25.setBounds(400, 580, 200, 100);
+        pm25.setFont(new Font("Roboto",Font.BOLD,30)); // set font style
+        pm25.setBounds(550, 645, 200, 100);
 
         //Variable PM25(ug/m3)
         JLabel pm10 = new JLabel();
         pm10.setText(PM10_got);
         pm10.setForeground(new Color(255,255,255)); // set font color
-        pm10.setFont(new Font("Roboto",Font.BOLD,50)); // set font style
-        pm10.setBounds(400, 580, 200, 100);
+        pm10.setFont(new Font("Roboto",Font.BOLD,30)); // set font style
+        pm10.setBounds(720, 645, 200, 100);
 
         //backbox1
         JLabel backbox1 = new JLabel();
@@ -732,6 +732,7 @@ public class GUI {
             Panel2.add(longi);
 
             Panel2.add(aqi);
+            Panel2.add(CO);
             Panel2.add(NO);
             Panel2.add(NO2);
             Panel2.add(o3);
