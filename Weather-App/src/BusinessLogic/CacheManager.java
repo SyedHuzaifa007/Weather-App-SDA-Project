@@ -29,37 +29,37 @@ public class CacheManager
 
             // if cache file has required location data
 
-           if (data.equals(loc))
-           {
-               return true;
-           }
-           // if cache does not have the required location data
-           else
-           {
-               // we search the location file by name using TxtFile class
-               boolean status = false;
-               status  = files.search(loc);
+            if (data.equals(loc))
+            {
+                return true;
+            }
+            // if cache does not have the required location data
+            else
+            {
+                // we search the location file by name using TxtFile class
+                boolean status = false;
+                status  = files.search(loc);
 
-               // if the required location file is found
-               // we update the cache file read the updated Cache file again
-               fileReader = null;
-               try {
-                   fileReader = new FileReader("CacheFile.txt");
-               } catch (FileNotFoundException e) {
-                   throw new RuntimeException(e);
-               }
-               reader = new BufferedReader(fileReader);
+                // if the required location file is found
+                // we update the cache file read the updated Cache file again
+                fileReader = null;
+                try {
+                    fileReader = new FileReader("CacheFile.txt");
+                } catch (FileNotFoundException e) {
+                    throw new RuntimeException(e);
+                }
+                reader = new BufferedReader(fileReader);
 
-               if(status)
-               {
-                   return true;
-               }
-               // if the file was not found we return false
-               else
-               {
-                   return false;
-               }
-           }
+                if(status)
+                {
+                    return true;
+                }
+                // if the file was not found we return false
+                else
+                {
+                    return false;
+                }
+            }
         }
         catch (IOException e)
         {

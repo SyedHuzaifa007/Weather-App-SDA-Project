@@ -61,8 +61,8 @@ public class NotificationManager {
             text="Hazardous Air Quality ";
             return text;
         }
-        else {
-            text = "Safe Air Quality ";
+        else
+            text="Safe Air Quality ";
             return text;
         }
     }
