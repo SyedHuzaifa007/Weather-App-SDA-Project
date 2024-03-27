@@ -9,7 +9,7 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 
- class TxtFile {
+ public class TxtFile {
     private String location;
 
     public TxtFile(String loc) {
