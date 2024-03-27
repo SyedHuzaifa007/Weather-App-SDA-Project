@@ -14,7 +14,7 @@ public class GUI {
     JFrame frame1 = new JFrame();
     JFrame frame2 = new JFrame();
     String typed = " ";
-    public GUI(String Location_got,String longi_got, String lati_got, String temp_got, String feel_got, String min_got, String max_got, String sunrise_got, String sunset_got, String stamp_got, String day1_got, String day2_got, String day3_got, String day4_got, String day5_got, String aqi_got, String CO_got, String NO_got, String NO2_got, String O3_got, String SO2_got, String NH3_got, String PM25_got, String PM10_got)
+    public GUI(String Location_got,String longi_got, String lati_got, String temp_got, String feel_got, String min_got, String max_got, String sunrise_got, String sunset_got, String stamp_got, String day1_got, String day2_got, String day3_got, String day4_got, String day5_got, String aqi_got, String CO_got, String NO_got, String NO2_got, String O3_got, String SO2_got, String NH3_got, String PM25_got, String PM10_got, String n_weather, String n_air)
     {
         frame1.setSize(1080, 800); // set frame size
         frame1.setTitle("Weather-App"); // set frame title
@@ -167,14 +167,14 @@ public class GUI {
 
         //Text warning_badWeather
         JLabel weather = new JLabel();
-        weather.setText("Warning! Bad Weather");
+        weather.setText(n_weather);
         weather.setForeground(new Color(255,255,255)); // set font color
         weather.setFont(new Font("Roboto",Font.BOLD,15)); // set font style
         weather.setBounds(895, 80, 300, 100);
 
         //Text warning_badquality
         JLabel quality = new JLabel();
-        quality.setText("Warning! Bad Air");
+        quality.setText(n_air);
         quality.setForeground(new Color(255,255,255)); // set font color
         quality.setFont(new Font("Roboto",Font.BOLD,15)); // set font style
         quality.setBounds(895, 150, 300, 100);

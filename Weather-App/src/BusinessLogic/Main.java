@@ -91,7 +91,13 @@ public class Main {
     reader.close();
 
     ////////////////////////////////////////////////////////////////////////
-    GUI G = new GUI(loc, longi, latitude, temp, feel, min, max, rise, set, stamp, day1, day2, day3, day4, day5, aqi, CO, NO, NO2, O3, SO2, NH3, PM25, PM10);
+
+        //Notification Object
+        NotificationManager notify = new NotificationManager();
+        String n_weather = notify.GenerateWeatherNotificattions(loc);
+        String n_air = notify.generateAirQualityNotification(location);
+
+    GUI G = new GUI(loc, longi, latitude, temp, feel, min, max, rise, set, stamp, day1, day2, day3, day4, day5, aqi, CO, NO, NO2, O3, SO2, NH3, PM25, PM10, n_weather,n_air);
     }
 
     public static void processData(String input) throws IOException {
@@ -110,7 +116,7 @@ public class Main {
         }
         else
         {
-            System.out.println("\n\nThe Format for Searching Is: Country,City or Longitude/Latitude\n");
+            System.out.println("\n\nThe Format for Searching Is: Country,City or Longitude,Latitude (Plz try Again)\n");
             System.exit(1);
         }
 
@@ -186,6 +192,12 @@ public class Main {
         reader.close();
 
         ////////////////////////////////////////////////////////////////////////
-        GUI G = new GUI(loc, longi, latitude, temp, feel, min, max, rise, set, stamp, day1, day2, day3, day4, day5, aqi, CO, NO, NO2, O3, SO2, NH3, PM25, PM10);
+
+        //Notification Object
+        NotificationManager notify = new NotificationManager();
+        String n_weather = notify.GenerateWeatherNotificattions(loc);
+        String n_air = notify.generateAirQualityNotification(location);
+
+        GUI G = new GUI(loc, longi, latitude, temp, feel, min, max, rise, set, stamp, day1, day2, day3, day4, day5, aqi, CO, NO, NO2, O3, SO2, NH3, PM25, PM10,n_weather,n_air);
     }
 }
