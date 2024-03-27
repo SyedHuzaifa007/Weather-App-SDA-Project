@@ -18,35 +18,7 @@ import java.time.ZoneOffset;
     public APIhandler() {
         apikey = "16e0c1d404528d59f079dd4571275d8b";
     }
-    private String getRsponse(location location){
-        try {
-            // Construct the URL for the API call
-            String apiUrl = "http://api.openweathermap.org/data/2.5/weather?q=" + location.getCity() + "," + location.getCountry() + "&appid=" + apikey;
 
-            URL url = new URL(apiUrl);
-            HttpURLConnection conn = (HttpURLConnection) url.openConnection();
-            conn.setRequestMethod("GET");
-            conn.connect();
-
-            // Read the response
-            BufferedReader br = new BufferedReader(new InputStreamReader(conn.getInputStream()));
-            StringBuilder sb = new StringBuilder();
-            String line;
-            while ((line = br.readLine()) != null) {
-                sb.append(line);
-            }
-            br.close();
-
-            // Extract weather information from the response
-            String response = sb.toString();
-            conn.disconnect();
-            return response;
-        } catch (IOException e) {
-            e.printStackTrace();
-            return null; // Handle error gracefully
-        }
-
-    }
     public double getmaxtemperature(location location) {
         try {
             String response;
@@ -55,13 +27,13 @@ import java.time.ZoneOffset;
                 location loc = new location();
                 try {
                     loc.getCurrentLocation();
-                    response = getRsponse(loc);
+                    response = getResponse(loc);
                 } catch (Exception e) {
                     e.printStackTrace();
                     return -1; // Handle error gracefully
                 }
             } else {
-                response = getRsponse(location);
+                response = getResponse(location);
             }
 
             if (response != null) {
@@ -84,13 +56,13 @@ import java.time.ZoneOffset;
                 location loc = new location();
                 try {
                     loc.getCurrentLocation();
-                    response = getRsponse(loc);
+                    response = getResponse(loc);
                 } catch (Exception e) {
                     e.printStackTrace();
                     return -1; // Handle error gracefully
                 }
             } else {
-                response = getRsponse(location);
+                response = getResponse(location);
             }
 
             if (response != null) {
@@ -113,13 +85,13 @@ import java.time.ZoneOffset;
                 location loc = new location();
                 try {
                     loc.getCurrentLocation();
-                    response = getRsponse(loc);
+                    response = getResponse(loc);
                 } catch (Exception e) {
                     e.printStackTrace();
                     return -1; // Handle error gracefully
                 }
             } else {
-                response = getRsponse(location);
+                response = getResponse(location);
             }
 
             if (response != null) {
@@ -142,13 +114,13 @@ import java.time.ZoneOffset;
                 location loc = new location();
                 try {
                     loc.getCurrentLocation();
-                    response = getRsponse(loc);
+                    response = getResponse(loc);
                 } catch (Exception e) {
                     e.printStackTrace();
                     return -1; // Handle error gracefully
                 }
             } else {
-                response = getRsponse(location);
+                response = getResponse(location);
             }
 
             if (response != null) {
