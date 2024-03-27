@@ -1,7 +1,7 @@
 <component name="libraryTable">
-  <library name="json-20210307">
+  <library name="java-json-schema">
     <CLASSES>
-      <root url="jar://$USER_HOME$/Downloads/json-20210307.jar!/" />
+      <root url="jar://$USER_HOME$/Downloads/java-json-schema.jar!/" />
     </CLASSES>
     <JAVADOC />
     <SOURCES />

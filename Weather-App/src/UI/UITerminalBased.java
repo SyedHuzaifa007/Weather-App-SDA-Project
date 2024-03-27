@@ -3,7 +3,7 @@ import BusinessLogic.*;
 
 import java.util.Scanner;
 
-class UITerminalBased {
+public class UITerminalBased {
     private Scanner scanner;
 
     public UITerminalBased() {
