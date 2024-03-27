@@ -109,10 +109,22 @@ public class Main {
         if(input.contains(","))
         {
             //Splitting string into two
-            String[] parts = input.split(",\\s*");
-            String data1 = parts[0].trim();
-            String data2 = parts[1].trim();
-            location.addManualLocationCoord(data1, data2);
+            String[] parts = input.split("[,\\s]+");
+            //if data is numeric
+            if (isNumeric(parts[0]) && isNumeric(parts[1]))
+            {
+                // If the first two parts are numeric, assume they are longitude and latitude
+                double longitude = Double.parseDouble(parts[0]);
+                double latitude = Double.parseDouble(parts[1]);
+                location.addManualLocationCountryCity(longitude,latitude);
+            }
+            else
+            {
+                // Otherwise, assume the first two parts are country and city
+                String country = parts[0];
+                String city = parts[1];
+                location.addManualLocationCoord(country,city);
+            }
         }
         else
         {
@@ -199,5 +211,10 @@ public class Main {
         String n_air = notify.generateAirQualityNotification(location);
 
         GUI G = new GUI(loc, longi, latitude, temp, feel, min, max, rise, set, stamp, day1, day2, day3, day4, day5, aqi, CO, NO, NO2, O3, SO2, NH3, PM25, PM10,n_weather,n_air);
+    }
+
+    private static boolean isNumeric(String part)
+    {
+        return part.matches("-?\\d+(\\.\\d+)?");
     }
 }
