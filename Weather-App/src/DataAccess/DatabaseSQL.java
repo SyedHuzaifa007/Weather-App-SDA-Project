@@ -1,55 +1,58 @@
-//package DataAccess;
-//
-//import java.sql.Connection;
-//import java.sql.PreparedStatement;
-//import java.sql.ResultSet;
-//import java.sql.SQLException;
-//import java.util.ArrayList;
-//import java.util.List;
-//
-//public class DatabaseSQL {
-//
-//    public List<WeatherData> getAllWeatherData() {
-//        List<WeatherData> weatherDataList = new ArrayList<>();
-//
-//        try {
-//            // Get the connection from DatabaseConnection class
-//            Connection con = DatabaseConnection.getConnection();
-//
-//            // Create a PreparedStatement object with the query
-//            String query = "SELECT * FROM WeatherData";
-//            PreparedStatement statement = con.prepareStatement(query);
-//
-//            // Execute the query and get the ResultSet
-//            ResultSet resultSet = statement.executeQuery();
-//
-//            // Process the ResultSet
-//            while (resultSet.next()) {
-//                // Retrieve data from the result set
-//                String timestamp = resultSet.getString("timestamp");
-//                String location = resultSet.getString("location");
-//                double latitude = resultSet.getDouble("latitude");
-//                double longitude = resultSet.getDouble("longitude");
-//                double temperature = resultSet.getDouble("temperature");
-//                double minTemperature = resultSet.getDouble("minimum_temperature");
-//                double maxTemperature = resultSet.getDouble("maximum_temperature");
-//                String sunriseTime = resultSet.getString("sunrise_time");
-//                String sunsetTime = resultSet.getString("sunset_time");
-//
-//                // Create a WeatherData object and add it to the list
-//                WeatherData weatherData = new WeatherData(timestamp, location, latitude, longitude, temperature, minTemperature, maxTemperature, sunriseTime, sunsetTime);
-//                weatherDataList.add(weatherData);
-//            }
-//
-//            // Close ResultSet and PreparedStatement
-//            resultSet.close();
-//            statement.close();
-//
-//        } catch (SQLException e) {
-//            // Handle any potential SQL exceptions here
-//            e.printStackTrace();
-//        }
-//
-//        return weatherDataList;
-//    }
-//}
+import java.io.BufferedReader;
+import java.io.FileReader;
+import java.io.IOException;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.SQLException;
+
+public class DatabaseSQL {
+
+    public void insertDataFromCacheFile(String filePath) {
+        try (BufferedReader reader = new BufferedReader(new FileReader(filePath))) {
+            String line;
+            Connection con = DatabaseConnection.getConnection();
+
+            // PreparedStatements for each table
+            PreparedStatement weatherDataStatement = con.prepareStatement("INSERT INTO WeatherData (Location, Longitude, Latitude, Temperature, FeelsLike, MinimumTemperature, MaximumTemperature, SunriseTime, SunsetTime, Timestamp) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
+            PreparedStatement weatherForecastStatement = con.prepareStatement("INSERT INTO WeatherForecast (Location, Day1Forecast, Day2Forecast, Day3Forecast, Day4Forecast, Day5Forecast) VALUES (?, ?, ?, ?, ?, ?)");
+            PreparedStatement airPollutionStatement = con.prepareStatement("INSERT INTO AirPollutionData (Location, AirQualityIndex, CarbonMonoxide, NitrogenMonoxide, NitrogenDioxide, Ozone, SulphurDioxide, Ammonia, ParticulatePM25, ParticulatePM10) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
+
+            while ((line = reader.readLine()) != null) {
+                // Split the line by comma
+                String[] values = line.split(",");
+
+                if (values.length > 0) {
+                    // Determine the table type based on the first value
+                    String tableName = values[0].trim();
+
+                    switch (tableName) {
+                        case "WeatherData":
+                            // Insert data into WeatherData table
+                            insertWeatherData(weatherDataStatement, values);
+                            break;
+                        case "WeatherForecast":
+                            // Insert data into WeatherForecast table
+                            insertWeatherForecast(weatherForecastStatement, values);
+                            break;
+                        case "AirPollutionData":
+                            // Insert data into AirPollutionData table
+                            insertAirPollutionData(airPollutionStatement, values);
+                            break;
+                        default:
+                            // Invalid table name
+                            System.out.println("Invalid table name: " + tableName);
+                            break;
+                    }
+                }
+            }
+
+            // Close resources
+            weatherDataStatement.close();
+            weatherForecastStatement.close();
+            airPollutionStatement.close();
+            con.close();
+
+        } catch (IOException | SQLException e) {
+            e.printStackTrace();
+        }
+    }
