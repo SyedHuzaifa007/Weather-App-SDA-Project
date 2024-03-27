@@ -698,8 +698,17 @@ public class GUI {
         more.setBorderPainted(false);
         more.setFocusable(false);
 
+        //Back Button
+        JButton back = new JButton();
+        back.setText("Back");
+        back.setBounds(200,320,100,50);;
+        back.setBackground(new Color(7,159,244));
+        back.setBorderPainted(false);
+        back.setFocusable(false);
+
         //when more buttton presses
         more.addActionListener(e->{
+            frame1.dispose();
             JFrame frame2 = new JFrame();
             frame2.setSize(1080, 800); // set frame size
             frame2.setTitle("Weather-App"); // set frame title
@@ -709,14 +718,6 @@ public class GUI {
 
             JLayeredPane Panel2 = new JLayeredPane();
             Panel2.setBounds(0, 0, 1080, 800);
-
-            //Back Button
-            JButton back = new JButton();
-            back.setText("Back");
-            back.setBounds(200,320,100,50);;
-            back.setBackground(new Color(7,159,244));
-            back.setBorderPainted(false);
-            back.setFocusable(false);
 
             Panel2.add(field);
             Panel2.add(searchLabel);
@@ -801,6 +802,94 @@ public class GUI {
 
             back.addActionListener(f->{
                 frame2.dispose();
+
+
+                frame1.setSize(1080, 800); // set frame size
+                frame1.setTitle("Weather-App"); // set frame title
+                frame1.getContentPane().setBackground(new Color(2, 0, 22)); // set frame color
+                frame1.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE); // on cross close
+                frame1.setResizable(false); // disable frame resizing
+
+                JLayeredPane Panel = new JLayeredPane();
+                Panel.setBounds(0, 0, 1080, 800);
+
+                Panel.add(field);
+                Panel.add(searchLabel);
+
+                Panel.add(exit);
+                Panel.add(more);
+
+                Panel.add(label2);
+                Panel.add(location);
+                Panel.add(temp);
+                Panel.add(lati);
+                Panel.add(longi);
+
+                Panel.add(d1);
+                Panel.add(d2);
+                Panel.add(d3);
+                Panel.add(d4);
+                Panel.add(d5);
+                Panel.add(d6);
+                Panel.add(d7);
+                Panel.add(d8);
+                Panel.add(d9);
+
+                Panel.add(line1);
+                Panel.add(line2);
+                Panel.add(line3);
+                Panel.add(line4);
+                Panel.add(line5);
+                Panel.add(line6);
+                Panel.add(line7);
+                Panel.add(line8);
+                Panel.add(line9);
+
+                Panel.add(highlights);
+                Panel.add(feel);
+                Panel.add(feeLabel);
+                Panel.add(sunrise);
+                Panel.add(rise);
+                Panel.add(maxtemp);
+                Panel.add(max);
+                Panel.add(sunset);
+                Panel.add(set);
+                Panel.add(mintemp);
+                Panel.add(min);
+                Panel.add(notify);
+
+                Panel.add(five);
+                Panel.add(d_one);
+                Panel.add(d_two);
+                Panel.add(d_three);
+                Panel.add(d_four);
+                Panel.add(d_five);
+
+                Panel.add(notification);
+                Panel.add(weather);
+                Panel.add(quality);
+
+                Panel.add(fe);
+                Panel.add(sr);
+                Panel.add(mt);
+                Panel.add(ss);
+                Panel.add(mint);
+
+                Panel.add(t_one);
+                Panel.add(t_two);
+                Panel.add(t_three);
+                Panel.add(t_four);
+                Panel.add(t_five);
+
+                Panel.add(backbox1);
+                Panel.add(backbox2);
+                Panel.add(backbox3);
+                Panel.add(backbox4);
+                Panel.add(backbox5);
+
+                frame1.add(Panel);
+                frame1.setLayout(null);
+                frame1.setVisible(true); // see frame
             });
         });
 
