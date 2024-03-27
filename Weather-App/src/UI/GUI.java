@@ -1,19 +1,18 @@
 package UI;
 
+import BusinessLogic.Main;
+
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Font;
+import java.io.IOException;
 
-import javax.swing.ImageIcon;
-import javax.swing.JButton;
-import javax.swing.JFrame;
-import javax.swing.JLabel;
-import javax.swing.JLayeredPane;
-import javax.swing.JTextField;
+import javax.swing.*;
 
 public class GUI {
 
     JFrame frame1 = new JFrame();
+    JFrame frame2 = new JFrame();
     String typed = " ";
     public GUI(String Location_got,String longi_got, String lati_got, String temp_got, String feel_got, String min_got, String max_got, String sunrise_got, String sunset_got, String stamp_got, String day1_got, String day2_got, String day3_got, String day4_got, String day5_got, String aqi_got, String CO_got, String NO_got, String NO2_got, String O3_got, String SO2_got, String NH3_got, String PM25_got, String PM10_got)
     {
@@ -37,8 +36,13 @@ public class GUI {
         field.addActionListener (e->
         {
             typed = field.getText();
-
-            System.out.println("Input: " + typed);
+            frame1.dispose();
+            frame2.dispose();
+            try {
+                Main.processData(typed);
+            } catch (IOException ex) {
+                throw new RuntimeException(ex);
+            }
         });
 
         // Text_Location
@@ -710,7 +714,6 @@ public class GUI {
         //when more buttton presses
         more.addActionListener(e->{
             frame1.dispose();
-            JFrame frame2 = new JFrame();
             frame2.setSize(1080, 800); // set frame size
             frame2.setTitle("Weather-App"); // set frame title
             frame2.getContentPane().setBackground(new Color(2, 0, 22)); // set frame color
