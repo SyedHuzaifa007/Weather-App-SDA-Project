@@ -1,5 +1,6 @@
 package BusinessLogic;
 
+import DataAccess.DBTxtManager;
 import UI.GUI;
 
 import java.io.BufferedReader;
@@ -34,6 +35,7 @@ public class Main {
 
     // (Initialized Manager)
     CacheManager manager = new CacheManager(location.getCity());
+    DBTxtManager manager1 = new DBTxtManager(location.getCity());
 
     // (get Data from Cache)
     boolean status = false;

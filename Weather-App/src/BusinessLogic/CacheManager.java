@@ -74,31 +74,31 @@ public class CacheManager
 
         try (BufferedWriter writer = new BufferedWriter(new FileWriter(filepath))) {
             // Write data line by line
-            writer.write(Location+"\n");
-            writer.write(longi+"\n");
-            writer.write(lati+"\n");
-            writer.write(temp+"\n");
-            writer.write(feel+"\n");
-            writer.write(min+"\n");
-            writer.write(max+"\n");
-            writer.write(sunrise+"\n");
-            writer.write(sunset+"\n");
-            writer.write(stamp+"\n");
+            writer.write(Location+",");
+            writer.write(longi+",");
+            writer.write(lati+",");
+            writer.write(temp+",");
+            writer.write(feel+",");
+            writer.write(min+",");
+            writer.write(max+",");
+            writer.write(sunrise+",");
+            writer.write(sunset+",");
+            writer.write(stamp+",");
 
-            writer.write(day1+"\n");
-            writer.write(day2+"\n");
-            writer.write(day3+"\n");
-            writer.write(day4+"\n");
-            writer.write(day5+"\n");
+            writer.write(day1+",");
+            writer.write(day2+",");
+            writer.write(day3+",");
+            writer.write(day4+",");
+            writer.write(day5+",");
 
-            writer.write(aqi+"\n");
-            writer.write(CO+"\n");
-            writer.write(NO+"\n");
-            writer.write(NO2+"\n");
-            writer.write(O3+"\n");
-            writer.write(SO2+"\n");
-            writer.write(NH3+"\n");
-            writer.write(PM25+"\n");
+            writer.write(aqi+",");
+            writer.write(CO+",");
+            writer.write(NO+",");
+            writer.write(NO2+",");
+            writer.write(O3+",");
+            writer.write(SO2+",");
+            writer.write(NH3+",");
+            writer.write(PM25+",");
             writer.write(PM10);
         }
         catch (IOException e)
