@@ -1,100 +1,45 @@
 package DataAccess;
 
+import java.io.File;
+import java.io.FileWriter;
+import java.io.IOException;
 
-import DataAccess.TxtFile;
+public class DBTxtManager {
 
-import java.io.*;
-
-public class DBTxtManager
-{
-    TxtFile files;
-    private String Location;
-    public DBTxtManager(String loc)
-    {
-        Location = loc;
-        files = new TxtFile(loc);
-    }
-    public boolean getData(String loc)
-    {
-        // reading file
-        FileReader fileReader = null;
-        try {
-            fileReader = new FileReader("DBTxt.txt");
-        } catch (FileNotFoundException e) {
-            throw new RuntimeException(e);
-        }
-        BufferedReader reader = new BufferedReader(fileReader);
+    public void writeToDBTxt(String data1, String data2, String data3) {
+        String fileName = "DBTxt.txt";
+        File file = new File(fileName);
 
         try {
-            String data = reader.readLine();
-
-            // if cache file has required location data
-
-            if (data.equals(loc))
-            {
-                return true;
-            }
-            // if cache does not have the required location data
-            else
-            {
-                // we search the location file by name using TxtFile class
-                boolean status = false;
-                status  = files.search(loc);
-
-                // if the required location file is found
-                // we update the cache file read the updated Cache file again
-                fileReader = null;
-                try {
-                    fileReader = new FileReader("DBTxt.txt");
-                } catch (FileNotFoundException e) {
-                    throw new RuntimeException(e);
-                }
-                reader = new BufferedReader(fileReader);
-
-                if(status)
-                {
-                    return true;
-                }
-                // if the file was not found we return false
-                else
-                {
-                    return false;
+            if (file.exists()) {
+                // Delete existing file
+                if (file.delete()) {
+                    System.out.println("Existing file deleted.");
+                } else {
+                    System.out.println("Failed to delete the existing file.");
+                    return;
                 }
             }
-        }
-        catch (IOException e)
-        {
-            throw new RuntimeException(e);
-        }
-    }
 
-    public void storeData(String Location,String longi, String lati, String temp, String feel, String min, String max, String sunrise, String sunset, String stamp, String day1, String day2, String day3, String day4, String day5, String aqi, String CO, String NO, String NO2, String O3, String SO2, String NH3, String PM25, String PM10)
-    {
-        // to store we first update cache file
-        String filepath = "DBTxt.txt";
+            // Create new file
+            if (file.createNewFile()) {
+                System.out.println("File created: " + file.getName());
+            } else {
+                System.out.println("File creation failed.");
+                return;
+            }
 
-        try (BufferedWriter writer = new BufferedWriter(new FileWriter(filepath))) {
-            // Write data line by line
-            writer.write(Location+","+longi+","+lati+","+temp+","+feel+","+min+","+max+","+sunrise+","+sunset+","+stamp);
+            // Write data to file
+            FileWriter writer = new FileWriter(file);
+            writer.write(data1+"\n");
+            writer.write(data2+"\n");
+            writer.write(data3+"\n");
+            writer.close();
+            System.out.println("Data written to file successfully.");
 
-            writer.write(Location+","+day1+","+day2+","+day3+","+day4+","+day5);
-
-            writer.write(Location+","+aqi+","+CO+","+NO+","+NO2+","+O3+","+SO2+","+NH3+","+PM25+","+PM10);
-        }
-        catch (IOException e)
-        {
+        } catch (IOException e) {
+            System.out.println("An error occurred: " + e.getMessage());
             e.printStackTrace();
         }
-
-        // read the updated cache file
-        FileReader fileReader = null;
-        try {
-            fileReader = new FileReader("DBTxt.txt");
-        } catch (FileNotFoundException e) {
-            throw new RuntimeException(e);
-        }
-        BufferedReader reader = new BufferedReader(fileReader);
-
     }
 }
-
