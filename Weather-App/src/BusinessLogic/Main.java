@@ -1,6 +1,7 @@
 package BusinessLogic;
 
 import DataAccess.DBTxtManager;
+import DataAccess.DatabaseSQL;
 import UI.GUI;
 
 import java.io.BufferedReader;
@@ -91,12 +92,14 @@ public class Main {
 
         reader.close();
 
+        // Database Creation
         String data1 = loc + "," + longi + "," + latitude + "," + temp + "," + feel + "," + min + "," + max + "," + rise + "," + set + "," + stamp;
         String data2 = loc + "," + day1 + "," + day2 + "," + day3 + "," + day4 + "," + day5;
         String data3 = loc + "," + aqi + "," + CO + "," + NO + "," + NO2 + "," + O3 + "," + SO2 + "," + NH3 + "," + PM25 + "," + PM10;
 
         DBTxtManager hello = new DBTxtManager();
         hello.writeToDBTxt(data1,data2,data3);
+        DatabaseSQL.main(args);
         ////////////////////////////////////////////////////////////////////////
 
         //Notification Object
@@ -210,12 +213,15 @@ public class Main {
 
         reader.close();
 
+        // Database Creation
         String data1 = loc + "," + longi + "," + latitude + "," + temp + "," + feel + "," + min + "," + max + "," + rise + "," + set + "," + stamp;
         String data2 = loc + "," + day1 + "," + day2 + "," + day3 + "," + day4 + "," + day5;
         String data3 = loc + "," + aqi + "," + CO + "," + NO + "," + NO2 + "," + O3 + "," + SO2 + "," + NH3 + "," + PM25 + "," + PM10;
 
         DBTxtManager hello = new DBTxtManager();
         hello.writeToDBTxt(data1,data2,data3);
+        String[] args = new String[0];
+        DatabaseSQL.main(args);
 
         ////////////////////////////////////////////////////////////////////////
 

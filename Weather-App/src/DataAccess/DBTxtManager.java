@@ -14,18 +14,14 @@ public class DBTxtManager {
             if (file.exists()) {
                 // Delete existing file
                 if (file.delete()) {
-                    System.out.println("Existing file deleted.");
                 } else {
-                    System.out.println("Failed to delete the existing file.");
                     return;
                 }
             }
 
             // Create new file
             if (file.createNewFile()) {
-                System.out.println("File created: " + file.getName());
             } else {
-                System.out.println("File creation failed.");
                 return;
             }
 
@@ -35,7 +31,6 @@ public class DBTxtManager {
             writer.write(data2+"\n");
             writer.write(data3+"\n");
             writer.close();
-            System.out.println("Data written to file successfully.");
 
         } catch (IOException e) {
             System.out.println("An error occurred: " + e.getMessage());
