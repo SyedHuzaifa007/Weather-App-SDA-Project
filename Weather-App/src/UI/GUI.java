@@ -182,19 +182,12 @@ public class GUI {
         aqi.setFont(new Font("Roboto",Font.BOLD,30)); // set font style
         aqi.setBounds(400, 360, 300, 100);
 
-        //Text O3(ug/m3)
-        JLabel o3 = new JLabel();
-        o3.setText("O3 (ug/m3)");
-        o3.setForeground(new Color(170,170,170)); // set font color
-        o3.setFont(new Font("Roboto",Font.BOLD,20)); // set font style
-        o3.setBounds(220, 530, 300, 100);
-
-        //Text PM10(ug/m3)
-        JLabel PM10 = new JLabel();
-        PM10.setText("PM10 (ug/m3)");
-        PM10.setForeground(new Color(170,170,170)); // set font color
-        PM10.setFont(new Font("Roboto",Font.BOLD,20)); // set font style
-        PM10.setBounds(375, 530, 300, 100);
+        //Text CO(ug/m3)
+        JLabel CO = new JLabel();
+        CO.setText("CO (ug/m3)");
+        CO.setForeground(new Color(170,170,170)); // set font color
+        CO.setFont(new Font("Roboto",Font.BOLD,20)); // set font style
+        CO.setBounds(220, 530, 300, 100);
 
         //Text NO(ug/m3)
         JLabel NO = new JLabel();
@@ -209,6 +202,41 @@ public class GUI {
         NO2.setForeground(new Color(170,170,170)); // set font color
         NO2.setFont(new Font("Roboto",Font.BOLD,20)); // set font style
         NO2.setBounds(725, 530, 300, 100);
+
+        //Text O3(ug/m3)
+        JLabel o3 = new JLabel();
+        o3.setText("O3 (ug/m3)");
+        o3.setForeground(new Color(170,170,170)); // set font color
+        o3.setFont(new Font("Roboto",Font.BOLD,20)); // set font style
+        o3.setBounds(220, 530, 300, 100);
+
+        //Text SO2(ug/m3)
+        JLabel SO2 = new JLabel();
+        SO2.setText("SO2 (ug/m3)");
+        SO2.setForeground(new Color(170,170,170)); // set font color
+        SO2.setFont(new Font("Roboto",Font.BOLD,20)); // set font style
+        SO2.setBounds(220, 530, 300, 100);
+
+        //Text NH3(ug/m3)
+        JLabel NH3 = new JLabel();
+        NH3.setText("NH3 (ug/m3)");
+        NH3.setForeground(new Color(170,170,170)); // set font color
+        NH3.setFont(new Font("Roboto",Font.BOLD,20)); // set font style
+        NH3.setBounds(220, 530, 300, 100);
+
+        //Text PM25(ug/m3)
+        JLabel PM25 = new JLabel();
+        PM25.setText("PM25 (ug/m3)");
+        PM25.setForeground(new Color(170,170,170)); // set font color
+        PM25.setFont(new Font("Roboto",Font.BOLD,20)); // set font style
+        PM25.setBounds(375, 530, 300, 100);
+
+        //Text PM10(ug/m3)
+        JLabel PM10 = new JLabel();
+        PM10.setText("PM10 (ug/m3)");
+        PM10.setForeground(new Color(170,170,170)); // set font color
+        PM10.setFont(new Font("Roboto",Font.BOLD,20)); // set font style
+        PM10.setBounds(375, 530, 300, 100);
 
 
         //Variable FeelsLike
@@ -289,19 +317,12 @@ public class GUI {
         aq.setFont(new Font("Roboto",Font.BOLD,50)); // set font style
         aq.setBounds(500, 360, 200, 100);
 
-        //Variable O3(ug/m3)
-        JLabel vo3 = new JLabel();
-        vo3.setText(O3_got);
-        vo3.setForeground(new Color(255,255,255)); // set font color
-        vo3.setFont(new Font("Roboto",Font.BOLD,50)); // set font style
-        vo3.setBounds(230, 580, 200, 100);
-
-        //Variable PM(ug/m3)
-        JLabel pm = new JLabel();
-        pm.setText("25");
-        pm.setForeground(new Color(255,255,255)); // set font color
-        pm.setFont(new Font("Roboto",Font.BOLD,50)); // set font style
-        pm.setBounds(400, 580, 200, 100);
+        //Variable CO(ug/m3)
+        JLabel vCO = new JLabel();
+        vCO.setText(CO_got);
+        vCO.setForeground(new Color(255,255,255)); // set font color
+        vCO.setFont(new Font("Roboto",Font.BOLD,50)); // set font style
+        vCO.setBounds(230, 580, 200, 100);
 
         //Variable NO(ug/m3)
         JLabel vno = new JLabel();
@@ -310,12 +331,47 @@ public class GUI {
         vno.setFont(new Font("Roboto",Font.BOLD,50)); // set font style
         vno.setBounds(570, 580, 200, 100);
 
-        //Variable NO(ug/m3)
+        //Variable NO2(ug/m3)
         JLabel no2 = new JLabel();
         no2.setText(NO2_got);
         no2.setForeground(new Color(255,255,255)); // set font color
         no2.setFont(new Font("Roboto",Font.BOLD,50)); // set font style
         no2.setBounds(740, 580, 200, 100);
+
+        //Variable O3(ug/m3)
+        JLabel vo3 = new JLabel();
+        vo3.setText(O3_got);
+        vo3.setForeground(new Color(255,255,255)); // set font color
+        vo3.setFont(new Font("Roboto",Font.BOLD,50)); // set font style
+        vo3.setBounds(230, 580, 200, 100);
+
+        //Variable SO2(ug/m3)
+        JLabel vSO2 = new JLabel();
+        vSO2.setText(SO2_got);
+        vSO2.setForeground(new Color(255,255,255)); // set font color
+        vSO2.setFont(new Font("Roboto",Font.BOLD,50)); // set font style
+        vSO2.setBounds(230, 580, 200, 100);
+
+        //Variable SO2(ug/m3)
+        JLabel vNH3 = new JLabel();
+        vNH3.setText(NH3_got);
+        vNH3.setForeground(new Color(255,255,255)); // set font color
+        vNH3.setFont(new Font("Roboto",Font.BOLD,50)); // set font style
+        vNH3.setBounds(230, 580, 200, 100);
+
+        //Variable PM25(ug/m3)
+        JLabel pm25 = new JLabel();
+        pm25.setText(PM25_got);
+        pm25.setForeground(new Color(255,255,255)); // set font color
+        pm25.setFont(new Font("Roboto",Font.BOLD,50)); // set font style
+        pm25.setBounds(400, 580, 200, 100);
+
+        //Variable PM25(ug/m3)
+        JLabel pm10 = new JLabel();
+        pm10.setText(PM10_got);
+        pm10.setForeground(new Color(255,255,255)); // set font color
+        pm10.setFont(new Font("Roboto",Font.BOLD,50)); // set font style
+        pm10.setBounds(400, 580, 200, 100);
 
         //backbox1
         JLabel backbox1 = new JLabel();
@@ -675,10 +731,13 @@ public class GUI {
             Panel2.add(longi);
 
             Panel2.add(aqi);
-            Panel2.add(o3);
-            Panel2.add(PM10);
             Panel2.add(NO);
             Panel2.add(NO2);
+            Panel2.add(o3);
+            Panel2.add(SO2);
+            Panel2.add(NH3);
+            Panel2.add(PM25);
+            Panel2.add(PM10);
 
             Panel2.add(d1);
             Panel2.add(d5);
@@ -719,10 +778,14 @@ public class GUI {
             Panel2.add(t_five);
 
             Panel2.add(aq);
-            Panel2.add(vo3);
-            Panel2.add(pm);
+            Panel2.add(vCO);
             Panel2.add(vno);
             Panel2.add(no2);
+            Panel2.add(vo3);
+            Panel2.add(vSO2);
+            Panel2.add(vNH3);
+            Panel2.add(pm25);
+            Panel2.add(pm10);
 
             Panel2.add(backbox1);
             Panel2.add(backbox2);
