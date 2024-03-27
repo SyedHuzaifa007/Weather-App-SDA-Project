@@ -2,7 +2,6 @@
   <library name="java-json-schema">
     <CLASSES>
       <root url="jar://$USER_HOME$/Downloads/java-json-schema.jar!/" />
-      <root url="jar://$USER_HOME$/Downloads/mssql-jdbc-12.6.1.jre11.jar!/" />
     </CLASSES>
     <JAVADOC />
     <SOURCES />

@@ -62,7 +62,8 @@ public class NotificationManager {
             return text;
         }
         else
-            text="Safe Air Quality ";
+        {
+            text = "Safe Air Quality ";
             return text;
         }
     }
