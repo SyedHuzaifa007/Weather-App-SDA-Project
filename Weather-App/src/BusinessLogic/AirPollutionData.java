@@ -18,11 +18,11 @@ public class AirPollutionData extends APIhandler{
     private double particulatePM10;
 
     public AirPollutionData(location loc) {
-        String apiKey = "16e0c1d404528d59f079dd4571275d8b";
-        fetchAirPollutionData(loc, apiKey);
+
+        fetchAirPollutionData(loc);
     }
 
-    private void fetchAirPollutionData(location loc, String apiKey) {
+    private void fetchAirPollutionData(location loc) {
         try {
             String apiUrl = "http://api.openweathermap.org/data/2.5/air_pollution?lat=" + loc.getLatitude() + "&lon=" + loc.getLongitude() + "&appid=" + apiKey;
             URL url = new URL(apiUrl);
@@ -88,16 +88,4 @@ public double[] PollutionValues()
         return Double.NaN;
     }
 
-    // Print method to display the data
-    public void printAirPollutionData() {
-        System.out.println("Air Quality Index: " + airQualityIndex);
-        System.out.println("Carbon Monoxide: " + carbonMonoxide);
-        System.out.println("Nitrogen Monoxide: " + nitrogenMonoxide);
-        System.out.println("Nitrogen Dioxide: " + nitrogenDioxide);
-        System.out.println("Ozone: " + ozone);
-        System.out.println("Sulphur Dioxide: " + sulphurDioxide);
-        System.out.println("Ammonia: " + ammonia);
-        System.out.println("Particulate PM2.5: " + particulatePM25);
-        System.out.println("Particulate PM10: " + particulatePM10);
-    }
 }
