@@ -14,7 +14,7 @@ public class DBTxtManager
         Location = loc;
         files = new TxtFile(loc);
     }
-    boolean getData(String loc)
+    public boolean getData(String loc)
     {
         // reading file
         FileReader fileReader = null;
@@ -95,10 +95,6 @@ public class DBTxtManager
         }
         BufferedReader reader = new BufferedReader(fileReader);
 
-
-        // lastly we also create the new location file using TxtFile class
-        String newFile = Location + ".txt";
-        files.createFile(newFile);
     }
 }
 
