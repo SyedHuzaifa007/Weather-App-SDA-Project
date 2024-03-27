@@ -10,12 +10,10 @@ public class NotificationManager {
         double temp = apiHandler1.gettemperature(loc1);
         if (temp >= 45) {
             text="Hot Temperatures";
-            System.out.println("Hot Temperatures!");
             return text;
 
         } else if (temp <= -10) {
             text="Cold temperatures";
-            System.out.println("Cold temperatures");
             return text;
         }
         return text;
@@ -61,12 +59,10 @@ public class NotificationManager {
         String text;
         if(maxAQI>100) {
             text="Hazardous Air Quality ";
-            System.out.println("Hazardous Air Quality ");
             return text;
         }
         else
             text="Safe Air Quality ";
-            System.out.println("Safe Air Quality ");
             return text;
     }
 }

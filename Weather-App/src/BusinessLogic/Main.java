@@ -91,16 +91,46 @@ public class Main {
     reader.close();
 
     ////////////////////////////////////////////////////////////////////////
-    GUI G = new GUI(loc, longi, latitude, temp, feel, min, max, rise, set, stamp, day1, day2, day3, day4, day5, aqi, CO, NO, NO2, O3, SO2, NH3, PM25, PM10);
+
+        //Notification Object
+        NotificationManager notify = new NotificationManager();
+        String n_weather = notify.GenerateWeatherNotificattions(loc);
+        String n_air = notify.generateAirQualityNotification(location);
+
+    GUI G = new GUI(loc, longi, latitude, temp, feel, min, max, rise, set, stamp, day1, day2, day3, day4, day5, aqi, CO, NO, NO2, O3, SO2, NH3, PM25, PM10, n_weather,n_air);
     }
 
     public static void processData(String input) throws IOException {
         APIhandler apiHandler = new APIhandler(); // Replace "API_KEY_HERE" with your actual API key
 
-
         // Create a Location object with desired city and country
         location location = new location();
-        location.addManualLocationCoord(input,input);
+
+        if(input.contains(","))
+        {
+            //Splitting string into two
+            String[] parts = input.split("[,\\s]+");
+            //if data is numeric
+            if (isNumeric(parts[0]) && isNumeric(parts[1]))
+            {
+                // If the first two parts are numeric, assume they are longitude and latitude
+                double longitude = Double.parseDouble(parts[0]);
+                double latitude = Double.parseDouble(parts[1]);
+                location.addManualLocationCountryCity(longitude,latitude);
+            }
+            else
+            {
+                // Otherwise, assume the first two parts are country and city
+                String country = parts[0];
+                String city = parts[1];
+                location.addManualLocationCoord(country,city);
+            }
+        }
+        else
+        {
+            System.out.println("\n\nThe Format for Searching Is: Country,City or Longitude,Latitude (Plz try Again)\n");
+            System.exit(1);
+        }
 
         // air pollution class methods
         AirPollutionData air = new AirPollutionData(location);
@@ -174,6 +204,17 @@ public class Main {
         reader.close();
 
         ////////////////////////////////////////////////////////////////////////
-        GUI G = new GUI(loc, longi, latitude, temp, feel, min, max, rise, set, stamp, day1, day2, day3, day4, day5, aqi, CO, NO, NO2, O3, SO2, NH3, PM25, PM10);
+
+        //Notification Object
+        NotificationManager notify = new NotificationManager();
+        String n_weather = notify.GenerateWeatherNotificattions(loc);
+        String n_air = notify.generateAirQualityNotification(location);
+
+        GUI G = new GUI(loc, longi, latitude, temp, feel, min, max, rise, set, stamp, day1, day2, day3, day4, day5, aqi, CO, NO, NO2, O3, SO2, NH3, PM25, PM10,n_weather,n_air);
+    }
+
+    private static boolean isNumeric(String part)
+    {
+        return part.matches("-?\\d+(\\.\\d+)?");
     }
 }
