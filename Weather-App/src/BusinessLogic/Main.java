@@ -97,10 +97,22 @@ public class Main {
     public static void processData(String input) throws IOException {
         APIhandler apiHandler = new APIhandler(); // Replace "API_KEY_HERE" with your actual API key
 
-
         // Create a Location object with desired city and country
         location location = new location();
-        location.addManualLocationCoord(input,input);
+
+        if(input.contains(","))
+        {
+            //Splitting string into two
+            String[] parts = input.split(",\\s*");
+            String data1 = parts[0].trim();
+            String data2 = parts[1].trim();
+            location.addManualLocationCoord(data1, data2);
+        }
+        else
+        {
+            System.out.println("\n\nThe Format for Searching Is: Country,City or Longitude/Latitude\n");
+            System.exit(1);
+        }
 
         // air pollution class methods
         AirPollutionData air = new AirPollutionData(location);
