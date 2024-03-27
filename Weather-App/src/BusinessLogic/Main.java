@@ -100,7 +100,7 @@ public class Main {
 
         // Create a Location object with desired city and country
         location location = new location();
-        location.setCity(input);
+        location.addManualLocationCoord(input,input);
 
         // air pollution class methods
         AirPollutionData air = new AirPollutionData(location);
