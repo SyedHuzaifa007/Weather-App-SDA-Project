@@ -5,7 +5,7 @@ import java.util.Scanner;
 
 public class UITerminalBased implements InterfaceUI {
     private Scanner scanner;
-
+    private NotificationManager Object_Notify;
     public UITerminalBased() {
         scanner = new Scanner(System.in);
     }
@@ -49,8 +49,14 @@ public class UITerminalBased implements InterfaceUI {
             }
         }
     }
-
-
+    @Override
+    public void DisplayNotification(NotificationManager Object_Notify, String Location)
+    {
+        location Object_Location=new location();
+        Object_Location.setCity(Location);
+        Object_Notify=new NotificationManager();
+        Object_Notify.GenerateWeatherNotificattions(Location);
+    }
     @Override
     public void DisplayBasicWeatherData(String location)
     {
@@ -62,6 +68,7 @@ public class UITerminalBased implements InterfaceUI {
         System.out.println("Minimum Temperature: "+ Object_WeatherData.getMinTemperature(Object_Location));
         System.out.println("Maximum Temperature: "+ Object_WeatherData.getMaxTemperature(Object_Location));
         System.out.println("Average Temperature: "+ Object_WeatherData.getTemperature(Object_Location));
+
 
     }
     @Override
@@ -77,9 +84,7 @@ public class UITerminalBased implements InterfaceUI {
         System.out.println("Sunrise Time: "+ Object_WeatherData.getSunriseTime(Object_Location));
         System.out.println("Sunset Time: "+ Object_WeatherData.getSunsetTime(Object_Location));
         System.out.println("Notification: ");
-        NotificationManager Object_Notify=new NotificationManager();
-        Object_Notify.GenerateWeatherNotificattions(location);
-        Object_Notify.generateAirQualityNotification(Object_Location);
+        DisplayNotification(Object_Notify,location);
         // Your code to fetch and display weather details goes here
     }
 
@@ -99,7 +104,7 @@ public class UITerminalBased implements InterfaceUI {
         Object_Location.setCity(location);
         AirPollutionData Object_AirPollution=new AirPollutionData(Object_Location);
         System.out.println("Showing air pollution data for " + location);
-        NotificationManager Object_Notify=new NotificationManager();
+        Object_Notify=new NotificationManager();
         Object_Notify.generateAirQualityNotification(Object_Location);
         double Values_PollutionData[]=Object_AirPollution.PollutionValues();
         System.out.println("CarbonMonoxide: "+ Values_PollutionData[0]);
