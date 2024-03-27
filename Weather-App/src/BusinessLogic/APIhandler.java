@@ -13,7 +13,7 @@ import org.json.JSONArray;
 import org.json.JSONObject;
 import java.time.ZoneOffset;
 
- public class APIhandler implements APIHandlerInterface {
+ public class APIhandler {
     private String apikey;
     public APIhandler() {
         apikey = "16e0c1d404528d59f079dd4571275d8b";

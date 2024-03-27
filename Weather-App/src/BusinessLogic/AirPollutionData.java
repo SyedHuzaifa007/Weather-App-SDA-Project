@@ -18,14 +18,13 @@ public class AirPollutionData extends APIhandler {
     private double particulatePM10;
 
     public AirPollutionData(location loc) {
-
-        fetchAirPollutionData(loc);
+        String apikey = "16e0c1d404528d59f079dd4571275d8b";
+        fetchAirPollutionData(loc,apikey);
     }
 
-    private void fetchAirPollutionData(location loc) {
+    private void fetchAirPollutionData(location loc,String apiKey) {
         try {
-            String apiUrl = "http://api.openweathermap.org/data/2.5/air_pollution?lat=" + loc.getLatitude() + "&lon="
-                    + loc.getLongitude() + "&appid=" + apiKey;
+            String apiUrl = "http://api.openweathermap.org/data/2.5/air_pollution?lat=" + loc.getLatitude() + "&lon=" + loc.getLongitude() + "&appid=" + apiKey;
             URL url = new URL(apiUrl);
             HttpURLConnection conn = (HttpURLConnection) url.openConnection();
             conn.setRequestMethod("GET");

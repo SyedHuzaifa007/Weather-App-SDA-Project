@@ -4,7 +4,7 @@ import java.util.List;
 public class WeatherForecast extends APIhandler{
 
     public double getDay1Forecast(location location) {
-        APIHandlerInterface api = new APIhandler();
+        APIhandler api = new APIhandler();
          return api.getForecastForDay(location, 1);
 
     }
