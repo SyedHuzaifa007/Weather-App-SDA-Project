@@ -6,7 +6,7 @@ import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.URL;
 
-public class AirPollutionData extends APIhandler{
+public class AirPollutionData extends APIhandler {
     private double airQualityIndex;
     private double carbonMonoxide;
     private double nitrogenMonoxide;
@@ -24,7 +24,8 @@ public class AirPollutionData extends APIhandler{
 
     private void fetchAirPollutionData(location loc) {
         try {
-            String apiUrl = "http://api.openweathermap.org/data/2.5/air_pollution?lat=" + loc.getLatitude() + "&lon=" + loc.getLongitude() + "&appid=" + apiKey;
+            String apiUrl = "http://api.openweathermap.org/data/2.5/air_pollution?lat=" + loc.getLatitude() + "&lon="
+                    + loc.getLongitude() + "&appid=" + apiKey;
             URL url = new URL(apiUrl);
             HttpURLConnection conn = (HttpURLConnection) url.openConnection();
             conn.setRequestMethod("GET");
@@ -46,7 +47,7 @@ public class AirPollutionData extends APIhandler{
         }
     }
 
-    private void parseJSONResponse(String jsonData){
+    private void parseJSONResponse(String jsonData) {
 
         // Parse JSON data and set air pollutant values
         this.airQualityIndex = getValueFromJSON(jsonData, "aqi");
@@ -59,12 +60,13 @@ public class AirPollutionData extends APIhandler{
         this.particulatePM25 = getValueFromJSON(jsonData, "pm2_5");
         this.particulatePM10 = getValueFromJSON(jsonData, "pm10");
     }
-public double[] PollutionValues()
-{
-    double values[]={airQualityIndex,carbonMonoxide,nitrogenMonoxide,nitrogenDioxide
-    ,ozone,sulphurDioxide,ammonia,particulatePM25,particulatePM10};
-    return values;
-}
+
+    public double[] PollutionValues() {
+        double values[] = { airQualityIndex, carbonMonoxide, nitrogenMonoxide, nitrogenDioxide, ozone, sulphurDioxide,
+                ammonia, particulatePM25, particulatePM10 };
+        return values;
+    }
+
     private double getValueFromJSON(String jsonData, String key) {
         int index = jsonData.indexOf("\"" + key + "\":");
         if (index != -1) {
@@ -88,4 +90,75 @@ public double[] PollutionValues()
         return Double.NaN;
     }
 
+    public double getAirQualityIndex() {
+        return airQualityIndex;
+    }
+
+    public void setAirQualityIndex(double airQualityIndex) {
+        this.airQualityIndex = airQualityIndex;
+    }
+
+    public double getCarbonMonoxide() {
+        return carbonMonoxide;
+    }
+
+    public void setCarbonMonoxide(double carbonMonoxide) {
+        this.carbonMonoxide = carbonMonoxide;
+    }
+
+    public double getNitrogenMonoxide() {
+        return nitrogenMonoxide;
+    }
+
+    public void setNitrogenMonoxide(double nitrogenMonoxide) {
+        this.nitrogenMonoxide = nitrogenMonoxide;
+    }
+
+    public double getNitrogenDioxide() {
+        return nitrogenDioxide;
+    }
+
+    public void setNitrogenDioxide(double nitrogenDioxide) {
+        this.nitrogenDioxide = nitrogenDioxide;
+    }
+
+    public double getOzone() {
+        return ozone;
+    }
+
+    public void setOzone(double ozone) {
+        this.ozone = ozone;
+    }
+
+    public double getSulphurDioxide() {
+        return sulphurDioxide;
+    }
+
+    public void setSulphurDioxide(double sulphurDioxide) {
+        this.sulphurDioxide = sulphurDioxide;
+    }
+
+    public double getAmmonia() {
+        return ammonia;
+    }
+
+    public void setAmmonia(double ammonia) {
+        this.ammonia = ammonia;
+    }
+
+    public double getParticulatePM25() {
+        return particulatePM25;
+    }
+
+    public void setParticulatePM25(double particulatePM25) {
+        this.particulatePM25 = particulatePM25;
+    }
+
+    public double getParticulatePM10() {
+        return particulatePM10;
+    }
+
+    public void setParticulatePM10(double particulatePM10) {
+        this.particulatePM10 = particulatePM10;
+    }
 }
