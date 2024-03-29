@@ -35,8 +35,9 @@ public class Main {
         status = manager.getData(location.getCity());
         // if cant find data store it first
         if (!status) {
-            // getting airPollution values in values
-            double[] values = air.PollutionValues();
+            // getting forecast and air pollution data
+            double[] forecast = businessLogic.getDayForecast(location);
+            double[] values = businessLogic.PollutionValues(location);
 
             // (store new data in file and update cache)
             manager.storeData(location.getCity(), String.valueOf(location.getLongitude()),
@@ -49,11 +50,11 @@ public class Main {
                     String.valueOf(businessLogic.getSunsetTime(location)),
                     String.valueOf(businessLogic.getTimestamp(location)),
 
-                    String.valueOf(round(forecast.getDay1Forecast(location))),
-                    String.valueOf(round(forecast.getDay2Forecast(location))),
-                    String.valueOf(round(forecast.getDay3Forecast(location))),
-                    String.valueOf(round(forecast.getDay4Forecast(location))),
-                    String.valueOf(round(forecast.getDay5Forecast(location))),
+                    String.valueOf(round(forecast[0])),
+                    String.valueOf(round(forecast[1])),
+                    String.valueOf(round(forecast[2])),
+                    String.valueOf(round(forecast[3])),
+                    String.valueOf(round(forecast[4])),
 
                     String.valueOf(values[0]), String.valueOf(values[1]), String.valueOf(values[2]),
                     String.valueOf(values[3]), String.valueOf(values[4]), String.valueOf(values[5]),
@@ -162,8 +163,9 @@ public class Main {
         status = manager.getData(location.getCity());
         // if cant find data store it first
         if (!status) {
-            // getting airPollution values in values
-            double[] values = air.PollutionValues();
+            // getting forecast and air pollution data
+            double[] forcast = businessLogic.getDayForecast(location);
+            double[] values = businessLogic.PollutionValues(location);
 
             // (store new data in file and update cache)
             manager.storeData(location.getCity(), String.valueOf(location.getLongitude()),
@@ -176,11 +178,11 @@ public class Main {
                     String.valueOf(businessLogic.getSunsetTime(location)),
                     String.valueOf(businessLogic.getTimestamp(location)),
 
-                    String.valueOf(round(forecast.getDay1Forecast(location))),
-                    String.valueOf(round(forecast.getDay2Forecast(location))),
-                    String.valueOf(round(forecast.getDay3Forecast(location))),
-                    String.valueOf(round(forecast.getDay4Forecast(location))),
-                    String.valueOf(round(forecast.getDay5Forecast(location))),
+                    String.valueOf(round(forcast[0])),
+                    String.valueOf(round(forcast[1])),
+                    String.valueOf(round(forcast[2])),
+                    String.valueOf(round(forcast[3])),
+                    String.valueOf(round(forcast[4])),
 
                     String.valueOf(values[0]), String.valueOf(values[1]), String.valueOf(values[2]),
                     String.valueOf(values[3]), String.valueOf(values[4]), String.valueOf(values[5]),
