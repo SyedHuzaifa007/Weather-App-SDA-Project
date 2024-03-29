@@ -54,8 +54,9 @@ WeatherApp emphasizes efficient software design by:
 
 ## Technology Stack
 
+- **Frontend**: Swing, Console Based
 - **Backend**: Java
-- **Database**: SQL Server (hosted on a remote server)
+- **Database**: Txt Files, SQL Server (hosted on a remote server)
 
 ## Usage
 
