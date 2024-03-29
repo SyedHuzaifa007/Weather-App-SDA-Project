@@ -8,4 +8,9 @@ public interface BusinessLogic {
     public LocalTime getSunriseTime(location location);
     public LocalTime getSunsetTime(location location);
     public LocalTime getTimestamp(location location);
+    public double[] PollutionValues(location location) ;
+    public double[] getDayForecast(location location);
+
+
+
 }

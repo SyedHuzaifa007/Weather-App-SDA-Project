@@ -13,7 +13,6 @@ import static java.lang.Math.round;
 
 public class Main {
     public static void main(String[] args) throws IOException {
-        APIhandler apiHandler = new APIhandler(); // Replace "API_KEY_HERE" with your actual API key
 
         // Create a Location object with desired city and country
         location location = new location();
@@ -21,10 +20,6 @@ public class Main {
         location.getCurrentLocation();
 
         // air pollution class methods
-        AirPollutionData air = new AirPollutionData(location);
-
-        // weather Forecast class methods
-        WeatherForecast forecast = new WeatherForecast();
 
         // Business Logic method
         BusinessLogic businessLogic = new WeatherData();
