@@ -19,8 +19,6 @@ public class Main {
 
         location.getCurrentLocation();
 
-        // air pollution class methods
-
         // Business Logic method
         BusinessLogic businessLogic = new WeatherData();
 
@@ -40,7 +38,8 @@ public class Main {
             double[] values = businessLogic.PollutionValues(location);
 
             // (store new data in file and update cache)
-            manager.storeData(location.getCity(), String.valueOf(location.getLongitude()),
+            manager.storeData(location.getCity(),
+                    String.valueOf(location.getLongitude()),
                     String.valueOf(location.getLatitude()),
                     String.valueOf(round(businessLogic.getTemperature(location))),
                     String.valueOf(round(businessLogic.getFeelsLike(location))),
@@ -118,7 +117,6 @@ public class Main {
     }
 
     public static void processData(String input) throws IOException {
-        APIhandler apiHandler = new APIhandler(); // Replace "API_KEY_HERE" with your actual API key
 
         // Create a Location object with desired city and country
         location location = new location();
@@ -142,12 +140,6 @@ public class Main {
             System.out.println("\n\nThe Format for Searching Is: Country,City or Longitude,Latitude (Plz try Again)\n");
             System.exit(1);
         }
-
-        // air pollution class methods
-        AirPollutionData air = new AirPollutionData(location);
-
-        // weather Forecast class methods
-        WeatherForecast forecast = new WeatherForecast();
 
         // Business Logic method
         BusinessLogic businessLogic = new WeatherData();
