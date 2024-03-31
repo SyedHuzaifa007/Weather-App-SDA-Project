@@ -5,8 +5,8 @@ public interface BusinessLogic {
     public double getFeelsLike(location location);
     public double getMinTemperature(location location);
     public double getMaxTemperature(location location);
-    public LocalTime getSunriseTime(location location);
-    public LocalTime getSunsetTime(location location);
+    public String getSunriseTime(location location);
+    public String getSunsetTime(location location);
     public LocalTime getTimestamp(location location);
     public double[] PollutionValues(location location) ;
     public double[] getDayForecast(location location);

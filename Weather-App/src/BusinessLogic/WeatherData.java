@@ -76,14 +76,14 @@ public class WeatherData implements BusinessLogic {
         return apIhandler.getmaxtemperature(location);
     }
 
-    public LocalTime getSunriseTime(location location) {
+    public String getSunriseTime(location location) {
         WeatherInfo apIhandler=new WeatherInfo();
-        return apIhandler.getSunrise(location);
+        return apIhandler.getsunrise(location);
     }
 
-    public LocalTime getSunsetTime(location location) {
+    public String getSunsetTime(location location) {
         WeatherInfo apIhandler=new WeatherInfo();
-        return apIhandler.getSunset(location);
+        return apIhandler.getsunset(location);
     }
 
     public LocalTime getTimestamp(location location) {
