@@ -181,7 +181,6 @@ public class Main {
                     String.valueOf(values[6]), String.valueOf(values[7]), String.valueOf(values[8]));
         }
         // file reading
-System.out.println(businessLogic.getTimestamp(location));
         FileReader filereader = new FileReader("CacheFile.txt");
         BufferedReader reader = new BufferedReader(filereader);
 
