@@ -180,7 +180,6 @@ public class Main {
                     String.valueOf(values[3]), String.valueOf(values[4]), String.valueOf(values[5]),
                     String.valueOf(values[6]), String.valueOf(values[7]), String.valueOf(values[8]));
         }
-
         // file reading
 
         FileReader filereader = new FileReader("CacheFile.txt");

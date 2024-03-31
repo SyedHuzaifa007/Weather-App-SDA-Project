@@ -1,6 +1,11 @@
 package BusinessLogic;
+import org.json.JSONArray;
+import org.json.JSONObject;
+
 import java.time.*;
+import java.util.Scanner;
 import java.util.TimeZone;
+import org.json.simple.parser.JSONParser;
 
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
@@ -193,12 +198,10 @@ public class WeatherInfo extends APIhandler{
         String[] ids = TimeZone.getAvailableIDs(rawOffsetMillis);
         return ids.length > 0 ? ids[0] : null;
     }
-    public LocalTime getSunrise(location location) {
-        LocalDate today = LocalDate.now();
-        ZoneId zoneId = ZoneId.of(getTimeZoneId(location.getLatitude(),location.getLongitude())); // Replace YOUR_TIMEZONE_ID_HERE with the timezone ID of the location
 
+    public LocalTime getSunrise(location location) {
         try {
-            URL url = new URL("https://api.sunrise-sunset.org/json?lat=" + location.getLatitude() + "&lng=" + location.getLongitude() + "&date=" + today);
+            URL url = new URL("https://api.sunrise-sunset.org/json?lat=" + location.getLatitude() + "&lng=" + location.getLongitude() + "&date=today");
             HttpURLConnection connection = (HttpURLConnection) url.openConnection();
             connection.setRequestMethod("GET");
             BufferedReader in = new BufferedReader(new InputStreamReader(connection.getInputStream()));
@@ -211,17 +214,17 @@ public class WeatherInfo extends APIhandler{
             in.close();
 
             // Parse JSON response
-            String json = response.toString();
-            String sunriseTimeUTC = json.split("\"sunrise\":\"")[1].split("\"")[0];
+            JSONObject jsonObject = (JSONObject) new JSONParser().parse(response.toString());
+            JSONObject results = (JSONObject) jsonObject.get("results");
+            String sunriseTimeUTC = (String) results.get("sunrise");
 
             // Convert sunrise time from UTC to LocalTime
-            DateTimeFormatter formatter = DateTimeFormatter.ofPattern("h:mm:ss a");
+            DateTimeFormatter formatter = DateTimeFormatter.ofPattern("hh:mm:ss a");
             LocalTime sunriseUTC = LocalTime.parse(sunriseTimeUTC, formatter);
-            ZonedDateTime zonedDateTime = ZonedDateTime.of(today, sunriseUTC, ZoneOffset.UTC);
-            LocalTime sunrise = zonedDateTime.withZoneSameInstant(zoneId).toLocalTime();
+            ZonedDateTime zonedDateTime = ZonedDateTime.of(LocalDate.now(), sunriseUTC, ZoneId.of("UTC"));
+            LocalTime sunrise = zonedDateTime.withZoneSameInstant(ZoneId.of(getTimeZoneId(location.getLatitude(), location.getLongitude()))).toLocalTime();
 
             return sunrise;
-
         } catch (Exception e) {
             e.printStackTrace();
             return null;
@@ -229,11 +232,8 @@ public class WeatherInfo extends APIhandler{
     }
 
     public LocalTime getSunset(location location) {
-        LocalDate today = LocalDate.now();
-        ZoneId zoneId = ZoneId.of(getTimeZoneId(location.getLatitude(),location.getLongitude())); // Replace YOUR_TIMEZONE_ID_HERE with the timezone ID of the location
-
         try {
-            URL url = new URL("https://api.sunrise-sunset.org/json?lat=" + location.getLatitude() + "&lng=" + location.getLongitude() + "&date=" + today);
+            URL url = new URL("https://api.sunrise-sunset.org/json?lat=" + location.getLatitude() + "&lng=" + location.getLongitude() + "&date=today");
             HttpURLConnection connection = (HttpURLConnection) url.openConnection();
             connection.setRequestMethod("GET");
             BufferedReader in = new BufferedReader(new InputStreamReader(connection.getInputStream()));
@@ -246,21 +246,72 @@ public class WeatherInfo extends APIhandler{
             in.close();
 
             // Parse JSON response
-            String json = response.toString();
-            String sunsetTimeUTC = json.split("\"sunset\":\"")[1].split("\"")[0];
+            JSONObject jsonObject = (JSONObject) new JSONParser().parse(response.toString());
+            JSONObject results = (JSONObject) jsonObject.get("results");
+            String sunsetTimeUTC = (String) results.get("sunset");
 
             // Convert sunset time from UTC to LocalTime
-            DateTimeFormatter formatter = DateTimeFormatter.ofPattern("h:mm:ss a");
+            DateTimeFormatter formatter = DateTimeFormatter.ofPattern("hh:mm:ss a");
             LocalTime sunsetUTC = LocalTime.parse(sunsetTimeUTC, formatter);
-            ZonedDateTime zonedDateTime = ZonedDateTime.of(today, sunsetUTC, ZoneOffset.UTC);
-            LocalTime sunset = zonedDateTime.withZoneSameInstant(zoneId).toLocalTime();
+            ZonedDateTime zonedDateTime = ZonedDateTime.of(LocalDate.now(), sunsetUTC, ZoneId.of("UTC"));
+            LocalTime sunset = zonedDateTime.withZoneSameInstant(ZoneId.of(getTimeZoneId(location.getLatitude(), location.getLongitude()))).toLocalTime();
+
 
             return sunset;
-
         } catch (Exception e) {
             e.printStackTrace();
             return null;
         }
     }
 
+    public JSONObject getLocationData(String locationName) {
+        try {
+            locationName = locationName.replaceAll(" ", "+");
+            String urlString = "https://geocoding-api.open-meteo.com/v1/search?name=" + locationName + "&count=10&language=en&format=json";
+            HttpURLConnection conn = fetchAPIResponse(urlString);
+            if (conn.getResponseCode() != 200) {
+                System.err.println("Error: Could not connect to API");
+                return null;
+            } else {
+                StringBuilder resultJson = new StringBuilder();
+                Scanner scanner = new Scanner(conn.getInputStream());
+
+                while (scanner.hasNext()) {
+                    resultJson.append(scanner.nextLine());
+                }
+
+                scanner.close();
+
+                conn.disconnect();
+
+                JSONParser parser = new JSONParser();
+                JSONObject resultsJsonObj = (JSONObject) parser.parse(resultJson.toString());
+
+                JSONArray locationData = (JSONArray) resultsJsonObj.get("results");
+                if (locationData.length() > 0) {
+                    return (JSONObject) locationData.get(0);
+                } else {
+                    throw new Exception("No location data found");
+                }
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+            return null;
+        }
+    }
+
+    // Other methods remain the same
+
+    public HttpURLConnection fetchAPIResponse(String urlString) {
+        try {
+            URL url = new URL(urlString);
+            HttpURLConnection connection = (HttpURLConnection) url.openConnection();
+            connection.setRequestMethod("GET");
+            connection.connect();
+            return connection;
+        } catch (Exception e) {
+            e.printStackTrace();
+            return null;
+        }
+    }
 }
