@@ -13,18 +13,11 @@ import static java.lang.Math.round;
 
 public class Main {
     public static void main(String[] args) throws IOException {
-        APIhandler apiHandler = new APIhandler(); // Replace "API_KEY_HERE" with your actual API key
 
         // Create a Location object with desired city and country
         location location = new location();
 
         location.getCurrentLocation();
-
-        // air pollution class methods
-        AirPollutionData air = new AirPollutionData(location);
-
-        // weather Forecast class methods
-        WeatherForecast forecast = new WeatherForecast();
 
         // Business Logic method
         BusinessLogic businessLogic = new WeatherData();
@@ -40,11 +33,13 @@ public class Main {
         status = manager.getData(location.getCity());
         // if cant find data store it first
         if (!status) {
-            // getting airPollution values in values
-            double[] values = air.PollutionValues();
+            // getting forecast and air pollution data
+            double[] forecast = businessLogic.getDayForecast(location);
+            double[] values = businessLogic.PollutionValues(location);
 
             // (store new data in file and update cache)
-            manager.storeData(location.getCity(), String.valueOf(location.getLongitude()),
+            manager.storeData(location.getCity(),
+                    String.valueOf(location.getLongitude()),
                     String.valueOf(location.getLatitude()),
                     String.valueOf(round(businessLogic.getTemperature(location))),
                     String.valueOf(round(businessLogic.getFeelsLike(location))),
@@ -54,11 +49,11 @@ public class Main {
                     String.valueOf(businessLogic.getSunsetTime(location)),
                     String.valueOf(businessLogic.getTimestamp(location)),
 
-                    String.valueOf(round(forecast.getDay1Forecast(location))),
-                    String.valueOf(round(forecast.getDay2Forecast(location))),
-                    String.valueOf(round(forecast.getDay3Forecast(location))),
-                    String.valueOf(round(forecast.getDay4Forecast(location))),
-                    String.valueOf(round(forecast.getDay5Forecast(location))),
+                    String.valueOf(round(forecast[0])),
+                    String.valueOf(round(forecast[1])),
+                    String.valueOf(round(forecast[2])),
+                    String.valueOf(round(forecast[3])),
+                    String.valueOf(round(forecast[4])),
 
                     String.valueOf(values[0]), String.valueOf(values[1]), String.valueOf(values[2]),
                     String.valueOf(values[3]), String.valueOf(values[4]), String.valueOf(values[5]),
@@ -122,7 +117,6 @@ public class Main {
     }
 
     public static void processData(String input) throws IOException {
-        APIhandler apiHandler = new APIhandler(); // Replace "API_KEY_HERE" with your actual API key
 
         // Create a Location object with desired city and country
         location location = new location();
@@ -147,12 +141,6 @@ public class Main {
             System.exit(1);
         }
 
-        // air pollution class methods
-        AirPollutionData air = new AirPollutionData(location);
-
-        // weather Forecast class methods
-        WeatherForecast forecast = new WeatherForecast();
-
         // Business Logic method
         BusinessLogic businessLogic = new WeatherData();
 
@@ -167,8 +155,9 @@ public class Main {
         status = manager.getData(location.getCity());
         // if cant find data store it first
         if (!status) {
-            // getting airPollution values in values
-            double[] values = air.PollutionValues();
+            // getting forecast and air pollution data
+            double[] forcast = businessLogic.getDayForecast(location);
+            double[] values = businessLogic.PollutionValues(location);
 
             // (store new data in file and update cache)
             manager.storeData(location.getCity(), String.valueOf(location.getLongitude()),
@@ -181,19 +170,17 @@ public class Main {
                     String.valueOf(businessLogic.getSunsetTime(location)),
                     String.valueOf(businessLogic.getTimestamp(location)),
 
-                    String.valueOf(round(forecast.getDay1Forecast(location))),
-                    String.valueOf(round(forecast.getDay2Forecast(location))),
-                    String.valueOf(round(forecast.getDay3Forecast(location))),
-                    String.valueOf(round(forecast.getDay4Forecast(location))),
-                    String.valueOf(round(forecast.getDay5Forecast(location))),
+                    String.valueOf(round(forcast[0])),
+                    String.valueOf(round(forcast[1])),
+                    String.valueOf(round(forcast[2])),
+                    String.valueOf(round(forcast[3])),
+                    String.valueOf(round(forcast[4])),
 
                     String.valueOf(values[0]), String.valueOf(values[1]), String.valueOf(values[2]),
                     String.valueOf(values[3]), String.valueOf(values[4]), String.valueOf(values[5]),
                     String.valueOf(values[6]), String.valueOf(values[7]), String.valueOf(values[8]));
         }
-
         // file reading
-
         FileReader filereader = new FileReader("CacheFile.txt");
         BufferedReader reader = new BufferedReader(filereader);
 

@@ -7,108 +7,88 @@ import java.net.HttpURLConnection;
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
 public class WeatherData implements BusinessLogic {
-    private double temperature;
-    private double feelsLike;
-    private double minTemperature;
-    private double maxTemperature;
-    private LocalTime sunriseTime;
-    private LocalTime sunsetTime;
-    private LocalTime timestamp;
-
-
-    public WeatherData() {
-        this.temperature = 0.0;
-        this.feelsLike = 0.0;
-        this.minTemperature = 0.0;
-        this.maxTemperature = 0.0;
-        this.sunriseTime = null;
-        this.sunsetTime = null;
-        this.timestamp = null;
-    }
-
-    public WeatherData(double temp)
-    {
-        temperature=temp;
-    }
-    public WeatherData(double temperature, double feelsLike, double minTemperature, double maxTemperature,
-                       LocalTime sunriseTime, LocalTime sunsetTime, LocalTime timestamp) {
-        this.temperature = temperature;
-        this.feelsLike = feelsLike;
-        this.minTemperature = minTemperature;
-        this.maxTemperature = maxTemperature;
-        this.sunriseTime = sunriseTime;
-        this.sunsetTime = sunsetTime;
-        this.timestamp = timestamp;
-    }
-
+//    private double temperature;
+//    private double feelsLike;
+//    private double minTemperature;
+//    private double maxTemperature;
+//    private LocalTime sunriseTime;
+//    private LocalTime sunsetTime;
+//    private LocalTime timestamp;
+//
+//
+//    public WeatherData() {
+//        this.temperature = 0.0;
+//        this.feelsLike = 0.0;
+//        this.minTemperature = 0.0;
+//        this.maxTemperature = 0.0;
+//        this.sunriseTime = null;
+//        this.sunsetTime = null;
+//        this.timestamp = null;
+//    }
+//
+//    public WeatherData(double temp)
+//    {
+//        temperature=temp;
+//    }
+//    public WeatherData(double temperature, double feelsLike, double minTemperature, double maxTemperature,
+//                       LocalTime sunriseTime, LocalTime sunsetTime, LocalTime timestamp) {
+//        this.temperature = temperature;
+//        this.feelsLike = feelsLike;
+//        this.minTemperature = minTemperature;
+//        this.maxTemperature = maxTemperature;
+//        this.sunriseTime = sunriseTime;
+//        this.sunsetTime = sunsetTime;
+//        this.timestamp = timestamp;
+//    }
+//
 
     // Getter methods
     public double getTemperature(location location) {
-        APIhandler apIhandler=new APIhandler();
-        temperature= apIhandler.gettemperature(location);
-        return temperature;
-    }
+        WeatherInfo apIhandler=new WeatherInfo();
+        return apIhandler.gettemperature(location);
 
-    public double getFeelsLike(location location) {
-        APIhandler apIhandler=new APIhandler();
-        feelsLike=  apIhandler.feelsliketemperature(location);
-        return feelsLike;
     }
+    public double[] PollutionValues(location location) {
+
+        AirPollutionData air=new AirPollutionData(location);
+        double values[] = { air.getAirQualityIndex(),air.getCarbonMonoxide(),air.getNitrogenMonoxide(),air.getNitrogenDioxide(),air.getOzone(), air.getSulphurDioxide(),
+         air.getAmmonia(),air.getParticulatePM25(),air.getParticulatePM10()};
+        return values;
+    }
+    public double[] getDayForecast(location location){
+   WeatherForecast forecast=new WeatherForecast();
+      double values[]={forecast.getDay1Forecast(location),forecast.getDay2Forecast(location),forecast.getDay3Forecast(location),forecast.getDay4Forecast(location),forecast.getDay5Forecast(location) };
+       return values;
+
+    }
+    public double getFeelsLike(location location) {
+        WeatherInfo apIhandler=new WeatherInfo();
+        return   apIhandler.feelsliketemperature(location);
+         }
 
     public double getMinTemperature(location location) {
-        APIhandler apIhandler=new APIhandler();
-        minTemperature= apIhandler.getmintemperature(location);
-        return minTemperature;
-    }
+        WeatherInfo apIhandler=new WeatherInfo();
+        return  apIhandler.getmintemperature(location);
+          }
 
     public double getMaxTemperature(location location) {
-        APIhandler apIhandler=new APIhandler();
-         maxTemperature= apIhandler.getmaxtemperature(location);
-         return maxTemperature;
+        WeatherInfo apIhandler=new WeatherInfo();
+        return apIhandler.getmaxtemperature(location);
     }
 
-    public LocalTime getSunriseTime(location location) {
-        APIhandler apIhandler=new APIhandler();
-       sunriseTime=apIhandler.getSunrise(location);
-       return sunriseTime;
+    public String getSunriseTime(location location) {
+        WeatherInfo apIhandler=new WeatherInfo();
+        return apIhandler.getsunrise(location);
     }
 
-    public LocalTime getSunsetTime(location location) {
-        APIhandler apIhandler=new APIhandler();
-        sunsetTime= apIhandler.getSunset(location);
-        return sunsetTime;
+    public String getSunsetTime(location location) {
+        WeatherInfo apIhandler=new WeatherInfo();
+        return apIhandler.getsunset(location);
     }
 
     public LocalTime getTimestamp(location location) {
-        try {
-            // Fetch current timestamp from an external service
-            URL url = new URL("https://worldtimeapi.org/api/ip");
-            HttpURLConnection connection = (HttpURLConnection) url.openConnection();
-            connection.setRequestMethod("GET");
-            BufferedReader in = new BufferedReader(new InputStreamReader(connection.getInputStream()));
-            String inputLine;
-            StringBuilder response = new StringBuilder();
-
-            while ((inputLine = in.readLine()) != null) {
-                response.append(inputLine);
-            }
-            in.close();
-
-            // Parse JSON response to get the current timestamp
-            String json = response.toString();
-            String timestampStr = json.split("\"datetime\":\"")[1].split("\"")[0];
-
-            // Convert timestamp string to LocalDateTime
-            DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd'T'HH:mm:ss.SSSSSSXXX");
-            LocalTime timeStamp = LocalTime.parse(timestampStr, formatter);
-            timestamp=timeStamp;
-            return timestamp;
-
-        } catch (Exception e) {
-            e.printStackTrace();
-            // Returning null may not be ideal, consider handling errors more gracefully
-            return null;
-        }
+        WeatherInfo apIhandler=new WeatherInfo();
+        return apIhandler.getTimestamp(location);
     }
 
 

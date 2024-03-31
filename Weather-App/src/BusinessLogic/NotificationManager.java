@@ -3,7 +3,7 @@ import BusinessLogic.WeatherData;
 import BusinessLogic.location;
 public class NotificationManager {
     public String GenerateWeatherNotificattions(String location1) {
-        APIhandler apiHandler1 = new APIhandler();
+        WeatherInfo apiHandler1 = new WeatherInfo();
         location loc1 = new location();
         loc1.setCity(location1);
         String text="Normal Temperatures";
