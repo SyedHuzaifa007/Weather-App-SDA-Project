@@ -288,7 +288,7 @@ public class WeatherInfo extends APIhandler{
                 JSONObject resultsJsonObj = (JSONObject) parser.parse(resultJson.toString());
 
                 JSONArray locationData = (JSONArray) resultsJsonObj.get("results");
-                if (locationData.length() > 0) {
+                if (!locationData.isEmpty()) {
                     return (JSONObject) locationData.get(0);
                 } else {
                     throw new Exception("No location data found");
@@ -299,9 +299,6 @@ public class WeatherInfo extends APIhandler{
             return null;
         }
     }
-
-    // Other methods remain the same
-
     public HttpURLConnection fetchAPIResponse(String urlString) {
         try {
             URL url = new URL(urlString);
