@@ -11,13 +11,22 @@ import java.io.IOException;
 
 import static java.lang.Math.round;
 
+import java.io.IOException;
+import java.net.HttpURLConnection;
+import java.net.URL;
+import java.util.Scanner;
+
+import org.json.JSONException;
+import org.json.JSONObject;
 public class Main {
     public static void main(String[] args) throws IOException {
 
         // Create a Location object with desired city and country
         location location = new location();
 
+
         location.getCurrentLocation();
+
 
         // Business Logic method
         BusinessLogic businessLogic = new WeatherData();
