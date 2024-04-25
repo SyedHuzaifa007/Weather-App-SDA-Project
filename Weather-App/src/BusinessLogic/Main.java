@@ -1,35 +1,32 @@
 package BusinessLogic;
-
 import DataAccess.DBTxtManager;
 import DataAccess.DatabaseSQL;
 import UI.GUI;
-
 import java.io.BufferedReader;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
-
 import static java.lang.Math.round;
-
 import java.io.IOException;
 import java.net.HttpURLConnection;
 import java.net.URL;
 import java.util.Scanner;
-
 import org.json.JSONException;
 import org.json.JSONObject;
+import javax.swing.JFrame;
 
 import javax.swing.*;
 
 public class Main {
-    public static void main(String[] args) throws Exception {
+    public static void main(String[] args) throws Exception
+    {
+        GUI G = new GUI();
+        G.createLoadingFrame();
 
         // Create a Location object with desired city and country
         location location = new location();
 
-
         location.getCurrentLocation();
-
 
         // Business Logic method
         BusinessLogic businessLogic = new WeatherData();
@@ -122,11 +119,14 @@ public class Main {
         String n_weather = notify.GenerateWeatherNotificattions(loc);
         String n_air = notify.generateAirQualityNotification(location);
 
-        GUI G = new GUI(loc, longi, latitude, temp, feel, min, max, rise, set, stamp, day1, day2, day3, day4, day5, aqi,
+        G.add(loc, longi, latitude, temp, feel, min, max, rise, set, stamp, day1, day2, day3, day4, day5, aqi,
                 CO, NO, NO2, O3, SO2, NH3, PM25, PM10, n_weather, n_air);
     }
 
-    public static void processData(String input) throws Exception {
+    public static void processData(String input) throws Exception
+    {
+        GUI G = new GUI();
+        G.createLoadingFrame();
 
         // Create a Location object with desired city and country
         location location = new location();
@@ -146,7 +146,10 @@ public class Main {
                 String city = parts[1];
                 location.addManualLocationCoord(country, city);
             }
-        } else {
+        }
+        else
+        {
+            G.disposeLoadingFrame();
             String errorMessage = "The Format for Searching Is: Country,City or Longitude,Latitude (Plz try Again)";
             String formattedMessage = "<html><body style='width: 250px;'>" + errorMessage + "</body></html>";
             JOptionPane.showMessageDialog(null, formattedMessage, "Error", JOptionPane.ERROR_MESSAGE);
@@ -233,8 +236,8 @@ public class Main {
 
         DBTxtManager hello = new DBTxtManager();
         hello.writeToDBTxt(data1, data2, data3);
-        String[] args = new String[0];
-        DatabaseSQL.main(args);
+        String[] arg = new String[0];
+        DatabaseSQL.main(arg);
 
         ////////////////////////////////////////////////////////////////////////
 
@@ -243,7 +246,7 @@ public class Main {
         String n_weather = notify.GenerateWeatherNotificattions(loc);
         String n_air = notify.generateAirQualityNotification(location);
 
-        GUI G = new GUI(loc, longi, latitude, temp, feel, min, max, rise, set, stamp, day1, day2, day3, day4, day5, aqi,
+        G.add(loc, longi, latitude, temp, feel, min, max, rise, set, stamp, day1, day2, day3, day4, day5, aqi,
                 CO, NO, NO2, O3, SO2, NH3, PM25, PM10, n_weather, n_air);
     }
 

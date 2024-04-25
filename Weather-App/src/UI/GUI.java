@@ -1,10 +1,9 @@
 package UI;
 
 import BusinessLogic.Main;
-
-import java.awt.Color;
-import java.awt.Dimension;
-import java.awt.Font;
+import javax.swing.border.*;
+import java.awt.*;
+import java.awt.geom.RoundRectangle2D;
 import java.io.IOException;
 
 import javax.swing.*;
@@ -13,13 +12,20 @@ public class GUI {
 
     JFrame frame1 = new JFrame();
     JFrame frame2 = new JFrame();
+    JFrame loading = new JFrame();
     String typed = " ";
-    public GUI(String Location_got,String longi_got, String lati_got, String temp_got, String feel_got, String min_got, String max_got, String sunrise_got, String sunset_got, String stamp_got, String day1_got, String day2_got, String day3_got, String day4_got, String day5_got, String aqi_got, String CO_got, String NO_got, String NO2_got, String O3_got, String SO2_got, String NH3_got, String PM25_got, String PM10_got, String n_weather, String n_air)
+
+    public GUI()
     {
+    }
+    public void add(String Location_got,String longi_got, String lati_got, String temp_got, String feel_got, String min_got, String max_got, String sunrise_got, String sunset_got, String stamp_got, String day1_got, String day2_got, String day3_got, String day4_got, String day5_got, String aqi_got, String CO_got, String NO_got, String NO2_got, String O3_got, String SO2_got, String NH3_got, String PM25_got, String PM10_got, String n_weather, String n_air)
+    {
+        loading.dispose();
+        //Application Frame
         frame1.setSize(1080, 800); // set frame size
         frame1.setTitle("Weather-App"); // set frame title
         frame1.getContentPane().setBackground(new Color(2, 0, 22)); // set frame color
-        frame1.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE); // on cross close
+        frame1.setUndecorated(true);
         frame1.setResizable(false); // disable frame resizing
         frame1.setLocationRelativeTo(null);
 
@@ -79,7 +85,7 @@ public class GUI {
         highlights.setText("HIGHLIGHT'S");
         highlights.setForeground(new Color(170,170,170)); // set font color
         highlights.setFont(new Font("Roboto",Font.BOLD,15)); // set font style
-        highlights.setBounds(180, 265, 300, 100);
+        highlights.setBounds(183, 268, 300, 100);
 
         // Text_FeelsLike
         JLabel feel = new JLabel();
@@ -122,7 +128,7 @@ public class GUI {
         five.setText("5-DAY FORCAST");
         five.setForeground(new Color(170,170,170)); // set font color
         five.setFont(new Font("Roboto",Font.BOLD,15)); // set font style
-        five.setBounds(892, 235, 300, 100);
+        five.setBounds(894, 237, 300, 100);
 
         //Text Day-1
         JLabel d_one = new JLabel();
@@ -379,35 +385,73 @@ public class GUI {
         pm10.setFont(new Font("Roboto",Font.BOLD,30)); // set font style
         pm10.setBounds(720, 645, 200, 100);
 
+
+        // Create rounded border
+        int borderRadius = 30; // You can adjust this value to change the roundness
+        Border roundedBorder = new Border() {
+            private int borderWidth = 1;
+
+            @Override
+            public void paintBorder(Component c, Graphics g, int x, int y, int width, int height) {
+                Graphics2D g2d = (Graphics2D) g.create();
+
+                // Draw the background
+                g2d.setColor(new Color(13, 31, 51));
+                g2d.fillRoundRect(x, y, width - 1, height - 1, borderRadius, borderRadius);
+
+                // Draw the border
+                g2d.setColor(Color.BLACK);
+                g2d.setStroke(new BasicStroke(borderWidth));
+                g2d.drawRoundRect(x, y, width - 1, height - 1, borderRadius, borderRadius);
+
+                g2d.dispose();
+            }
+
+            @Override
+            public Insets getBorderInsets(Component c) {
+                return new Insets(borderWidth, borderWidth, borderWidth, borderWidth);
+            }
+
+            @Override
+            public boolean isBorderOpaque() {
+                return true;
+            }
+        };
+
         //backbox1
         JLabel backbox1 = new JLabel();
         backbox1.setOpaque(true);
-        backbox1.setBackground(new Color(13,31,51));
+        backbox1.setBackground(new Color(2, 0, 22));
         backbox1.setBounds(170, 300, 700, 450);
+        backbox1.setBorder(roundedBorder);
 
         //backbox2
         JLabel backbox2 = new JLabel();
         backbox2.setOpaque(true);
-        backbox2.setBackground(new Color(13,31,51));
+        backbox2.setBackground(new Color(2, 0, 22));
         backbox2.setBounds(30, 50, 75, 650);
+        backbox2.setBorder(roundedBorder);
 
         //backbox3
         JLabel backbox3 = new JLabel();
         backbox3.setOpaque(true);
-        backbox3.setBackground(new Color(13,31,51));
+        backbox3.setBackground(new Color(2, 0, 22));
         backbox3.setBounds(160, 30, 700, 50);
+        backbox3.setBorder(roundedBorder);
 
         //backbox4
         JLabel backbox4 = new JLabel();
         backbox4.setOpaque(true);
-        backbox4.setBackground(new Color(13,31,51));
+        backbox4.setBackground(new Color(2, 0, 22));
         backbox4.setBounds(885, 270, 170, 480);
+        backbox4.setBorder(roundedBorder);
 
         //backbox5
         JLabel backbox5 = new JLabel();
         backbox5.setOpaque(true);
-        backbox5.setBackground(new Color(13,31,51));
+        backbox5.setBackground(new Color(2, 0, 22));
         backbox5.setBounds(885, 70, 170, 175);
+        backbox5.setBorder(roundedBorder);
 
         //Line 1
         JLabel line1 = new JLabel();
@@ -594,7 +638,10 @@ public class GUI {
         exit.setBounds(43, 625, exitWidth, exitHeight);
         exit.setBorderPainted(false);
         exit.setBackground(new Color(13,31,51));
-        exit.addActionListener(e -> frame1.dispose()); // closes the frame
+        exit.addActionListener(e -> {
+            frame1.dispose();
+            disposeLoadingFrame();
+        }); // closes the frame
 
         //View more Button
         JButton more = new JButton();
@@ -618,7 +665,7 @@ public class GUI {
             frame2.setSize(1080, 800); // set frame size
             frame2.setTitle("Weather-App"); // set frame title
             frame2.getContentPane().setBackground(new Color(2, 0, 22)); // set frame color
-            frame2.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE); // on cross close
+            frame2.setUndecorated(true);
             frame2.setResizable(false); // disable frame resizing
             frame2.setLocationRelativeTo(null);
 
@@ -699,7 +746,10 @@ public class GUI {
             frame2.setLayout(null);
             frame2.setVisible(true); // see frame
 
-            exit.addActionListener(g->frame2.dispose());
+            exit.addActionListener(g->{
+                frame2.dispose();
+                disposeLoadingFrame();
+            });
 
             back.addActionListener(f->{
                 frame2.dispose();
@@ -708,7 +758,7 @@ public class GUI {
                 frame1.setSize(1080, 800); // set frame size
                 frame1.setTitle("Weather-App"); // set frame title
                 frame1.getContentPane().setBackground(new Color(2, 0, 22)); // set frame color
-                frame1.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE); // on cross close
+                frame1.setUndecorated(true);
                 frame1.setResizable(false); // disable frame resizing
                 frame1.setLocationRelativeTo(null);
 
@@ -856,5 +906,52 @@ public class GUI {
         frame1.add(Panel);
         frame1.setLayout(null);
         frame1.setVisible(true); // see frame
+    }
+
+    public void createLoadingFrame()
+    {
+        loading.setSize(1080, 800); // set frame size
+        loading.getContentPane().setBackground(new Color(2, 0, 22)); // set frame color
+        loading.setUndecorated(true);
+        loading.setResizable(false); // disable frame resizing
+        loading.setLocationRelativeTo(null);
+        loading.getContentPane().setLayout(new BorderLayout());
+
+        // Label Search
+        JLabel img = new JLabel();
+        ImageIcon loadingimg = new ImageIcon("Media\\api.png");
+        img.setIcon(loadingimg);
+
+        int loadingWidth = 250;
+        int loadingHeight = 250;
+        ImageIcon scaledloading = new ImageIcon(loadingimg.getImage().getScaledInstance(loadingWidth, loadingHeight, java.awt.Image.SCALE_SMOOTH));
+        img.setIcon(scaledloading);
+
+        // Create a panel to hold the label and center it horizontally
+        JPanel panel = new JPanel(new GridBagLayout());
+        panel.setBackground(new Color(2, 0, 22));
+        GridBagConstraints gbc = new GridBagConstraints();
+        gbc.gridx = 0;
+        gbc.gridy = 0;
+        gbc.insets = new Insets(0, 0, 20, 0); // Add some space below the image
+        panel.add(img, gbc);
+
+        // Add text label under the image
+        JLabel textLabel = new JLabel("Loading...");
+        textLabel.setForeground(Color.WHITE);
+        textLabel.setFont(new Font("Arial", Font.BOLD, 30));
+        gbc.gridy = 1; // Set the y position to 1 to place it under the image
+        panel.add(textLabel, gbc);
+
+        // Add the panel to the center of the frame
+        loading.getContentPane().add(panel, BorderLayout.CENTER);
+
+        loading.setVisible(true); // see frame
+    }
+
+    public void disposeLoadingFrame() {
+        if (loading != null) {
+            loading.dispose();
+        }
     }
 };
