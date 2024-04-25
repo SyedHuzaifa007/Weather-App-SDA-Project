@@ -11,28 +11,18 @@ public class DBTxtManager {
         File file = new File(fileName);
 
         try {
-            if (file.exists()) {
-                // Delete existing file
-                if (file.delete()) {
-                } else {
-                    return;
-                }
-            }
+            // Create a FileWriter in append mode (this will not delete the existing file)
+            FileWriter writer = new FileWriter(file, false);
 
-            // Create new file
-            if (file.createNewFile()) {
-            } else {
-                return;
-            }
+            // Write data to the file
+            writer.write(data1 + "\n");
+            writer.write(data2 + "\n");
+            writer.write(data3);
 
-            // Write data to file
-            FileWriter writer = new FileWriter(file);
-            writer.write(data1+"\n");
-            writer.write(data2+"\n");
-            writer.write(data3+"\n");
+            // Close the writer
             writer.close();
-
         } catch (IOException e) {
+            // Print an error message and stack trace if an IOException occurs
             System.out.println("An error occurred: " + e.getMessage());
             e.printStackTrace();
         }

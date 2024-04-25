@@ -40,7 +40,7 @@ public class GUI {
             frame2.dispose();
             try {
                 Main.processData(typed);
-            } catch (IOException ex) {
+            } catch (Exception ex) {
                 throw new RuntimeException(ex);
             }
         });

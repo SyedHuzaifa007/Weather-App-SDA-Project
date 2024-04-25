@@ -19,7 +19,7 @@ import java.util.Scanner;
 import org.json.JSONException;
 import org.json.JSONObject;
 public class Main {
-    public static void main(String[] args) throws IOException {
+    public static void main(String[] args) throws Exception {
 
         // Create a Location object with desired city and country
         location location = new location();
@@ -105,11 +105,9 @@ public class Main {
         reader.close();
 
         // Database Creation
-        String data1 = loc + "," + longi + "," + latitude + "," + temp + "," + feel + "," + min + "," + max + "," + rise
-                + "," + set + "," + stamp;
+        String data1 = loc + "," + longi + "," + latitude + "," + temp + "," + feel + "," + min + "," + max + "," + rise + "," + set + "," + stamp;
         String data2 = loc + "," + day1 + "," + day2 + "," + day3 + "," + day4 + "," + day5;
-        String data3 = loc + "," + aqi + "," + CO + "," + NO + "," + NO2 + "," + O3 + "," + SO2 + "," + NH3 + "," + PM25
-                + "," + PM10;
+        String data3 = loc + "," + aqi + "," + CO + "," + NO + "," + NO2 + "," + O3 + "," + SO2 + "," + NH3 + "," + PM25 + "," + PM10;
 
         DBTxtManager hello = new DBTxtManager();
         hello.writeToDBTxt(data1, data2, data3);
@@ -125,7 +123,7 @@ public class Main {
                 CO, NO, NO2, O3, SO2, NH3, PM25, PM10, n_weather, n_air);
     }
 
-    public static void processData(String input) throws IOException {
+    public static void processData(String input) throws Exception {
 
         // Create a Location object with desired city and country
         location location = new location();
@@ -226,7 +224,7 @@ public class Main {
         // Database Creation
         String data1 = loc + "," + longi + "," + latitude + "," + temp + "," + feel + "," + min + "," + max + "," + rise + "," + set + "," + stamp;
         String data2 = loc + "," + day1 + "," + day2 + "," + day3 + "," + day4 + "," + day5;
-        String data3 = loc + "," + aqi + "," + CO + "," + NO + "," + NO2 + "," + O3 + "," + SO2 + "," + NH3 + "," + PM25 + "," + PM10 + "," + stamp;
+        String data3 = loc + "," + aqi + "," + CO + "," + NO + "," + NO2 + "," + O3 + "," + SO2 + "," + NH3 + "," + PM25 + "," + PM10;
 
         DBTxtManager hello = new DBTxtManager();
         hello.writeToDBTxt(data1, data2, data3);

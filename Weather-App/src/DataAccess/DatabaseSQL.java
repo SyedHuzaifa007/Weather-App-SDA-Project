@@ -1,9 +1,12 @@
 package DataAccess;
 
 import java.io.BufferedReader;
+import java.io.FileNotFoundException;
 import java.io.FileReader;
+import java.io.IOException;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
+import java.sql.SQLException;
 import java.sql.Timestamp;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -75,30 +78,22 @@ public class DatabaseSQL {
     }
 
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws Exception {
         String fileName = "DBTxt.txt";
-        try (BufferedReader reader = new BufferedReader(new FileReader(fileName))) {
-            Connection connection = DatabaseConnection.getConnection(); // Assuming you have a method to get connection
-            String line;
-            while ((line = reader.readLine()) != null) {
-                String[] data = line.split(",");
-                try {
-                    if (data.length == 10) {
-                        insertWeatherData(connection, data);
-                    } else if (data.length == 6) {
-                        insertWeatherForecast(connection, data);
-                    } else if (data.length == 11) { // Adjusted length for air pollution data
-                        insertAirPollutionData(connection, data);
-                    } else {
-                        System.err.println("Invalid data format: " + String.join(",", data));
-                    }
-                } catch (Exception e) {
-                    System.err.println("Error inserting data: " + e.getMessage());
-                }
-            }
-            connection.close();
-        } catch (Exception e) {
-            System.err.println("Error reading file or closing connection: " + e.getMessage());
-        }
+
+        BufferedReader reader = new BufferedReader(new FileReader(fileName));
+        Connection connection = DatabaseConnection.getConnection();
+
+        String line = reader.readLine();
+        String[] data = line.split(",");
+        insertWeatherData(connection, data);
+
+        line = reader.readLine();
+        String[] data2 = line.split(",");
+        insertWeatherForecast(connection, data2);
+
+        line = reader.readLine();
+        String[] data3 = line.split(",");
+        insertAirPollutionData(connection, data3);
     }
 }
