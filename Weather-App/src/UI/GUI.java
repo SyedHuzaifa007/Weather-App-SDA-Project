@@ -21,7 +21,7 @@ public class GUI {
         frame1.getContentPane().setBackground(new Color(2, 0, 22)); // set frame color
         frame1.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE); // on cross close
         frame1.setResizable(false); // disable frame resizing
-        frame1.setLocation(225,15);
+        frame1.setLocationRelativeTo(null);
 
 
         //Text Field
@@ -620,7 +620,7 @@ public class GUI {
             frame2.getContentPane().setBackground(new Color(2, 0, 22)); // set frame color
             frame2.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE); // on cross close
             frame2.setResizable(false); // disable frame resizing
-            frame2.setLocation(225,15);
+            frame2.setLocationRelativeTo(null);
 
             JLayeredPane Panel2 = new JLayeredPane();
             Panel2.setBounds(0, 0, 1080, 800);
@@ -710,7 +710,7 @@ public class GUI {
                 frame1.getContentPane().setBackground(new Color(2, 0, 22)); // set frame color
                 frame1.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE); // on cross close
                 frame1.setResizable(false); // disable frame resizing
-                frame1.setLocation(225,15);
+                frame1.setLocationRelativeTo(null);
 
                 JLayeredPane Panel = new JLayeredPane();
                 Panel.setBounds(0, 0, 1080, 800);
