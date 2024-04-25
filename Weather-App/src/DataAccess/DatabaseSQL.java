@@ -74,6 +74,7 @@ public class DatabaseSQL {
         }
     }
 
+
     public static void main(String[] args) {
         String fileName = "DBTxt.txt";
         try (BufferedReader reader = new BufferedReader(new FileReader(fileName))) {
