@@ -18,6 +18,9 @@ import java.util.Scanner;
 
 import org.json.JSONException;
 import org.json.JSONObject;
+
+import javax.swing.*;
+
 public class Main {
     public static void main(String[] args) throws Exception {
 
@@ -144,7 +147,9 @@ public class Main {
                 location.addManualLocationCoord(country, city);
             }
         } else {
-            System.out.println("\n\nThe Format for Searching Is: Country,City or Longitude,Latitude (Plz try Again)\n");
+            String errorMessage = "The Format for Searching Is: Country,City or Longitude,Latitude (Plz try Again)";
+            String formattedMessage = "<html><body style='width: 250px;'>" + errorMessage + "</body></html>";
+            JOptionPane.showMessageDialog(null, formattedMessage, "Error", JOptionPane.ERROR_MESSAGE);
             System.exit(1);
         }
 
