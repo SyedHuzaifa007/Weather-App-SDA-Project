@@ -116,11 +116,11 @@ public class Main {
         String data1 = loc + "," + longi + "," + latitude + "," + temp + "," + feel + "," + min + "," + max + "," + rise + "," + set + "," + stamp;
         String data2 = loc + "," + day1 + "," + day2 + "," + day3 + "," + day4 + "," + day5;
         String data3 = loc + "," + aqi + "," + CO + "," + NO + "," + NO2 + "," + O3 + "," + SO2 + "," + NH3 + "," + PM25 + "," + PM10;
-
-        DBTxtManager hello = new DBTxtManager();
-        hello.writeToDBTxt(data1, data2, data3);
-        DatabaseSQL.main(args);
-        ////////////////////////////////////////////////////////////////////////
+//
+//        DBTxtManager hello = new DBTxtManager();
+//        hello.writeToDBTxt(data1, data2, data3);
+//        DatabaseSQL.main(args);
+//        ////////////////////////////////////////////////////////////////////////
 
         // Notification Object
         NotificationManager notify = new NotificationManager();
@@ -248,12 +248,12 @@ public class Main {
         String data2 = loc + "," + day1 + "," + day2 + "," + day3 + "," + day4 + "," + day5;
         String data3 = loc + "," + aqi + "," + CO + "," + NO + "," + NO2 + "," + O3 + "," + SO2 + "," + NH3 + "," + PM25 + "," + PM10;
 
-        DBTxtManager hello = new DBTxtManager();
-        hello.writeToDBTxt(data1, data2, data3);
-        String[] arg = new String[0];
-        DatabaseSQL.main(arg);
-
-        ////////////////////////////////////////////////////////////////////////
+//        DBTxtManager hello = new DBTxtManager();
+//        hello.writeToDBTxt(data1, data2, data3);
+//        String[] arg = new String[0];
+//        DatabaseSQL.main(arg);
+//
+//        ////////////////////////////////////////////////////////////////////////
 
         // Notification Object
         NotificationManager notify = new NotificationManager();
