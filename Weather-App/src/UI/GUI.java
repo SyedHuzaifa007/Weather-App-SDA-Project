@@ -1,5 +1,7 @@
 package UI;
 
+import java.time.DayOfWeek;
+import java.time.LocalDate;
 import BusinessLogic.Main;
 import javax.swing.border.*;
 import java.awt.*;
@@ -131,36 +133,51 @@ public class GUI {
         five.setBounds(894, 237, 300, 100);
 
         //Text Day-1
+        LocalDate currentDate = LocalDate.now();
+        String current = String.valueOf(currentDate.getDayOfWeek());
+
         JLabel d_one = new JLabel();
-        d_one.setText("DAY 1");
+        d_one.setText(current.substring(0,3));
         d_one.setForeground(new Color(170,170,170)); // set font color
         d_one.setFont(new Font("Roboto",Font.BOLD,15)); // set font style
         d_one.setBounds(892, 290, 300, 100);
 
         //Text Day-2
+        LocalDate nextDay = currentDate.plusDays(1);
+        String day2 = String.valueOf(nextDay.getDayOfWeek());
+
         JLabel d_two = new JLabel();
-        d_two.setText("DAY 2");
+        d_two.setText(day2.substring(0,3));
         d_two.setForeground(new Color(170,170,170)); // set font color
         d_two.setFont(new Font("Roboto",Font.BOLD,15)); // set font style
         d_two.setBounds(892, 380, 300, 100);
 
         //Text Day-3
+        nextDay = currentDate.plusDays(2);
+        String day3 = String.valueOf(nextDay.getDayOfWeek());
+
         JLabel d_three = new JLabel();
-        d_three.setText("DAY 3");
+        d_three.setText(day3.substring(0,3));
         d_three.setForeground(new Color(170,170,170)); // set font color
         d_three.setFont(new Font("Roboto",Font.BOLD,15)); // set font style
         d_three.setBounds(892, 470, 300, 100);
 
         //Text Day-4
+        nextDay = currentDate.plusDays(3);
+        String day4 = String.valueOf(nextDay.getDayOfWeek());
+
         JLabel d_four = new JLabel();
-        d_four.setText("DAY 4");
+        d_four.setText(day4.substring(0,3));
         d_four.setForeground(new Color(170,170,170)); // set font color
         d_four.setFont(new Font("Roboto",Font.BOLD,15)); // set font style
         d_four.setBounds(892, 560, 300, 100);
 
         //Text Day-5
+        nextDay = currentDate.plusDays(4);
+        String day5 = String.valueOf(nextDay.getDayOfWeek());
+
         JLabel d_five = new JLabel();
-        d_five.setText("DAY 5");
+        d_five.setText(day5.substring(0,3));
         d_five.setForeground(new Color(170,170,170)); // set font color
         d_five.setFont(new Font("Roboto",Font.BOLD,15)); // set font style
         d_five.setBounds(892, 650, 300, 100);
