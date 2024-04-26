@@ -70,14 +70,14 @@ public class GUI {
 
         // Text_Longitude
         JLabel longi = new JLabel();
-        longi.setText("Longitude: " + longi_got + "°");
+        longi.setText("Longitude: " + longi_got.substring(0, Math.min(14, longi_got.length())) + "°");
         longi.setForeground(new Color(255,255,255)); // set font color
         longi.setFont(new Font("Roboto",Font.BOLD,20)); // set font style
         longi.setBounds(600, 130, 300, 100);
 
         // Text_Latitude
         JLabel lati = new JLabel();
-        lati.setText("Latitude:    " + lati_got + "°");
+        lati.setText("Latitude:    " + lati_got.substring(0, Math.min(14, lati_got.length())) + "°");
         lati.setForeground(new Color(255,255,255)); // set font color
         lati.setFont(new Font("Roboto",Font.BOLD,20)); // set font style
         lati.setBounds(600, 160, 300, 100);

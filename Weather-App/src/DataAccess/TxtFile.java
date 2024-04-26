@@ -1,13 +1,11 @@
 package DataAccess;
 
-import java.io.BufferedReader;
-import java.io.BufferedWriter;
-import java.io.FileReader;
-import java.io.FileWriter;
-import java.io.IOException;
+import java.io.*;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 
 public class TxtFile {
     private String location;
@@ -35,6 +33,20 @@ public class TxtFile {
                     {
                         fileContent.append(line).append("\n");
                     }
+                }
+
+                LocalDate currentdate = LocalDate.now();
+                BufferedReader reader33 = new BufferedReader(new FileReader(loc+".txt"));
+                for (int i = 1; i < 25; i++) {
+                    reader33.readLine();
+                }
+                String dateString = reader33.readLine().trim();
+                LocalDate storedDate = LocalDate.parse(dateString, DateTimeFormatter.ISO_LOCAL_DATE);
+
+                if (storedDate.isEqual(currentdate)) {
+                } else {
+                    deleteFile(loc+".txt");
+                    return false;
                 }
 
                 // Replacing contents of CacheFile.txt with contents of found file
@@ -79,6 +91,17 @@ public class TxtFile {
         catch (IOException e)
         {
             throw new RuntimeException("Error occurred while creating file and copying contents: " + e.getMessage());
+        }
+    }
+
+    public void deleteFile(String fileName)
+    {
+        File fileToDelete = new File(fileName);
+
+        // Check if the file exists
+        if (fileToDelete.exists()) {
+            // Attempt to delete the file
+            fileToDelete.delete();
         }
     }
 }

@@ -10,6 +10,8 @@ import static java.lang.Math.round;
 import java.io.IOException;
 import java.net.HttpURLConnection;
 import java.net.URL;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.Scanner;
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -47,6 +49,9 @@ public class Main {
             double[] values = businessLogic.PollutionValues(location);
 
             // (store new data in file and update cache)
+            LocalDate currentDate = LocalDate.now();
+            String current = String.valueOf(currentDate);
+
             manager.storeData(location.getCity(),
                     String.valueOf(location.getLongitude()),
                     String.valueOf(location.getLatitude()),
@@ -66,7 +71,10 @@ public class Main {
 
                     String.valueOf(values[0]), String.valueOf(values[1]), String.valueOf(values[2]),
                     String.valueOf(values[3]), String.valueOf(values[4]), String.valueOf(values[5]),
-                    String.valueOf(values[6]), String.valueOf(values[7]), String.valueOf(values[8]));
+                    String.valueOf(values[6]), String.valueOf(values[7]), String.valueOf(values[8]),
+
+                    current
+            );
         }
 
         // file reading
@@ -175,6 +183,9 @@ public class Main {
             double[] values = businessLogic.PollutionValues(location);
 
             // (store new data in file and update cache)
+            LocalDate currentDate = LocalDate.now();
+            String current = String.valueOf(currentDate);
+
             manager.storeData(location.getCity(), String.valueOf(location.getLongitude()),
                     String.valueOf(location.getLatitude()),
                     String.valueOf(round(businessLogic.getTemperature(location))),
@@ -193,7 +204,10 @@ public class Main {
 
                     String.valueOf(values[0]), String.valueOf(values[1]), String.valueOf(values[2]),
                     String.valueOf(values[3]), String.valueOf(values[4]), String.valueOf(values[5]),
-                    String.valueOf(values[6]), String.valueOf(values[7]), String.valueOf(values[8]));
+                    String.valueOf(values[6]), String.valueOf(values[7]), String.valueOf(values[8]),
+
+                    current
+            );
         }
         // file reading
         FileReader filereader = new FileReader("CacheFile.txt");

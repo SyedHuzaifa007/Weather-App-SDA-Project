@@ -3,6 +3,8 @@ package BusinessLogic;
 import DataAccess.TxtFile;
 
 import java.io.*;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 
 public class CacheManager
 {
@@ -31,6 +33,20 @@ public class CacheManager
 
             if (data.equals(loc))
             {
+                LocalDate currentdate = LocalDate.now();
+                BufferedReader reader33 = new BufferedReader(new FileReader("CacheFile.txt"));
+                for (int i = 1; i < 25; i++) {
+                    reader33.readLine();
+                }
+                String dateString = reader33.readLine();
+                LocalDate storedDate = LocalDate.parse(dateString, DateTimeFormatter.ISO_LOCAL_DATE);
+
+                if (storedDate.isEqual(currentdate)) {
+                } else {
+                    files.deleteFile(loc+".txt");
+                    return false;
+                }
+
                 return true;
             }
             // if cache does not have the required location data
@@ -67,39 +83,65 @@ public class CacheManager
         }
     }
 
-    public void storeData(String Location,String longi, String lati, String temp, String feel, String min, String max, String sunrise, String sunset, String stamp, String day1, String day2, String day3, String day4, String day5, String aqi, String CO, String NO, String NO2, String O3, String SO2, String NH3, String PM25, String PM10)
+    public void storeData(String Location,String longi, String lati, String temp, String feel, String min, String max, String sunrise, String sunset, String stamp, String day1, String day2, String day3, String day4, String day5, String aqi, String CO, String NO, String NO2, String O3, String SO2, String NH3, String PM25, String PM10, String date)
     {
         // to store we first update cache file
         String filepath = "CacheFile.txt";
 
         try (BufferedWriter writer = new BufferedWriter(new FileWriter(filepath))) {
             // Write data line by line
-            writer.write(Location+"\n");
-            writer.write(longi+"\n");
-            writer.write(lati+"\n");
-            writer.write(temp+"\n");
-            writer.write(feel+"\n");
-            writer.write(min+"\n");
-            writer.write(max+"\n");
-            writer.write(sunrise+"\n");
-            writer.write(sunset+"\n");
-            writer.write(stamp+"\n");
+            writer.write(Location);
+            writer.newLine();
+            writer.write(longi);
+            writer.newLine();
+            writer.write(lati);
+            writer.newLine();
+            writer.write(temp);
+            writer.newLine();
+            writer.write(feel);
+            writer.newLine();
+            writer.write(min);
+            writer.newLine();
+            writer.write(max);
+            writer.newLine();
+            writer.write(sunrise);
+            writer.newLine();
+            writer.write(sunset);
+            writer.newLine();
+            writer.write(stamp);
+            writer.newLine();
 
-            writer.write(day1+"\n");
-            writer.write(day2+"\n");
-            writer.write(day3+"\n");
-            writer.write(day4+"\n");
-            writer.write(day5+"\n");
+            writer.write(day1);
+            writer.newLine();
+            writer.write(day2);
+            writer.newLine();
+            writer.write(day3);
+            writer.newLine();
+            writer.write(day4);
+            writer.newLine();
+            writer.write(day5);
+            writer.newLine();
 
-            writer.write(aqi+"\n");
-            writer.write(CO+"\n");
-            writer.write(NO+"\n");
-            writer.write(NO2+"\n");
-            writer.write(O3+"\n");
-            writer.write(SO2+"\n");
-            writer.write(NH3+"\n");
-            writer.write(PM25+"\n");
+            writer.write(aqi);
+            writer.newLine();
+            writer.write(CO);
+            writer.newLine();
+            writer.write(NO);
+            writer.newLine();
+            writer.write(NO2);
+            writer.newLine();
+            writer.write(O3);
+            writer.newLine();
+            writer.write(SO2);
+            writer.newLine();
+            writer.write(NH3);
+            writer.newLine();
+            writer.write(PM25);
+            writer.newLine();
             writer.write(PM10);
+            writer.newLine();
+
+            writer.write(date);
         }
         catch (IOException e)
         {
