@@ -7,42 +7,17 @@ import java.net.HttpURLConnection;
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
 public class WeatherData implements BusinessLogic {
-//    private double temperature;
-//    private double feelsLike;
-//    private double minTemperature;
-//    private double maxTemperature;
-//    private LocalTime sunriseTime;
-//    private LocalTime sunsetTime;
-//    private LocalTime timestamp;
-//
-//
-//    public WeatherData() {
-//        this.temperature = 0.0;
-//        this.feelsLike = 0.0;
-//        this.minTemperature = 0.0;
-//        this.maxTemperature = 0.0;
-//        this.sunriseTime = null;
-//        this.sunsetTime = null;
-//        this.timestamp = null;
-//    }
-//
-//    public WeatherData(double temp)
-//    {
-//        temperature=temp;
-//    }
-//    public WeatherData(double temperature, double feelsLike, double minTemperature, double maxTemperature,
-//                       LocalTime sunriseTime, LocalTime sunsetTime, LocalTime timestamp) {
-//        this.temperature = temperature;
-//        this.feelsLike = feelsLike;
-//        this.minTemperature = minTemperature;
-//        this.maxTemperature = maxTemperature;
-//        this.sunriseTime = sunriseTime;
-//        this.sunsetTime = sunsetTime;
-//        this.timestamp = timestamp;
-//    }
-//
 
-    // Getter methods
+    public String GenerateWeatherNotificattions(String location1){
+        NotificationManager notificationManager=new NotificationManager();
+        return notificationManager.GenerateWeatherNotificattions(location1);
+    }
+    public String generateAirQualityNotification(location location1)
+    {
+        NotificationManager notificationManager=new NotificationManager();
+        return notificationManager.generateAirQualityNotification(location1);
+
+    }// Getter methods
     public double getTemperature(location location) {
         WeatherInfo apIhandler=new WeatherInfo();
         return apIhandler.gettemperature(location);

@@ -10,7 +10,8 @@ public interface BusinessLogic {
     public LocalTime getTimestamp(location location);
     public double[] PollutionValues(location location) ;
     public double[] getDayForecast(location location);
+    public String GenerateWeatherNotificattions(String location1);
+    public String generateAirQualityNotification(location location1);
 
 
-
-}
+    }
