@@ -15,7 +15,7 @@ public class CacheManager
         Location = loc;
         files = new TxtFile(loc);
     }
-    boolean getData(String loc)
+   public boolean getData(String loc)
     {
         // reading file
         FileReader fileReader = null;
