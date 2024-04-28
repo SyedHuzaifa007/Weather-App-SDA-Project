@@ -33,11 +33,8 @@ public class Main {
         CacheManager manager = new CacheManager(location);
         manager.getData(location.getCity());
 
-        ArrayList<String> data = new ArrayList<>();
-        data = manager.readCacheFile();
-
-        ArrayList<String> db = new ArrayList<>();
-        db = manager.readCacheDB();
+        ArrayList<String> data = manager.readCacheFile();
+        ArrayList<String> db = manager.readCacheDB();
 //-----------------------------------Database Object-------------------------------------//
         DBTxtManager hello = new DBTxtManager();
         hello.writeToDBTxt(db.get(0), db.get(1), db.get(2));
