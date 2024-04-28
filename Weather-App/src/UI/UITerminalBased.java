@@ -34,20 +34,20 @@ public class UITerminalBased implements InterfaceUI {
         ArrayList<String> data = manager.readCacheFile();
         ArrayList<String> db = manager.readCacheDB();
     }
-    private void storeDataDB(ArrayList<String> db,String[]args) throws Exception {
-        DBTxtManager hello = new DBTxtManager();
+    private void storeDataDB(ArrayList<String> db,String[]args,DBTxtManager hello) throws Exception {
+
         hello.writeToDBTxt(db.get(0), db.get(1), db.get(2));
         DatabaseSQL.main(args);
 
     }
-    public void run(ArrayList<String> db,String[]args,CacheManager manager) throws Exception {
+    public void run(ArrayList<String> db,String[]args,CacheManager manager,DBTxtManager hello) throws Exception {
         while (true) {
             System.out.println("Please enter a Country");
             String location1 = scanner.nextLine();
             System.out.println("Please enter a city");
             String location =scanner.nextLine();
             storedataTXT(location,location1,manager);
-            storeDataDB(db,args);
+            storeDataDB(db,args,hello);
             displaymenu();
             int choice = scanner.nextInt();
             scanner.nextLine(); // Consume newline character

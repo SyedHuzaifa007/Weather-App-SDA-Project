@@ -28,6 +28,7 @@ public class Main
         Scanner scanner = new Scanner(System.in);
         System.out.println("Press 1 to use GUI and 2 to use UI");
         int choice = scanner.nextInt();
+
         if (choice == 1) {
 //-----------------------------------GUI Object------------------------------------------//
         GUI G = new GUI();
@@ -38,8 +39,10 @@ public class Main
         data.get(16), data.get(17), data.get(18), data.get(19), data.get(20), data.get(21), data.get(22), data.get(23), data.get(24), data.get(25));}
 //-----------------------------------UI object and called------------------------------------------//
         else if (choice==2){
+
         UITerminalBased ui=new UITerminalBased();
-        ui.run(db,args,manager);}
+        ui.run(db,args,manager,hello);
+        }
 
     }
 }
