@@ -1,13 +1,15 @@
 package UI;
 
-import java.time.DayOfWeek;
 import java.time.LocalDate;
-import BusinessLogic.Main;
+
+import BusinessLogic.CacheManager;
+import BusinessLogic.location;
+import DataAccess.DBTxtManager;
+import DataAccess.DatabaseSQL;
+
 import javax.swing.border.*;
 import java.awt.*;
-import java.awt.geom.RoundRectangle2D;
-import java.io.IOException;
-
+import java.util.ArrayList;
 import javax.swing.*;
 
 public class GUI {
@@ -20,6 +22,7 @@ public class GUI {
     public GUI()
     {
     }
+
     public void add(String Location_got,String longi_got, String lati_got, String temp_got, String feel_got, String min_got, String max_got, String sunrise_got, String sunset_got, String stamp_got, String day1_got, String day2_got, String day3_got, String day4_got, String day5_got, String aqi_got, String CO_got, String NO_got, String NO2_got, String O3_got, String SO2_got, String NH3_got, String PM25_got, String PM10_got, String n_weather, String n_air)
     {
         loading.dispose();
@@ -47,7 +50,8 @@ public class GUI {
             frame1.dispose();
             frame2.dispose();
             try {
-                Main.processData(typed);
+                processData(typed);
+                return;
             } catch (Exception ex) {
                 throw new RuntimeException(ex);
             }
@@ -922,6 +926,66 @@ public class GUI {
         frame1.setVisible(true); // see frame
     }
 
+    public void disposeLoadingFrame() {
+        if (loading != null) {
+            loading.dispose();
+        }
+    }
+
+    public static void processData(String input) throws Exception
+    {
+        GUI G = new GUI();
+        G.createLoadingFrame();
+
+        location location = new location();
+
+        if (input.contains(",")) {
+            // Splitting string into two
+            String[] parts = input.split("[,\\s]+");
+            // if data is numeric
+            if (isNumeric(parts[0]) && isNumeric(parts[1])) {
+                // If the first two parts are numeric, assume they are longitude and latitude
+                double longitude = Double.parseDouble(parts[0]);
+                double latitude = Double.parseDouble(parts[1]);
+                location.addManualLocationCountryCity(longitude, latitude);
+            } else {
+                // Otherwise, assume the first two parts are country and city
+                String country = parts[0];
+                String city = parts[1];
+                location.addManualLocationCoord(country, city);
+            }
+        }
+        else
+        {
+            G.disposeLoadingFrame();
+            String errorMessage = "The Format for Searching Is: Country,City or Longitude,Latitude (Plz try Again)";
+            String formattedMessage = "<html><body style='width: 250px;'>" + errorMessage + "</body></html>";
+            JOptionPane.showMessageDialog(null, formattedMessage, "Error", JOptionPane.ERROR_MESSAGE);
+            System.exit(1);
+        }
+
+        CacheManager manager = new CacheManager(location);
+        manager.getData(location.getCity());
+
+        ArrayList<String> data = new ArrayList<>();
+        data = manager.readCacheFile();
+
+        ArrayList<String> db = new ArrayList<>();
+        db = manager.readCacheDB();
+
+        DBTxtManager hello = new DBTxtManager();
+        hello.writeToDBTxt(db.get(0), db.get(1), db.get(2));
+        String[] arg = new String[0];
+        DatabaseSQL.main(arg);
+
+        G.add(data.get(0), data.get(1), data.get(2), data.get(3), data.get(4), data.get(5), data.get(6), data.get(7), data.get(8), data.get(9), data.get(10), data.get(11), data.get(12), data.get(13), data.get(14), data.get(15),
+                data.get(16), data.get(17), data.get(18), data.get(19), data.get(20), data.get(21), data.get(22), data.get(23), data.get(24), data.get(25));
+    }
+
+    public static boolean isNumeric(String part) {
+        return part.matches("-?\\d+(\\.\\d+)?");
+    }
+
     public void createLoadingFrame()
     {
         loading.setSize(1080, 800); // set frame size
@@ -932,10 +996,10 @@ public class GUI {
 
         // Label Search
         JLabel img = new JLabel();
-        ImageIcon loadingimg = new ImageIcon("Media\\api.png");
+        ImageIcon loadingimg = new ImageIcon("Media\\weathericon.png");
         img.setIcon(loadingimg);
 
-        int loadingWidth = 250;
+        int loadingWidth = 350;
         int loadingHeight = 250;
         ImageIcon scaledloading = new ImageIcon(loadingimg.getImage().getScaledInstance(loadingWidth, loadingHeight, java.awt.Image.SCALE_SMOOTH));
         img.setIcon(scaledloading);
@@ -946,7 +1010,7 @@ public class GUI {
         GridBagConstraints gbc = new GridBagConstraints();
         gbc.gridx = 0;
         gbc.gridy = 0;
-        gbc.insets = new Insets(0, 0, 20, 0); // Add some space below the image
+        gbc.insets = new Insets(0, 0, 10, 0); // Add some space below the image
         panel.add(img, gbc);
 
         // Add text label under the image
@@ -960,11 +1024,5 @@ public class GUI {
         loading.getContentPane().add(panel, BorderLayout.CENTER);
 
         loading.setVisible(true); // see frame
-    }
-
-    public void disposeLoadingFrame() {
-        if (loading != null) {
-            loading.dispose();
-        }
     }
 };
