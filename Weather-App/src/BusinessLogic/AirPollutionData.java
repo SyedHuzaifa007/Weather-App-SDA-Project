@@ -94,71 +94,45 @@ public class AirPollutionData extends APIhandler {
         return airQualityIndex;
     }
 
-    public void setAirQualityIndex(double airQualityIndex) {
-        this.airQualityIndex = airQualityIndex;
-    }
 
     public double getCarbonMonoxide() {
         return carbonMonoxide;
     }
 
-    public void setCarbonMonoxide(double carbonMonoxide) {
-        this.carbonMonoxide = carbonMonoxide;
-    }
+
 
     public double getNitrogenMonoxide() {
         return nitrogenMonoxide;
     }
 
-    public void setNitrogenMonoxide(double nitrogenMonoxide) {
-        this.nitrogenMonoxide = nitrogenMonoxide;
-    }
 
     public double getNitrogenDioxide() {
         return nitrogenDioxide;
-    }
-
-    public void setNitrogenDioxide(double nitrogenDioxide) {
-        this.nitrogenDioxide = nitrogenDioxide;
     }
 
     public double getOzone() {
         return ozone;
     }
 
-    public void setOzone(double ozone) {
-        this.ozone = ozone;
-    }
 
     public double getSulphurDioxide() {
         return sulphurDioxide;
     }
 
-    public void setSulphurDioxide(double sulphurDioxide) {
-        this.sulphurDioxide = sulphurDioxide;
-    }
 
     public double getAmmonia() {
         return ammonia;
     }
 
-    public void setAmmonia(double ammonia) {
-        this.ammonia = ammonia;
-    }
 
     public double getParticulatePM25() {
         return particulatePM25;
     }
 
-    public void setParticulatePM25(double particulatePM25) {
-        this.particulatePM25 = particulatePM25;
-    }
 
     public double getParticulatePM10() {
         return particulatePM10;
     }
 
-    public void setParticulatePM10(double particulatePM10) {
-        this.particulatePM10 = particulatePM10;
-    }
+
 }
