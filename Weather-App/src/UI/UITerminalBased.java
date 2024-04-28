@@ -41,13 +41,14 @@ public class UITerminalBased implements InterfaceUI {
         DatabaseSQL.main(args);
 
     }
-    public void run(String[]args,CacheManager manager,DBTxtManager hello) throws Exception {
+    public void run(String[]args,CacheManager manager,DBTxtManager hello,int input) throws Exception {
         while (true) {
             System.out.println("Please enter a Country");
             String location1 = scanner.nextLine();
             System.out.println("Please enter a city");
             String location =scanner.nextLine();
             ArrayList<String>db=storedataTXT(location,location1,manager);
+            if(input==2)
             storeDataDB(db,args,hello);
             displaymenu();
             int choice = scanner.nextInt();
