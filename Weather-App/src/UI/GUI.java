@@ -23,7 +23,7 @@ public class GUI {
     {
     }
 
-    public void add(String Location_got,String longi_got, String lati_got, String temp_got, String feel_got, String min_got, String max_got, String sunrise_got, String sunset_got, String stamp_got, String day1_got, String day2_got, String day3_got, String day4_got, String day5_got, String aqi_got, String CO_got, String NO_got, String NO2_got, String O3_got, String SO2_got, String NH3_got, String PM25_got, String PM10_got, String n_weather, String n_air)
+    public void add(String Location_got,String longi_got, String lati_got, String temp_got, String feel_got, String min_got, String max_got, String sunrise_got, String sunset_got, String stamp_got, String day1_got, String day2_got, String day3_got, String day4_got, String day5_got, String aqi_got, String CO_got, String NO_got, String NO2_got, String O3_got, String SO2_got, String NH3_got, String PM25_got, String PM10_got, String n_weather, String n_air,int input)
     {
         loading.dispose();
         //Application Frame
@@ -50,7 +50,7 @@ public class GUI {
             frame1.dispose();
             frame2.dispose();
             try {
-                processData(typed);
+                processData(typed,input);
                 return;
             } catch (Exception ex) {
                 throw new RuntimeException(ex);
@@ -932,7 +932,7 @@ public class GUI {
         }
     }
 
-    public static void processData(String input) throws Exception
+    public static void processData(String input,int choice) throws Exception
     {
         GUI G = new GUI();
         G.createLoadingFrame();
@@ -973,13 +973,15 @@ public class GUI {
         ArrayList<String> db = new ArrayList<>();
         db = manager.readCacheDB();
 
-        DBTxtManager hello = new DBTxtManager();
-        hello.writeToDBTxt(db.get(0), db.get(1), db.get(2));
-        String[] arg = new String[0];
-        DatabaseSQL.main(arg);
+        if(choice==2) {
+            DBTxtManager hello = new DBTxtManager();
+            hello.writeToDBTxt(db.get(0), db.get(1), db.get(2));
+            String[] arg = new String[0];
+            DatabaseSQL.main(arg);
+        }
 
         G.add(data.get(0), data.get(1), data.get(2), data.get(3), data.get(4), data.get(5), data.get(6), data.get(7), data.get(8), data.get(9), data.get(10), data.get(11), data.get(12), data.get(13), data.get(14), data.get(15),
-                data.get(16), data.get(17), data.get(18), data.get(19), data.get(20), data.get(21), data.get(22), data.get(23), data.get(24), data.get(25));
+                data.get(16), data.get(17), data.get(18), data.get(19), data.get(20), data.get(21), data.get(22), data.get(23), data.get(24), data.get(25),choice);
     }
 
     public static boolean isNumeric(String part) {
