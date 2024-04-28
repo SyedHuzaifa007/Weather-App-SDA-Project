@@ -41,7 +41,7 @@ public class Main
         else if (choice==2){
 
         UITerminalBased ui=new UITerminalBased();
-        ui.run(db,args,manager,hello);
+        ui.run(args,manager,hello);
         }
 
     }

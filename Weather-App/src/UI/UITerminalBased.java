@@ -23,16 +23,17 @@ public class UITerminalBased implements InterfaceUI {
         System.out.println("3. Show 5 Day Forecast");
         System.out.println("4. Show Air Pollution Data");
         System.out.println("5. Exit");
-
+        System.out.println("6. To Change Location");
     }
-    private void storedataTXT(String location,String location1, CacheManager manager) throws IOException {
+    private  ArrayList<String> storedataTXT(String location,String location1, CacheManager manager) throws IOException {
         location Object_Location=new location();
         Object_Location.setCity(location);
-
+        Object_Location.addManualLocationCoord(location1, location);
         manager = new CacheManager(Object_Location);
         manager.getData(Object_Location.getCity());
         ArrayList<String> data = manager.readCacheFile();
         ArrayList<String> db = manager.readCacheDB();
+        return db;
     }
     private void storeDataDB(ArrayList<String> db,String[]args,DBTxtManager hello) throws Exception {
 
@@ -40,13 +41,13 @@ public class UITerminalBased implements InterfaceUI {
         DatabaseSQL.main(args);
 
     }
-    public void run(ArrayList<String> db,String[]args,CacheManager manager,DBTxtManager hello) throws Exception {
+    public void run(String[]args,CacheManager manager,DBTxtManager hello) throws Exception {
         while (true) {
             System.out.println("Please enter a Country");
             String location1 = scanner.nextLine();
             System.out.println("Please enter a city");
             String location =scanner.nextLine();
-            storedataTXT(location,location1,manager);
+            ArrayList<String>db=storedataTXT(location,location1,manager);
             storeDataDB(db,args,hello);
             displaymenu();
             int choice = scanner.nextInt();
@@ -68,6 +69,8 @@ public class UITerminalBased implements InterfaceUI {
                 case 5:
                     System.out.println("Exiting...");
                     return;
+                case 6:
+                    continue;
                 default:
                     System.out.println("Invalid choice, please try again.");
             }
