@@ -27,7 +27,6 @@ public class GUI {
         frame1.setSize(1080, 800); // set frame size
         frame1.setTitle("Weather-App"); // set frame title
         frame1.getContentPane().setBackground(new Color(2, 0, 22)); // set frame color
-        frame1.setUndecorated(true);
         frame1.setResizable(false); // disable frame resizing
         frame1.setLocationRelativeTo(null);
 
@@ -682,7 +681,6 @@ public class GUI {
             frame2.setSize(1080, 800); // set frame size
             frame2.setTitle("Weather-App"); // set frame title
             frame2.getContentPane().setBackground(new Color(2, 0, 22)); // set frame color
-            frame2.setUndecorated(true);
             frame2.setResizable(false); // disable frame resizing
             frame2.setLocationRelativeTo(null);
 
@@ -775,7 +773,6 @@ public class GUI {
                 frame1.setSize(1080, 800); // set frame size
                 frame1.setTitle("Weather-App"); // set frame title
                 frame1.getContentPane().setBackground(new Color(2, 0, 22)); // set frame color
-                frame1.setUndecorated(true);
                 frame1.setResizable(false); // disable frame resizing
                 frame1.setLocationRelativeTo(null);
 
@@ -929,7 +926,6 @@ public class GUI {
     {
         loading.setSize(1080, 800); // set frame size
         loading.getContentPane().setBackground(new Color(2, 0, 22)); // set frame color
-        loading.setUndecorated(true);
         loading.setResizable(false); // disable frame resizing
         loading.setLocationRelativeTo(null);
         loading.getContentPane().setLayout(new BorderLayout());

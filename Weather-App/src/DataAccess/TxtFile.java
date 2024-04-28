@@ -37,7 +37,7 @@ public class TxtFile {
 
                 LocalDate currentdate = LocalDate.now();
                 BufferedReader reader33 = new BufferedReader(new FileReader(loc+".txt"));
-                for (int i = 1; i < 25; i++) {
+                for (int i = 1; i < 27; i++) {
                     reader33.readLine();
                 }
                 String dateString = reader33.readLine().trim();

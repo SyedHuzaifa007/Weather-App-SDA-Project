@@ -12,6 +12,7 @@ import java.net.HttpURLConnection;
 import java.net.URL;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
+import java.util.ArrayList;
 import java.util.Scanner;
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -22,121 +23,36 @@ import javax.swing.*;
 public class Main {
     public static void main(String[] args) throws Exception
     {
+//-----------------------------------GUI Object------------------------------------------//
         GUI G = new GUI();
         G.createLoadingFrame();
-
-        // Create a Location object with desired city and country
+//-----------------------------------Location Object-------------------------------------//
         location location = new location();
-
         location.getCurrentLocation();
+//-----------------------------------Cache Manager Object--------------------------------//
+        CacheManager manager = new CacheManager(location);
+        manager.getData(location.getCity());
 
-        // Business Logic method
-        BusinessLogic businessLogic = new WeatherData();
+        ArrayList<String> data = new ArrayList<>();
+        data = manager.readCacheFile();
 
-        // ( Data_Access_Layer Logic)
-        ///////////////////////////////////////////////////////////////////////
-
-        // (Initialized Manager)
-        CacheManager manager = new CacheManager(location.getCity());
-
-        // (get Data from Cache)
-        boolean status = false;
-        status = manager.getData(location.getCity());
-        // if cant find data store it first
-        if (!status) {
-            // getting forecast and air pollution data
-            double[] forecast = businessLogic.getDayForecast(location);
-            double[] values = businessLogic.PollutionValues(location);
-
-            // (store new data in file and update cache)
-            LocalDate currentDate = LocalDate.now();
-            String current = String.valueOf(currentDate);
-
-            manager.storeData(location.getCity(),
-                    String.valueOf(location.getLongitude()),
-                    String.valueOf(location.getLatitude()),
-                    String.valueOf(round(businessLogic.getTemperature(location))),
-                    String.valueOf(round(businessLogic.getFeelsLike(location))),
-                    String.valueOf(round(businessLogic.getMinTemperature(location))),
-                    String.valueOf(round(businessLogic.getMaxTemperature(location))),
-                    String.valueOf(businessLogic.getSunriseTime(location)),
-                    String.valueOf(businessLogic.getSunsetTime(location)),
-                    String.valueOf(businessLogic.getTimestamp(location)),
-
-                    String.valueOf(round(forecast[0])),
-                    String.valueOf(round(forecast[1])),
-                    String.valueOf(round(forecast[2])),
-                    String.valueOf(round(forecast[3])),
-                    String.valueOf(round(forecast[4])),
-
-                    String.valueOf(values[0]), String.valueOf(values[1]), String.valueOf(values[2]),
-                    String.valueOf(values[3]), String.valueOf(values[4]), String.valueOf(values[5]),
-                    String.valueOf(values[6]), String.valueOf(values[7]), String.valueOf(values[8]),
-
-                    current
-            );
-        }
-
-        // file reading
-
-        FileReader filereader = new FileReader("CacheFile.txt");
-        BufferedReader reader = new BufferedReader(filereader);
-
-        String loc = reader.readLine();
-        String longi = reader.readLine();
-        String latitude = reader.readLine();
-
-        String temp = reader.readLine();
-        String feel = reader.readLine();
-        String min = reader.readLine();
-        String max = reader.readLine();
-        String rise = reader.readLine();
-        String set = reader.readLine();
-        String stamp = reader.readLine();
-
-        String day1 = reader.readLine();
-        String day2 = reader.readLine();
-        String day3 = reader.readLine();
-        String day4 = reader.readLine();
-        String day5 = reader.readLine();
-
-        String aqi = reader.readLine();
-        String CO = reader.readLine();
-        String NO = reader.readLine();
-        String NO2 = reader.readLine();
-        String O3 = reader.readLine();
-        String SO2 = reader.readLine();
-        String NH3 = reader.readLine();
-        String PM25 = reader.readLine();
-        String PM10 = reader.readLine();
-
-        reader.close();
-
-        // Database Creation
-        String data1 = loc + "," + longi + "," + latitude + "," + temp + "," + feel + "," + min + "," + max + "," + rise + "," + set + "," + stamp;
-        String data2 = loc + "," + day1 + "," + day2 + "," + day3 + "," + day4 + "," + day5;
-        String data3 = loc + "," + aqi + "," + CO + "," + NO + "," + NO2 + "," + O3 + "," + SO2 + "," + NH3 + "," + PM25 + "," + PM10;
-//
-//        DBTxtManager hello = new DBTxtManager();
-//        hello.writeToDBTxt(data1, data2, data3);
-//        DatabaseSQL.main(args);
-//        ////////////////////////////////////////////////////////////////////////
-
-        // Notification Object
-        NotificationManager notify = new NotificationManager();
-        String n_weather = notify.GenerateWeatherNotificattions(loc);
-        String n_air = notify.generateAirQualityNotification(location);
-
-        G.add(loc, longi, latitude, temp, feel, min, max, rise, set, stamp, day1, day2, day3, day4, day5, aqi,
-                CO, NO, NO2, O3, SO2, NH3, PM25, PM10, n_weather, n_air);
+        ArrayList<String> db = new ArrayList<>();
+        db = manager.readCacheDB();
+//-----------------------------------Database Object-------------------------------------//
+        DBTxtManager hello = new DBTxtManager();
+        hello.writeToDBTxt(db.get(0), db.get(1), db.get(2));
+        DatabaseSQL.main(args);
+//-----------------------------------GUI called------------------------------------------//
+        G.add(data.get(0), data.get(1), data.get(2), data.get(3), data.get(4), data.get(5), data.get(6), data.get(7), data.get(8), data.get(9), data.get(10), data.get(11), data.get(12), data.get(13), data.get(14), data.get(15),
+                data.get(16), data.get(17), data.get(18), data.get(19), data.get(20), data.get(21), data.get(22), data.get(23), data.get(24), data.get(25));
     }
+
 
     public static void processData(String input) throws Exception
     {
         GUI G = new GUI();
         G.createLoadingFrame();
 
-        // Create a Location object with desired city and country
         location location = new location();
 
         if (input.contains(",")) {
@@ -164,104 +80,22 @@ public class Main {
             System.exit(1);
         }
 
-        // Business Logic method
-        BusinessLogic businessLogic = new WeatherData();
+        CacheManager manager = new CacheManager(location);
+        manager.getData(location.getCity());
 
-        // ( Data_Access_Layer Logic)
-        ///////////////////////////////////////////////////////////////////////
+        ArrayList<String> data = new ArrayList<>();
+        data = manager.readCacheFile();
 
-        // (Initialized Manager)
-        CacheManager manager = new CacheManager(location.getCity());
+        ArrayList<String> db = new ArrayList<>();
+        db = manager.readCacheDB();
 
-        // (get Data from Cache)
-        boolean status = false;
-        status = manager.getData(location.getCity());
-        // if cant find data store it first
-        if (!status) {
-            // getting forecast and air pollution data
-            double[] forcast = businessLogic.getDayForecast(location);
-            double[] values = businessLogic.PollutionValues(location);
+        DBTxtManager hello = new DBTxtManager();
+        hello.writeToDBTxt(db.get(0), db.get(1), db.get(2));
+        String[] arg = new String[0];
+        DatabaseSQL.main(arg);
 
-            // (store new data in file and update cache)
-            LocalDate currentDate = LocalDate.now();
-            String current = String.valueOf(currentDate);
-
-            manager.storeData(location.getCity(), String.valueOf(location.getLongitude()),
-                    String.valueOf(location.getLatitude()),
-                    String.valueOf(round(businessLogic.getTemperature(location))),
-                    String.valueOf(round(businessLogic.getFeelsLike(location))),
-                    String.valueOf(round(businessLogic.getMinTemperature(location))),
-                    String.valueOf(round(businessLogic.getMaxTemperature(location))),
-                    String.valueOf(businessLogic.getSunriseTime(location)),
-                    String.valueOf(businessLogic.getSunsetTime(location)),
-                    String.valueOf(businessLogic.getTimestamp(location)),
-
-                    String.valueOf(round(forcast[0])),
-                    String.valueOf(round(forcast[1])),
-                    String.valueOf(round(forcast[2])),
-                    String.valueOf(round(forcast[3])),
-                    String.valueOf(round(forcast[4])),
-
-                    String.valueOf(values[0]), String.valueOf(values[1]), String.valueOf(values[2]),
-                    String.valueOf(values[3]), String.valueOf(values[4]), String.valueOf(values[5]),
-                    String.valueOf(values[6]), String.valueOf(values[7]), String.valueOf(values[8]),
-
-                    current
-            );
-        }
-        // file reading
-        FileReader filereader = new FileReader("CacheFile.txt");
-        BufferedReader reader = new BufferedReader(filereader);
-
-        String loc = reader.readLine();
-        String longi = reader.readLine();
-        String latitude = reader.readLine();
-
-        String temp = reader.readLine();
-        String feel = reader.readLine();
-        String min = reader.readLine();
-        String max = reader.readLine();
-        String rise = reader.readLine();
-        String set = reader.readLine();
-        String stamp = reader.readLine();
-
-        String day1 = reader.readLine();
-        String day2 = reader.readLine();
-        String day3 = reader.readLine();
-        String day4 = reader.readLine();
-        String day5 = reader.readLine();
-
-        String aqi = reader.readLine();
-        String CO = reader.readLine();
-        String NO = reader.readLine();
-        String NO2 = reader.readLine();
-        String O3 = reader.readLine();
-        String SO2 = reader.readLine();
-        String NH3 = reader.readLine();
-        String PM25 = reader.readLine();
-        String PM10 = reader.readLine();
-
-        reader.close();
-
-        // Database Creation
-        String data1 = loc + "," + longi + "," + latitude + "," + temp + "," + feel + "," + min + "," + max + "," + rise + "," + set + "," + stamp;
-        String data2 = loc + "," + day1 + "," + day2 + "," + day3 + "," + day4 + "," + day5;
-        String data3 = loc + "," + aqi + "," + CO + "," + NO + "," + NO2 + "," + O3 + "," + SO2 + "," + NH3 + "," + PM25 + "," + PM10;
-
-//        DBTxtManager hello = new DBTxtManager();
-//        hello.writeToDBTxt(data1, data2, data3);
-//        String[] arg = new String[0];
-//        DatabaseSQL.main(arg);
-//
-//        ////////////////////////////////////////////////////////////////////////
-
-        // Notification Object
-        NotificationManager notify = new NotificationManager();
-        String n_weather = notify.GenerateWeatherNotificattions(loc);
-        String n_air = notify.generateAirQualityNotification(location);
-
-        G.add(loc, longi, latitude, temp, feel, min, max, rise, set, stamp, day1, day2, day3, day4, day5, aqi,
-                CO, NO, NO2, O3, SO2, NH3, PM25, PM10, n_weather, n_air);
+        G.add(data.get(0), data.get(1), data.get(2), data.get(3), data.get(4), data.get(5), data.get(6), data.get(7), data.get(8), data.get(9), data.get(10), data.get(11), data.get(12), data.get(13), data.get(14), data.get(15),
+                data.get(16), data.get(17), data.get(18), data.get(19), data.get(20), data.get(21), data.get(22), data.get(23), data.get(24), data.get(25));
     }
 
     private static boolean isNumeric(String part) {

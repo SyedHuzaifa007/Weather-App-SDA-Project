@@ -7,16 +7,13 @@ public class NotificationManager extends APIhandler {
         location loc1 = new location();
         loc1.setCity(location1);
         String text="Normal Temperatures";
-        System.out.println("Normal Temperature.");
         double temp = apiHandler1.gettemperature(loc1);
         if (temp >= 45) {
             text="Hot Temperatures";
-            System.out.println("Hot Temperatures!");
             return text;
 
         } else if (temp <= -10) {
             text="Cold temperatures";
-            System.out.println("Cold Temperatures!");
             return text;
         }
         return text;
@@ -61,13 +58,11 @@ public class NotificationManager extends APIhandler {
         }
         String text;
         if(maxAQI>100) {
-            System.out.println("Hazardous Air Quality.");
             text="Hazardous Air Quality ";
             return text;
         }
         else
         {
-            System.out.println("Safe Air Quality");
             text = "Safe Air Quality ";
             return text;
         }
