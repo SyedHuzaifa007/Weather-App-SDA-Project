@@ -1,0 +1,16 @@
+<component name="ArtifactManager">
+  <artifact type="jar" name="BusinessLogic:jar">
+    <output-path>$PROJECT_DIR$/out/artifacts/BusinessLogic_jar</output-path>
+    <root id="archive" name="BusinessLogic.jar">
+      <element id="directory" name="META-INF">
+        <element id="file-copy" path="$PROJECT_DIR$/META-INF/MANIFEST.MF" />
+      </element>
+      <element id="module-output" name="BusinessLogic" />
+      <element id="library" level="project" name="FileHandler" />
+      <element id="library" level="project" name="mssql-jdbc-12.6.1.jre11" />
+      <element id="library" level="project" name="mysql-connector-j-8.3.0" />
+      <element id="library" level="project" name="json-20240303" />
+      <element id="library" level="project" name="java-json-schema" />
+    </root>
+  </artifact>
+</component>
