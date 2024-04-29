@@ -1,0 +1,9 @@
+<component name="ArtifactManager">
+  <artifact type="jar" name="location:jar">
+    <output-path>$PROJECT_DIR$/out/artifacts/location_jar</output-path>
+    <root id="archive" name="location.jar">
+      <element id="module-output" name="location" />
+      <element id="library" level="project" name="java-json-schema" />
+    </root>
+  </artifact>
+</component>

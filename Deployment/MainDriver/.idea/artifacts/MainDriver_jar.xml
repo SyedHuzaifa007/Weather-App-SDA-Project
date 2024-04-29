@@ -6,14 +6,15 @@
         <element id="file-copy" path="$PROJECT_DIR$/META-INF/MANIFEST.MF" />
       </element>
       <element id="module-output" name="MainDriver" />
-      <element id="library" level="project" name="mssql-jdbc-12.6.1.jre11" />
-      <element id="library" level="project" name="GUI" />
-      <element id="library" level="project" name="FileHandler" />
       <element id="library" level="project" name="BusinessLogic" />
-      <element id="library" level="project" name="mysql-connector-j-8.3.0" />
+      <element id="library" level="project" name="FileHandler" />
+      <element id="library" level="project" name="json-simple-1.1.1" />
+      <element id="library" level="project" name="GUI" />
       <element id="library" level="project" name="SQL" />
-      <element id="library" level="project" name="json-20240303" />
+      <element id="library" level="project" name="Console" />
       <element id="library" level="project" name="java-json-schema" />
+      <element id="library" level="project" name="json-20240303" />
+      <element id="library" level="project" name="mssql-jdbc-12.6.1.jre11" />
     </root>
   </artifact>
 </component>

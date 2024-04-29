@@ -1,3 +1,5 @@
+package UI;
+
 import BusinessLogic.*;
 import DataAccess.DBTxtManager;
 
@@ -40,8 +42,14 @@ public class UITerminalBased implements InterfaceUI {
         DatabaseSQL.main(args);
 
     }
-    public void run(String[]args,CacheManager manager,DBTxtManager hello,int input) throws Exception {
+    public void run(String[]args,DBTxtManager hello,int input) throws Exception {
         while (true) {
+             location location2 = new location();
+              location2.getCurrentLocation();
+
+            CacheManager manager = new CacheManager(location2);
+            manager.getData(location2.getCity());
+
             System.out.println("Please enter a Country");
             String location1 = scanner.nextLine();
             System.out.println("Please enter a city");

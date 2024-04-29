@@ -1,3 +1,5 @@
+package UI;
+
 import BusinessLogic.NotificationManager;
 
 public interface InterfaceUI {

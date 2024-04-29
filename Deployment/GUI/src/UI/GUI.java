@@ -932,7 +932,7 @@ public class GUI {
         }
     }
 
-    public static void processData(String input,int choice) throws Exception
+    public  void processData(String input,int choice) throws Exception
     {
         GUI G = new GUI();
         G.createLoadingFrame();
