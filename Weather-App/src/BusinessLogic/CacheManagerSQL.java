@@ -17,7 +17,7 @@ public class CacheManagerSQL {
 
         public void getData(String loc) {
             try (Connection connection = dbConnection.getConnection();
-                 PreparedStatement statement = connection.prepareStatement("SELECT * FROM WeatherData WHERE Location = ? AND Timestamp >= DATE_SUB(NOW(), INTERVAL 1 DAY)")) {
+                 PreparedStatement statement = connection.prepareStatement("SELECT * FROM WeatherData WHERE Location = ? ORDER BY Timestamp DESC LIMIT 1")) {
                 statement.setString(1, loc);
                 ResultSet resultSet = statement.executeQuery();
 
