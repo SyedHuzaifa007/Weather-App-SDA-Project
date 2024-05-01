@@ -2,7 +2,8 @@ package UI;
 
 import java.time.LocalDate;
 
-import BusinessLogic.CacheManager;
+import BusinessLogic.NotificationManager;
+import DataAccess.CacheManager;
 import BusinessLogic.location;
 import DataAccess.DBTxtManager;
 import DataAccess.DatabaseSQL;
@@ -12,7 +13,7 @@ import java.awt.*;
 import java.util.ArrayList;
 import javax.swing.*;
 
-public class GUI {
+public class GUI implements InterfaceUI{
 
     JFrame frame1 = new JFrame();
     JFrame frame2 = new JFrame();
@@ -1027,4 +1028,25 @@ public class GUI {
 
         loading.setVisible(true); // see frame
     }
+
+    @Override
+    public void DisplayBasicWeatherData(String location) {
+
+    }
+    @Override
+    public void showAirPollutionData(String location) {
+
+    }
+    @Override
+    public void DisplayWeatherForecast(String location) {
+
+    }
+    @Override
+    public void DisplayNotification(NotificationManager Object_Notify, String Location) {
+    }
+    @Override
+    public void DisplayWeatherData(String location) {
+
+    }
+
 };

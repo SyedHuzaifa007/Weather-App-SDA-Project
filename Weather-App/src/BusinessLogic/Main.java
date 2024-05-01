@@ -1,5 +1,6 @@
 package BusinessLogic;
 
+import DataAccess.CacheManager;
 import DataAccess.DBTxtManager;
 import DataAccess.DatabaseSQL;
 import UI.GUI;
@@ -24,19 +25,19 @@ public class Main {
         ArrayList<String> data = manager.readCacheFile();
         ArrayList<String> db = manager.readCacheDB();
 
-        if (dataSource.equals("TxtFiles")) {
+        if (dataSource.equals("txtfiles")) {
             if (args.length != 2) {
                 System.out.println("Usage: java Main TxtFiles <UI_type>");
                 System.exit(1);
             }
             String uiType = args[1];
 
-            if (uiType.equals("GUI")) {
+            if (uiType.equals("gui")) {
                 GUI G = new GUI();
                 G.createLoadingFrame();
                 G.add(data.get(0), data.get(1), data.get(2), data.get(3), data.get(4), data.get(5), data.get(6), data.get(7), data.get(8), data.get(9), data.get(10), data.get(11), data.get(12), data.get(13), data.get(14), data.get(15),
                         data.get(16), data.get(17), data.get(18), data.get(19), data.get(20), data.get(21), data.get(22), data.get(23), data.get(24), data.get(25), 1);
-            } else if (uiType.equals("Terminal-UI")) {
+            } else if (uiType.equals("terminal")) {
                 DBTxtManager hello = new DBTxtManager();
                 UITerminalBased ui = new UITerminalBased();
                 ui.run(args, manager, hello, 1);
@@ -44,7 +45,7 @@ public class Main {
                 System.out.println("Invalid UI type.");
                 System.exit(1);
             }
-        } else if (dataSource.equals("DataBase")) {
+        } else if (dataSource.equals("sql")) {
             DBTxtManager hello = new DBTxtManager();
             hello.writeToDBTxt(db.get(0), db.get(1), db.get(2));
             DatabaseSQL.main(args);
@@ -55,14 +56,14 @@ public class Main {
             }
             String uiType = args[1];
 
-            if (uiType.equals("GUI")) {
+            if (uiType.equals("gui")) {
                 GUI G = new GUI();
                 G.createLoadingFrame();
                 G.add(data.get(0), data.get(1), data.get(2), data.get(3), data.get(4), data.get(5), data.get(6), data.get(7), data.get(8), data.get(9), data.get(10), data.get(11), data.get(12), data.get(13), data.get(14), data.get(15),
-                        data.get(16), data.get(17), data.get(18), data.get(19), data.get(20), data.get(21), data.get(22), data.get(23), data.get(24), data.get(25), 2);
-            } else if (uiType.equals("Terminal-UI")) {
+                        data.get(16), data.get(17), data.get(18), data.get(19), data.get(20), data.get(21), data.get(22), data.get(23), data.get(24), data.get(25), 1);
+            } else if (uiType.equals("terminal")) {
                 UITerminalBased ui = new UITerminalBased();
-                ui.run(args, manager, hello, 2);
+                ui.run(args, manager, hello, 1);
             } else {
                 System.out.println("Invalid UI type.");
                 System.exit(1);

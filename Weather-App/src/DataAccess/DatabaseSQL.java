@@ -11,7 +11,7 @@ import java.sql.Timestamp;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 
-public class DatabaseSQL {
+public class DatabaseSQL implements DataAccessInterface{
 
     public static Timestamp parseTimestamp(String timeString) throws ParseException {
         if (timeString == null || timeString.isEmpty()) {
@@ -76,8 +76,15 @@ public class DatabaseSQL {
             preparedStatement.executeUpdate();
         }
     }
+    public void insertWeatherData() {
 
+    }
+    public void insertWeatherForecast() {
 
+    }
+    public void insertAirPollutionData() {
+
+    }
     public static void main(String[] args) throws Exception {
         String fileName = "DBTxt.txt";
 
@@ -96,4 +103,5 @@ public class DatabaseSQL {
         String[] data3 = line.split(",");
         insertAirPollutionData(connection, data3);
     }
+
 }

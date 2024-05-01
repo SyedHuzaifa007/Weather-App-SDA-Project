@@ -1,12 +1,12 @@
 package UI;
 import BusinessLogic.*;
+import DataAccess.CacheManager;
 import DataAccess.DBTxtManager;
 
 import java.io.*;
-import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Scanner;
-import java.io.FileReader;
+
 import static java.lang.Math.round;
 import DataAccess.DatabaseSQL;
 public class UITerminalBased implements InterfaceUI {
@@ -42,7 +42,7 @@ public class UITerminalBased implements InterfaceUI {
 
     }
     public void run(String[]args,CacheManager manager,DBTxtManager hello,int input) throws Exception {
-        while (true) {
+
             System.out.println("Please enter a Country");
             String location1 = scanner.nextLine();
             System.out.println("Please enter a city");
@@ -50,6 +50,7 @@ public class UITerminalBased implements InterfaceUI {
             ArrayList<String>db=storedataTXT(location,location1,manager);
             if(input==2)
             storeDataDB(db,args,hello);
+        while (true) {
             displaymenu();
             int choice = scanner.nextInt();
             scanner.nextLine(); // Consume newline character
@@ -71,7 +72,14 @@ public class UITerminalBased implements InterfaceUI {
                     System.out.println("Exiting...");
                     return;
                 case 6:
-                    continue;
+                    System.out.println("Please enter a Country");
+                     location1 = scanner.nextLine();
+                    System.out.println("Please enter a city");
+                     location =scanner.nextLine();
+                    db=storedataTXT(location,location1,manager);
+                    if(input==2)
+                        storeDataDB(db,args,hello);
+                    break;
                 default:
                     System.out.println("Invalid choice, please try again.");
             }

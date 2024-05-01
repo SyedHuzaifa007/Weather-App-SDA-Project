@@ -7,7 +7,7 @@ import java.nio.file.Paths;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 
-public class TxtFile {
+public class TxtFile implements DataAccessInterface{
     private String location;
 
     public TxtFile(String loc) {
@@ -94,6 +94,14 @@ public class TxtFile {
         }
     }
 
+    public void insertWeatherData() {
+    }
+    public void insertWeatherForecast() {
+    }
+
+    public void insertAirPollutionData() {
+
+    }
     public void deleteFile(String fileName)
     {
         File fileToDelete = new File(fileName);
@@ -104,4 +112,4 @@ public class TxtFile {
             fileToDelete.delete();
         }
     }
-}
+    }

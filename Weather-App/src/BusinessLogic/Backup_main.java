@@ -1,4 +1,5 @@
 package BusinessLogic;
+import DataAccess.CacheManager;
 import DataAccess.DBTxtManager;
 import DataAccess.DatabaseSQL;
 import UI.GUI;

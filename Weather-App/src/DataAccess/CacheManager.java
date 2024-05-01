@@ -1,10 +1,9 @@
-package BusinessLogic;
-
-import DataAccess.TxtFile;
-
+package DataAccess;
 import java.io.*;
 import java.lang.reflect.Array;
 import java.time.LocalDate;
+import BusinessLogic.*;
+import DataAccess.TxtFile;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 
