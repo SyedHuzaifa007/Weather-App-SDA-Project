@@ -1,4 +1,7 @@
 package BusinessLogic;
+import java.io.BufferedWriter;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -25,7 +28,7 @@ public class CacheManagerSQL {
                     // Data exists in cache and is up-to-date
                     // Fetch data and return
                     String location = resultSet.getString("Location");
-                    String longitude = resultSet.getString("Longitude"));
+                    String longitude = resultSet.getString("Longitude");
                     String latitude = resultSet.getString("Latitude");
                     String temperature = resultSet.getString("Temperature");
                     String feelsLike = resultSet.getString("FeelsLike");
@@ -50,4 +53,31 @@ public class CacheManagerSQL {
                 // Handle exception
             }
         }
+
+    private void writeDataToFile(ResultSet resultSet) throws SQLException, IOException {
+        try (BufferedWriter writer = new BufferedWriter(new FileWriter("CacheFileSQL.txt"))) {
+            // Write data line by line
+            writer.write(resultSet.getString("Location"));
+            writer.newLine();
+            writer.write(resultSet.getString("Longitude"));
+            writer.newLine();
+            writer.write(resultSet.getString("Latitude"));
+            writer.newLine();
+            writer.write(resultSet.getString("Temperature"));
+            writer.newLine();
+            writer.write(resultSet.getString("FeelsLike"));
+            writer.newLine();
+            writer.write(resultSet.getString("MinTemp"));
+            writer.newLine();
+            writer.write(resultSet.getString("MaxTemp"));
+            writer.newLine();
+            writer.write(resultSet.getString("Sunrise"));
+            writer.newLine();
+            writer.write(resultSet.getString("Sunset"));
+            writer.newLine();
+            writer.write(resultSet.getString("Timestamp"));
+            writer.newLine();
+            // Write other data accordingly
+        }
+    }
 }
