@@ -1,7 +1,9 @@
 <component name="libraryTable">
   <library name="java-json-schema">
     <CLASSES>
-      <root url="jar://$USER_HOME$/Downloads/java-json-schema.jar!/" />
+      <root url="jar://$PROJECT_DIR$/../SDA Drivers/java-json-schema.jar!/" />
+      <root url="jar://$PROJECT_DIR$/../SDA Drivers/json-simple-1.1.1.jar!/" />
+      <root url="jar://$PROJECT_DIR$/../SDA Drivers/mssql-jdbc-12.6.1.jre11.jar!/" />
     </CLASSES>
     <JAVADOC />
     <SOURCES />
