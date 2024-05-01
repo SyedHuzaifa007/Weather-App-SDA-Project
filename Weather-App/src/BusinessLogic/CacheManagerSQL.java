@@ -1,13 +1,14 @@
 package BusinessLogic;
-
-public class CacheManagerSQL {
-    import java.sql.Connection;
+import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import DataAccess.DatabaseConnection;
 import java.time.LocalDate;
 
-    public class CacheManagerSQL {
+
+
+public class CacheManagerSQL {
         private DatabaseConnection dbConnection;
 
         public CacheManagerSQL(DatabaseConnection dbConnection) {
