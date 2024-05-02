@@ -8,5 +8,5 @@ public interface DataAccessInterface {
     public void insertWeatherData();
     public void insertWeatherForecast();
     public void insertAirPollutionData();
-    public void getData();
+    public void getdata();
 }
