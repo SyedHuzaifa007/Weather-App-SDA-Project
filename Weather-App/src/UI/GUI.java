@@ -2,8 +2,11 @@ package UI;
 
 import java.time.LocalDate;
 
-import BusinessLogic.*;
-import DataAccess.*;
+import BusinessLogic.NotificationManager;
+import DataAccess.CacheManager;
+import BusinessLogic.location;
+import DataAccess.DBTxtManager;
+import DataAccess.DatabaseSQL;
 
 import javax.swing.border.*;
 import java.awt.*;
@@ -16,7 +19,6 @@ public class GUI implements InterfaceUI{
     JFrame frame2 = new JFrame();
     JFrame loading = new JFrame();
     String typed = " ";
-    location loc;
 
     public GUI()
     {
@@ -1029,47 +1031,22 @@ public class GUI implements InterfaceUI{
 
     @Override
     public void DisplayBasicWeatherData(String location) {
-        frame1.setVisible(true);
-    }
-    @Override
-    public void showAirPollutionData(String location)
-    {
-        BusinessLogic bl = new WeatherData();
-        double[] values = bl.PollutionValues(loc);
 
-        frame2.add(new JLabel(String.valueOf(values[0])));
-        frame2.add(new JLabel(String.valueOf(values[1])));
-        frame2.add(new JLabel(String.valueOf(values[2])));
-        frame2.add(new JLabel(String.valueOf(values[3])));
-        frame2.add(new JLabel(String.valueOf(values[4])));
-        frame2.add(new JLabel(String.valueOf(values[5])));
-        frame2.add(new JLabel(String.valueOf(values[6])));
-        frame2.add(new JLabel(String.valueOf(values[7])));
-        frame2.add(new JLabel(String.valueOf(values[8])));
     }
     @Override
-    public void DisplayWeatherForecast(String location)
-    {
-        BusinessLogic bl = new WeatherData();
-        double[] forecast = bl.getDayForecast(loc);
-        frame1.add(new JLabel(String.valueOf(forecast[0])));
-        frame1.add(new JLabel(String.valueOf(forecast[1])));
-        frame1.add(new JLabel(String.valueOf(forecast[2])));
-        frame1.add(new JLabel(String.valueOf(forecast[3])));
-        frame1.add(new JLabel(String.valueOf(forecast[4])));
+    public void showAirPollutionData(String location) {
+
     }
     @Override
-    public void DisplayNotification(NotificationManager Object_Notify, String Location)
-    {
-        String not = Object_Notify.generateAirQualityNotification(loc);
-        frame1.add(new JLabel(not));
-        not = Object_Notify.GenerateWeatherNotificattions(loc.getCity());
-        frame1.add(new JLabel(not));
+    public void DisplayWeatherForecast(String location) {
+
     }
     @Override
-    public void DisplayWeatherData(String location)
-    {
-        frame2.setVisible(true);
+    public void DisplayNotification(NotificationManager Object_Notify, String Location) {
+    }
+    @Override
+    public void DisplayWeatherData(String location) {
+
     }
 
 };
