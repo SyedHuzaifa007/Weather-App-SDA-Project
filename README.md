@@ -64,13 +64,4 @@ WeatherApp emphasizes efficient software design by:
 2. Choose your preferred UI and storage method by configuring the application settings.
 3. Build and run the application to start tracking the weather for your desired locations.
 
-## Team Members
-
-- Syed Huzaifa Mustansar
-- Ahmad Shamail Butt
-- Syed Asfandyar Ali
-- Faizan Saleh
-- Abdur Rafay
-- Moin Ud Din
-
 Let WeatherApp keep you informed about the weather conditions wherever you are! Happy tracking! 🌤️🌦️🌧️🌩️
